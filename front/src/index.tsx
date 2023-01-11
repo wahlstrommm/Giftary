@@ -3,13 +3,22 @@ import ReactDOM from 'react-dom/client';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import { BrowserRouter } from 'react-router-dom';
+import { Routes,Route } from 'react-router';
+import Toplist from './Routes/toplist/toplist';
+import NotFound from './Routes/NotFound/notFound';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<App/>}/>
+      <Route path="/toplist" element={<Toplist/>}/>
+      <Route path='*' element={<NotFound/>}/>
+    </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
