@@ -199,7 +199,7 @@ const CreateUserForm = () => {
       {/* Private user */}
       <div
         style={
-          userChoice == "Privatperson"
+          userChoice === "Privatperson"
             ? { display: "block" }
             : { display: "none" }
         }
@@ -344,7 +344,7 @@ const CreateUserForm = () => {
       {/* Company */}
       <div
         style={
-          userChoice == "Företag" ? { display: "block" } : { display: "none" }
+          userChoice === "Företag" ? { display: "block" } : { display: "none" }
         }
       >
         <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 ">
