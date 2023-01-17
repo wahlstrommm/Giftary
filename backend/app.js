@@ -25,6 +25,7 @@ app.use("/users", usersRouter);
 app.use("/api/products", productRoute);
 app.use("/api/register", registerRouter);
 app.use("/api/login", loginRouter);
+
 const uri = process.env.MONGODB_URI;
 
 async function init() {
