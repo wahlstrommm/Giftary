@@ -8,6 +8,7 @@ const usersRouter = require("./routes/users");
 const registerRouter = require("./routes/register");
 const productRoute = require("./routes/product-route");
 const loginRouter = require("./routes/login");
+
 var app = express();
 const PORT = 3001;
 const mongoose = require("mongoose");
@@ -23,7 +24,7 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/api/products", productRoute);
 app.use("/api/register", registerRouter);
-app.use("api/login", loginRouter);
+app.use("/api/login", loginRouter);
 const uri = process.env.MONGODB_URI;
 
 async function init() {
