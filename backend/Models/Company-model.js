@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
-import { Schema, model, models } from "mongoose";
+const mongoose = require("mongoose");
+const { Schema, model, models } = require("mongoose");
 
-const CompanyModel = new mongoose.Schema({
+const companyModel = mongoose.Schema({
   name: {
     type: String,
     required: [true, "Lägg till ett namn"],
@@ -22,5 +22,4 @@ const CompanyModel = new mongoose.Schema({
     trim: true,
   },
 });
-const Company = models.Company || model("Company", CompanyModel);
-export default Company;
+module.exports = mongoose.model("Company", companyModel);

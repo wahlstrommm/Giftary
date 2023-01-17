@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import { Schema, model, models } from "mongoose";
+const mongoose = require("mongoose");
+const { Schema, model, models } = require("mongoose");
 
 const categoryModel = new mongoose.Schema({
   forHim: {
