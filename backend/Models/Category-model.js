@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema, model, models } = require("mongoose");
-
-const categoryModel = new mongoose.Schema({
+const categoryModel = mongoose.Schema({
   forHim: {
     type: Boolean | any,
   },
@@ -15,5 +14,4 @@ const categoryModel = new mongoose.Schema({
     type: Boolean | any,
   },
 });
-const Category = models.Category || model("Category", categoryModel);
-export default Category;
+module.exports = mongoose.model("Category", categoryModel);
