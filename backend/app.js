@@ -3,8 +3,9 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
+const indexRouter = require("./routes/index");
+const usersRouter = require("./routes/users");
+const registerRouter = require("./routes/register");
 const productRoute = require("./routes/product-route");
 var app = express();
 const PORT = 3001;
@@ -20,6 +21,7 @@ dotenv.config();
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/api/products", productRoute);
+app.use("/api/register", registerRouter);
 const uri = process.env.MONGODB_URI;
 
 async function init() {
@@ -30,7 +32,7 @@ async function init() {
   } catch (error) {
     console.log("error", error);
   }
-  app.listen(PORT, () => console.log("lyssnar på port", PORT));
+  app.listen(PORT, () => console.log("lyssnar på port", 3000));
 }
 init();
 module.exports = app;
