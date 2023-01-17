@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema, model, models } = require("mongoose");
 
-const productModel = new mongoose.Schema({
+const productModel = mongoose.Schema({
   name: {
     type: String,
     required: [true, "Lägg till ett namn"],
@@ -27,14 +27,14 @@ const productModel = new mongoose.Schema({
     required: [true],
   },
   image: {
-    type: any,
+    type: String,
     required: [true],
   },
   favorited: {
-    type: boolean,
+    type: Boolean,
   },
   category: {
-    type: string,
+    type: String,
     required: [true],
   },
 });
