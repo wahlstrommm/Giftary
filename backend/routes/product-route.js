@@ -8,8 +8,12 @@ router.get("/", async (req, res) => {
   CompanyModel.findOne(
     { name: new RegExp("^" + req.body.companyName + "$", "i") },
     function (err, resp) {
-      console.log(resp);
-      res.status(200).json({ products: resp.products });
+      if (resp) {
+        console.log(resp);
+        res.status(200).json({ products: resp.products });
+      } else {
+        res.status(400).json({ products: "Finns inga" });
+      }
     }
   );
 });
@@ -26,6 +30,8 @@ router.post("/", async (req, res) => {
         console.log(doc.products);
         doc.products.push(product);
         doc.save();
+      } else {
+        console.log("Finns inget");
       }
     }
   );
@@ -37,13 +43,11 @@ router.get("/sort", async (req, res) => {
     category: req.body.category,
   });
   let result = await find;
-  if (!find == []) {
+  if (find.length > []) {
     res.status(200).json(result);
-  } else if (find == []) {
-    // res.json({ "Finns inga": find });
-    res.send("Hello from DELETE endpoint");
+  } else {
+    res.json({ "Finns inga": find });
   }
-  // console.log(find);
 });
 
 router.put("/", async (req, res) => {
@@ -57,6 +61,8 @@ router.get("/:id", async (req, res) => {
     _id: mongoose.Types.ObjectId(productId),
   });
   console.log(find);
+
+  //res.rediect + id???
   res.status(200).json(find);
 });
 module.exports = router;
