@@ -21,7 +21,7 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
+app.use("/api/user", usersRouter);
 app.use("/api/products", productRoute);
 app.use("/api/register", registerRouter);
 app.use("/api/login", loginRouter);
