@@ -33,7 +33,11 @@ router.post("/", async (req, res) => {
 
       try {
         const Newuser = await user.save();
-        res.status(200).json({ message: "Ert konto är nu skapat!", Newuser });
+        res.status(200).json({
+          message: "Ert konto är nu skapat!",
+          status: res.status,
+          user: Newuser,
+        });
         return;
       } catch (error) {
         res.status(400).json({ message: error.message });
@@ -46,17 +50,17 @@ router.post("/", async (req, res) => {
   }
 });
 router.post("/Company", async (req, res) => {
-  let companyEmail = req.body.email;
-  await companyModel.findOne({ email: req.body.email }).then((data) => {
-    companyEmail = data;
-    return companyEmail;
+  console.log(req.body);
+  let companyNum = req.body.orgNumber;
+  await companyModel.findOne({ orgNumber: req.body.orgNumber }).then((data) => {
+    companyNum = data;
+    console.log(companyNum);
+    return companyNum;
   });
-  if (companyEmail) {
-    res
-      .status(400)
-      .send(
-        "Blev något fel testa igen! Det verkar vara som denna mail används redan"
-      );
+  if (companyNum) {
+    res.status(400).json({
+      message: "Det verkar vara som dessa uppgifter används redan.",
+    });
   } else {
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -65,17 +69,24 @@ router.post("/Company", async (req, res) => {
         orgNumber: req.body.orgNumber,
         products: req.body.products,
         password: hashedPassword,
+        companyName: req.body.companyName,
       });
 
       try {
         const newCompany = await company.save();
-        res.json({ status: "OK" });
+        res.json({
+          message: "Ert konto är nu skapat!",
+          status: res.status,
+          company: newCompany,
+        });
+        return;
       } catch (error) {
         res.status(400).json({ message: error.message });
         console.log("error 400", error);
       }
     } catch (error) {
-      res.status(500).send();
+      console.log("eror", error);
+      res.status(500).send(error.message);
     }
   }
 });
