@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
   if (userEmail) {
     res.status(400).json({
       message:
-        "Blev något fel testa igen! Det verkar vara som denna mail används redan",
+        "Blev något fel testa igen! Det verkar vara som denna mail används redan.",
     });
   } else {
     try {
@@ -33,7 +33,7 @@ router.post("/", async (req, res) => {
 
       try {
         const Newuser = await user.save();
-        res.status(200).json({ message: "OK", Newuser });
+        res.status(200).json({ message: "Ert konto är nu skapat!", Newuser });
         return;
       } catch (error) {
         res.status(400).json({ message: error.message });
