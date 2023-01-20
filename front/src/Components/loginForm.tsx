@@ -1,6 +1,5 @@
 import React, { useState,ChangeEvent} from "react";
 import CreateUserform from "./CreateUserform";
-
 const LoginForm = () => {
 
   const  [userInfo,setUserInfo]=useState({
@@ -54,7 +53,7 @@ const LoginForm = () => {
               htmlFor="password"
               className="block text-gray-700 text-sm font-bold mb-2"
             >
-              Password
+              Lösenord
             </label>
             <input
               className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
@@ -73,7 +72,7 @@ const LoginForm = () => {
               type="button"
               onClick={()=>handleLogin()}
             >
-              Sign In
+              Logga in
             </button>
           </div>
         </form>
@@ -82,7 +81,7 @@ const LoginForm = () => {
             className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
             onClick={() => handleClick()}
           >
-            Create a account
+            Skapa ett konto
           </button>
         </div>
         <div style={showContainer ? { display: "block" } : { display: "none" }}>
