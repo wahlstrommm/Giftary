@@ -4,4 +4,5 @@ export interface INewCompany{
     orgNumber: string,
     products: any[],
     password: any,
+    companyName:any
 }
