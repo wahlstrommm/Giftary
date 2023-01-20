@@ -56,13 +56,11 @@ const onSubmit = (data:any) => {
         .then((response) => {
           if (response.user) {
             setShowModal(true);
-            console.log(reponsText);
             reset({ firstName: '' ,lastName:'', sex:'',email:'',password:'',phone:''});
             setReponsText(response.message);
             return
           } else {
             setShowModal(true);
-            console.log(reponsText);
             reset({ firstName: '' ,lastName:'', sex:'',email:'',password:'',phone:''});
             setReponsText(response.message)
           }
@@ -88,7 +86,7 @@ const onSubmit = (data:any) => {
 
       </div>
 
-         <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-around items-center"  style={showModal ===true ? {display:"block"} : {display:"none"}}   onClick={handleModal}>
+         <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-around items-center" style={showModal ===true ? {display:"block"} : {display:"none"}}   onClick={handleModal}>
         <div className="flex justify-center justify-items-center align-middle text-center top-1/3 relative">
 
     <div className="bg-white p-6 rounded  h-2/5 w-2/5 relative" >
