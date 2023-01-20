@@ -3,11 +3,12 @@ const router = express.Router();
 const userModel = require("../Models/User-model");
 const bcrypt = require("bcrypt");
 const companyModel = require("../Models/Company-model");
+
 router.get("/", async (req, res) => {
   res.json({ "Hello from GET endpoint": req.body });
 });
+
 router.post("/", async (req, res) => {
-  console.log(req.body);
   let userEmail = req.body.email;
   await userModel.findOne({ email: req.body.email }).then((data) => {
     userEmail = data;
@@ -21,6 +22,7 @@ router.post("/", async (req, res) => {
   } else {
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
       const user = new userModel({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
@@ -33,6 +35,7 @@ router.post("/", async (req, res) => {
 
       try {
         const Newuser = await user.save();
+
         res.status(200).json({
           message: "Ert konto är nu skapat!",
           status: res.status,
@@ -50,11 +53,9 @@ router.post("/", async (req, res) => {
   }
 });
 router.post("/Company", async (req, res) => {
-  console.log(req.body);
   let companyNum = req.body.orgNumber;
   await companyModel.findOne({ orgNumber: req.body.orgNumber }).then((data) => {
     companyNum = data;
-    console.log(companyNum);
     return companyNum;
   });
   if (companyNum) {
@@ -79,6 +80,7 @@ router.post("/Company", async (req, res) => {
           status: res.status,
           company: newCompany,
         });
+
         return;
       } catch (error) {
         res.status(400).json({ message: error.message });
@@ -90,9 +92,11 @@ router.post("/Company", async (req, res) => {
     }
   }
 });
+
 router.put("/", async (req, res) => {
   res.send("Hello from PUT endpoint");
 });
+
 router.delete("/:id", async (req, res) => {
   res.send("Hello from DELETE endpoint");
 });
