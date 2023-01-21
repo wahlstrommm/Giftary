@@ -9,7 +9,8 @@ router.post("/", async (req, res) => {
   //checkar först om det är en "vanlig användaer" eller företag som loggar in.
   let test = req.body;
   console.log(test);
-  if ("email" in test) {
+  if (req.body.email) {
+    console.log("hej");
     let testUser;
     userModel.findOne({ email: req.body.email }, function (err, data) {
       testUser = data;
@@ -35,12 +36,17 @@ router.post("/", async (req, res) => {
                   email: req.body.email,
                   productList: testUser.productList,
                 };
-                res.json(confirmLoggin);
+                res.json({
+                  message: "Ni är nu inloggad!",
+                  status: res.status,
+                  user: confirmLoggin,
+                });
+                // res.json(confirmLoggin);
               } else {
-                res.send("Fail fel lösen");
-                return console.log({
+                res.json({
                   success: false,
-                  message: "passwords do not match",
+                  // company: confirmLoggin,
+                  message: "Fel lösenord eller email",
                 });
               }
             }
@@ -53,12 +59,18 @@ router.post("/", async (req, res) => {
     });
   } else {
     let testCompany;
+
     companyModel.findOne(
       { orgNumber: req.body.orgNumber },
       function (err, data) {
         testCompany = data;
         if (testCompany === null) {
-          return res.send("finns ingen användare");
+          res.json({
+            message: "Fel inloggningsuppgifter!",
+            status: res.status,
+          });
+
+          return;
         } else {
           try {
             bcrypt.compare(
@@ -76,7 +88,11 @@ router.post("/", async (req, res) => {
                     orgNumber: testCompany.orgNumber,
                     products: testCompany.products,
                   };
-                  res.json(confirmLoggin);
+                  res.json({
+                    message: "Du är nu inloggad!",
+                    status: res.status,
+                    company: confirmLoggin,
+                  });
                 } else {
                   res.send("Fail fel lösen");
                   return console.log({
