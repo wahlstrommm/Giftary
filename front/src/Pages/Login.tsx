@@ -4,7 +4,7 @@ import Navbar from "../Components/Navbar";
 const Login = () => {
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       <h1>HEJ från login</h1>
       <div>
         <LoginForm />
