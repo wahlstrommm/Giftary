@@ -1,8 +1,28 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { INewUser } from "../Models/User/INewUser";
 
 const LoginUser = () => {
+  let LocalS: any;
+  //checks LocalStorage
+  const checkLS = () => {
+    let LS: any = localStorage.getItem("loggedinUser");
+    let LSParsed = JSON.parse(LS);
+    if (LSParsed) {
+      console.log("finns");
+      if (LSParsed.isAllowed) {
+        console.log("finns och är allowed");
+        LocalS = LSParsed;
+      } else {
+        console.log("den är nu:", "{}");
+      }
+    } else {
+      console.log("finns inget utan helt tom");
+    }
+  };
+
+  checkLS();
   const {
     register,
     handleSubmit,
@@ -12,6 +32,7 @@ const LoginUser = () => {
 
   const [showModal, setShowModal] = useState(false);
   const [reponsText, setReponsText] = useState("");
+  const [loginContainer, setLoginContainer] = useState(false);
 
   const onSubmit = (data: any) => {
     console.log(data);
@@ -29,7 +50,18 @@ const LoginUser = () => {
   };
 
   const handleModal = () => {
+    console.log("LOCAL", LocalS);
+    if (LocalS.isAllowed) {
+      timer();
+    }
     setShowModal(!showModal);
+  };
+
+  //Timer for when user is logged in and click on the background
+  const timer = () => {
+    setTimeout(() => {
+      window.location.href = "http://localhost:3002/";
+    }, 6000);
   };
 
   const handlePrivateUser = async (data: any) => {
@@ -48,6 +80,7 @@ const LoginUser = () => {
             reset({ email: "", password: "" });
             setReponsText(result.message);
             setShowModal(true);
+            setLoginContainer(true);
           } else {
             reset({ email: "", password: "" });
             setReponsText(result.message);
@@ -55,8 +88,8 @@ const LoginUser = () => {
           }
 
           let loggedUser = {
-            isAllowed: result.isAllowed,
-            _id: result._id,
+            isAllowed: result.user.isAllowed,
+            _id: result.user._id,
           };
           localStorage.setItem("loggedinUser", JSON.stringify(loggedUser));
         });
@@ -108,8 +141,26 @@ const LoginUser = () => {
           onClick={handleModal}
         >
           <div className="flex justify-center justify-items-center align-middle text-center top-1/3 relative">
-            <div className="bg-white p-6 rounded  h-2/5 w-2/5 relative">
+            <div className="bg-white p-6 rounded  h-2/5 w-3/5 relative">
               <p>{reponsText}</p>
+              <div
+                className="flex justify-evenly"
+                style={
+                  loginContainer === true
+                    ? { display: "block" }
+                    : { display: "none" }
+                }
+              >
+                <Link to={"/"}>
+                  <button>Hem</button>
+                </Link>
+                <Link to={"/CreateProduct"}>
+                  <button>Skapa produkt</button>
+                </Link>
+                <Link to={"/ProductOverview"}>
+                  <button>Produkter</button>
+                </Link>
+              </div>
               <button className="rounded w-7 absolute top-2 left-3 bg-blue-500 hover:bg-blue-700 text-white font-bold">
                 X
               </button>
