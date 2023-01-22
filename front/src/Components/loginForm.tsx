@@ -1,38 +1,11 @@
 import React, { useState } from "react";
 import CreateUserform from "./CreateUserform";
-// import { useForm } from "react-hook-form";
 import LoginCompany from "./LoginCompany";
 import LoginUser from "./LoginUser";
 
 const LoginForm = () => {
-  // const { register, handleSubmit,reset , formState: { errors } } = useForm();
-  // const [userChoice, setUserChoice] = useState("");
   const [loginContainerCompany, setLoginContainerCompany] = useState(false);
   const [loginContainerUser, setLoginContainerUser] = useState(false);
-  // const  [userInfo,setUserInfo]=useState({
-  //   username:"",
-  //   password:""
-  // })
-
-  // const checkWhatTypeLogin = (user:string)=>{
-  //   return /^\d+$/.test(str)
-  // }
-  // const handleTypeOfLogin = (e:any|undefined)=>{
-  //   console.log(e.target.event);
-  //   setUserChoice(e);
-  // }
-  // const onSubmit = (data:any) => {
-  //   let email = data.email
-  //   console.log(data)
-  //   // if(/^[0-9]+$/.test(email)){
-  //   //   console.log("nummer");
-  //   // }else{
-  //   //   console.log("sträng");
-  //   // }
-
-  //   // console.log(errors);
-  // };
-
   const [showContainer, setShowContainer] = useState(false);
 
   const handleClick = () => {
@@ -71,10 +44,9 @@ const LoginForm = () => {
               : { display: "none" }
           }
         >
-          <h1>ÄR i Privat</h1>
+          {/*Privat*/}
           <LoginUser />
         </div>
-        {/* className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-around items-center"  */}
         <div
           style={
             loginContainerCompany === true
@@ -82,7 +54,7 @@ const LoginForm = () => {
               : { display: "none" }
           }
         >
-          {/* <h1>ÄR i Företag</h1> */}
+          {/* Företag */}
           <LoginCompany />
         </div>
 
