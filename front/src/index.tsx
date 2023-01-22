@@ -8,6 +8,8 @@ import Login from "./Pages/Login";
 import Toplist from "./Pages/Toplist";
 import Generator from "./Pages/Generator";
 import NotFound from "./Pages/NorFound";
+import CreateProduct from "./Pages/CreateProduct";
+import ProductOverview from "./Pages/ProductOverview";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
@@ -19,6 +21,8 @@ root.render(
         <Route path="/Login" element={<Login />}></Route>
         <Route path="/Toplist" element={<Toplist />}></Route>
         <Route path="/Generator" element={<Generator />}></Route>
+        <Route path="/CreateProduct" element={<CreateProduct />}></Route>
+        <Route path="/ProductOverview" element={<ProductOverview />}></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </BrowserRouter>
