@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { INewUser } from "../Models/User/INewUser";
-// import { INewCompany } from "../Models/Company/INewCompany";
 
 const LoginUser = () => {
   const {
@@ -80,8 +79,9 @@ const LoginUser = () => {
             type="text"
             className="m-2 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-fslate-900 focus:shadow-outline"
             placeholder="email"
-            {...register("email", { required: true })}
+            {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
           />
+
           <label
             htmlFor="lösenord"
             className="block text-gray-700 text-sm font-bold mb-2"
