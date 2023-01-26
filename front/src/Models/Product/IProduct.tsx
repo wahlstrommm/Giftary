@@ -7,4 +7,5 @@ export interface IProduct {
   image: any;
   favorited: boolean;
   category: string;
+  companyName: string;
 }
