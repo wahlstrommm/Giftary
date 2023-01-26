@@ -10,7 +10,8 @@ const usersRouter = require("./routes/users");
 const registerRouter = require("./routes/register");
 const productRoute = require("./routes/product-route");
 const loginRouter = require("./routes/login");
-
+const productOrganizer = require("./routes/productOrganizer");
+const multer = require("multer");
 var app = express();
 const PORT = 3001;
 const mongoose = require("mongoose");
@@ -27,7 +28,7 @@ app.use("/api/user", usersRouter);
 app.use("/api/products", productRoute);
 app.use("/api/register", registerRouter);
 app.use("/api/login", loginRouter);
-
+app.use("/api/overview", productOrganizer);
 const uri = process.env.MONGODB_URI;
 
 async function init() {
