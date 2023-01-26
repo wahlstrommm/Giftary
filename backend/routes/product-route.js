@@ -58,18 +58,18 @@ router.post("/", async (req, res) => {
     product: product,
   });
 });
-router.get("/sort", async (req, res) => {
-  console.log(req.body.category);
-  let find = await productModel.find({
-    category: req.body.category,
-  });
-  let result = await find;
-  if (find.length > []) {
-    res.status(200).json(result);
-  } else {
-    res.json({ "Finns inga": find });
-  }
-});
+// router.get("/sort", async (req, res) => {
+//   console.log(req.body.category);
+//   let find = await productModel.find({
+//     category: req.body.category,
+//   });
+//   let result = await find;
+//   if (find.length > []) {
+//     res.status(200).json(result);
+//   } else {
+//     res.json({ "Finns inga": find });
+//   }
+// });
 
 router.put("/", async (req, res) => {
   res.send("Hello from PUT endpoint");
