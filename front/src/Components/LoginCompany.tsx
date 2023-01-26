@@ -1,34 +1,12 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { INewCompany } from "../Models/Company/INewCompany";
 
-// checkLS = () => {
-//     let LS = localStorage.getItem('loggedinUser');
-//     let LSParsed = JSON.parse(LS);
-
-//     if (LSParsed) {
-//       infoUserID.textContent = LSParsed._id;
-//       infoUserEmail.textContent = LSParsed.email;
-
-//       loggedInStateContainer.style.display = 'block';
-//       LoginContainer.style.display = 'none';
-
-//       if (LSParsed.subscribed) {
-//         userSubcribeState.textContent = 'ja';
-//         changeUserSub.checked = true;
-//       } else {
-//         userSubcribeState.textContent = 'nej';
-//         changeUserSub.checked = false;
-//       }
-//     } else {
-//       loggedInStateContainer.style.display = 'none';
-//       LoginContainer.style.display = 'block';
-//     }
-//   };
-
-//   checkLS();
-
 const LoginCompany = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [reponsText, setReponsText] = useState("");
+  const [loginContainer, setLoginContainer] = useState(false);
   const {
     register,
     handleSubmit,
@@ -36,9 +14,26 @@ const LoginCompany = () => {
     formState: { errors },
   } = useForm();
 
-  const [showModal, setShowModal] = useState(false);
-  const [reponsText, setReponsText] = useState("");
+  let LocalS: any = "";
+  //checks LocalStorage
+  const checkLS = () => {
+    let LS: any = localStorage.getItem("loggedinUser");
+    let LSParsed = JSON.parse(LS);
+    if (LSParsed) {
+      console.log("finns");
+      if (LSParsed.isAllowed) {
+        console.log("finns och är allowed");
+        LocalS = LSParsed;
+      } else {
+        console.log("den är nu:", "{}");
+      }
+    } else {
+      console.log("finns inget utan helt tom");
+    }
+  };
 
+  checkLS();
+  //submit for my form
   const onSubmit = (data: any) => {
     let company: INewCompany = {
       name: "",
@@ -47,43 +42,66 @@ const LoginCompany = () => {
       password: data.password,
       companyName: "",
     };
-
     handleCompanyUser(company);
+  };
+  //Timer for when user is logged in and click on the background
+  const timer = () => {
+    setTimeout(() => {
+      window.location.href = "http://localhost:3002/";
+    }, 6000);
   };
 
   const handleModal = () => {
-    setShowModal(!showModal);
+    if (LocalS === "") {
+      setShowModal(!showModal);
+    } else if (LocalS.isAllowed === true) {
+      setShowModal(!showModal);
+      timer();
+    }
   };
 
   const handleCompanyUser = async (data: any) => {
-    try {
-      await fetch("http://localhost:3000/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-        .then((response) => response.json())
-        .then((result) => {
-          if (result) {
-            reset({ orgNumber: "", password: "" });
-            setReponsText(result.message);
-            setShowModal(true);
-          } else {
-            reset({ orgNumber: "", password: "" });
-            setReponsText(result.message);
-            setShowModal(true);
-          }
+    //for stopping user to login again if they are ready logged in.
+    if (!LocalS) {
+      console.log("I if", LocalS);
+      try {
+        await fetch("http://localhost:3000/api/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            if (result) {
+              reset({ orgNumber: "", password: "" });
+              setReponsText(result.message);
+              setShowModal(true);
+              if (result.company.isAllowed === true) {
+                setLoginContainer(true);
+              }
+            } else if (result.company.isAllowed === undefined) {
+              reset({ orgNumber: "", password: "" });
+              setReponsText(result.message);
+              setShowModal(true);
+              setLoginContainer(false);
+            }
 
-          let loggedUser = {
-            isAllowed: result.isAllowed,
-            _id: result._id,
-          };
-          localStorage.setItem("loggedinUser", JSON.stringify(loggedUser));
-        });
-    } catch (error) {
-      console.error("Fel ", error);
+            let loggedUser = {
+              isAllowed: result.company.isAllowed,
+              _id: result.company._id,
+              type: "company",
+              name: result.company.name,
+            };
+            localStorage.setItem("loggedinUser", JSON.stringify(loggedUser));
+          });
+      } catch (error) {
+        console.error("Fel ", error);
+        // setReponsText(error.message);
+      }
+    } else {
+      console.log("redan inloggad men försöker logga in på nytt");
     }
   };
   return (
@@ -129,8 +147,32 @@ const LoginCompany = () => {
           onClick={handleModal}
         >
           <div className="flex justify-center justify-items-center align-middle text-center top-1/3 relative">
-            <div className="bg-white p-6 rounded  h-2/5 w-2/5 relative">
+            <div className="bg-white p-6 rounded  h-2/5 w-4/5 relative">
               <p>{reponsText}</p>
+              <div
+                className="flex justify-evenly"
+                style={
+                  loginContainer === true
+                    ? { display: "block" }
+                    : { display: "none" }
+                }
+              >
+                <Link to={"/"}>
+                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-4">
+                    Hem
+                  </button>
+                </Link>
+                <Link to={"/CreateProduct"}>
+                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-4">
+                    Skapa produkt
+                  </button>
+                </Link>
+                <Link to={"/ProductOverview"}>
+                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-4">
+                    Produkter
+                  </button>
+                </Link>
+              </div>
               <button className="rounded w-7 absolute top-2 left-3 bg-blue-500 hover:bg-blue-700 text-white font-bold">
                 X
               </button>
