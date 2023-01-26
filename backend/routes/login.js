@@ -94,11 +94,12 @@ router.post("/", async (req, res) => {
                     company: confirmLoggin,
                   });
                 } else {
-                  res.send("Fail fel lösen");
-                  return console.log({
+                  res.json({
+                    message: "Fel lösenord eller email!",
+                    status: res.status,
                     success: false,
-                    message: "passwords do not match",
                   });
+                  return;
                 }
               }
             );
