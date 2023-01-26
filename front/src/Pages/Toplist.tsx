@@ -3,6 +3,8 @@ import Navbar from "../Components/Navbar";
 
 const Toplist = () => {
   const [productsArray, setProductsArray] = useState([]);
+
+  const category = ["forHim", "ForHer", "all"];
   useEffect(() => {
     fetch("http://localhost:3000/api/overview", {
       method: "GET",
@@ -17,6 +19,53 @@ const Toplist = () => {
       });
   }, []);
 
+  const handleCategory = async (categoryType: any) => {
+    try {
+      await fetch("http://localhost:3000/api/overview/sort/" + categoryType, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          console.log(result);
+          if (result) {
+            setProductsArray(result);
+          } else {
+            console.log("Något fel hände...");
+          }
+        });
+    } catch (error) {
+      console.error("Fel ", error);
+    }
+  };
+  const getProductHandler = async (id: any) => {
+    try {
+      await fetch("http://localhost:3000/api/overview/" + id, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          console.log(result);
+          if (result) {
+            console.log(result);
+            localStorage.setItem(
+              "product",
+              JSON.stringify(result.Foundproduct)
+            );
+            window.location.href = result.url;
+          } else {
+            console.log("Något fel hände...");
+          }
+        });
+    } catch (error) {
+      console.error("Fel ", error);
+    }
+  };
   return (
     <div>
       <Navbar />
@@ -24,6 +73,19 @@ const Toplist = () => {
       <div className="bg-white">
         <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
           <h2 className="sr-only">Products</h2>
+          <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+            {category.map((i: any, index: any) => (
+              <button
+                key={index}
+                id={i}
+                onClick={(e) => {
+                  handleCategory(e.currentTarget.id);
+                }}
+              >
+                {i}
+              </button>
+            ))}
+          </div>
           <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
             {productsArray.map((product: any) => (
               <a key={product._id} href={product.href} className="group">
@@ -38,8 +100,21 @@ const Toplist = () => {
                   Namn:{product.name}
                 </h3>
                 <p className="mt-1 text-lg font-medium text-gray-900">
-                  pris: {product.price}
+                  pris: {product.price} kr
                 </p>
+                <p className="mt-1 text-lg font-medium text-gray-900">
+                  Beskrvning: {product.summary}
+                </p>
+                <p className="mt-1 text-lg font-medium text-gray-900">
+                  Kategori: {product.category}
+                </p>
+                <button
+                  onClick={() => {
+                    getProductHandler(product._id);
+                  }}
+                >
+                  Läs mer
+                </button>
               </a>
             ))}
           </div>
