@@ -27,13 +27,18 @@ const productModel = mongoose.Schema({
     required: [true],
   },
   image: {
-    type: String,
-    required: [true],
+    type: [String],
+    // data: Buffer,
+    // contentType: String,
   },
   favorited: {
     type: Boolean,
   },
   category: {
+    type: String,
+    required: [true],
+  },
+  companyName: {
     type: String,
     required: [true],
   },
