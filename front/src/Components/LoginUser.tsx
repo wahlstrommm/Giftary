@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { INewUser } from "../Models/User/INewUser";
 
 const LoginUser = () => {
-  let LocalS: any;
+  let LocalS: any = "";
   //checks LocalStorage
   const checkLS = () => {
     let LS: any = localStorage.getItem("loggedinUser");
@@ -51,10 +51,12 @@ const LoginUser = () => {
 
   const handleModal = () => {
     console.log("LOCAL", LocalS);
-    if (LocalS.isAllowed) {
+    if (LocalS === "") {
+      setShowModal(!showModal);
+    } else if (LocalS.isAllowed === true) {
+      setShowModal(!showModal);
       timer();
     }
-    setShowModal(!showModal);
   };
 
   //Timer for when user is logged in and click on the background
@@ -65,36 +67,43 @@ const LoginUser = () => {
   };
 
   const handlePrivateUser = async (data: any) => {
-    try {
-      await fetch("http://localhost:3000/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-        .then((response) => response.json())
-        .then((result) => {
-          console.log(result);
-          if (result) {
-            reset({ email: "", password: "" });
-            setReponsText(result.message);
-            setShowModal(true);
-            setLoginContainer(true);
-          } else {
-            reset({ email: "", password: "" });
-            setReponsText(result.message);
-            setShowModal(true);
-          }
+    if (!LocalS) {
+      try {
+        await fetch("http://localhost:3000/api/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            console.log(result);
+            if (result) {
+              reset({ email: "", password: "" });
+              setReponsText(result.message);
+              setShowModal(true);
+              if (result.user.isAllowed === true) {
+                setLoginContainer(true);
+              }
+            } else if (result.user.isAllowed === undefined) {
+              reset({ email: "", password: "" });
+              setReponsText(result.message);
+              setShowModal(true);
+            }
 
-          let loggedUser = {
-            isAllowed: result.user.isAllowed,
-            _id: result.user._id,
-          };
-          localStorage.setItem("loggedinUser", JSON.stringify(loggedUser));
-        });
-    } catch (error) {
-      console.error("Fel ", error);
+            let loggedUser = {
+              isAllowed: result.user.isAllowed,
+              _id: result.user._id,
+              type: "user",
+            };
+            localStorage.setItem("loggedinUser", JSON.stringify(loggedUser));
+          });
+      } catch (error) {
+        console.error("Fel ", error);
+      }
+    } else {
+      console.log("redan inloggad men försöker logga in på nytt");
     }
   };
   return (
@@ -141,10 +150,10 @@ const LoginUser = () => {
           onClick={handleModal}
         >
           <div className="flex justify-center justify-items-center align-middle text-center top-1/3 relative">
-            <div className="bg-white p-6 rounded  h-2/5 w-3/5 relative">
+            <div className="bg-white p-6 rounded  h-2/5 w-4/5 relative">
               <p>{reponsText}</p>
               <div
-                className="flex justify-evenly"
+                className="flex justify-evenly "
                 style={
                   loginContainer === true
                     ? { display: "block" }
@@ -152,13 +161,19 @@ const LoginUser = () => {
                 }
               >
                 <Link to={"/"}>
-                  <button>Hem</button>
+                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5">
+                    Hem
+                  </button>
                 </Link>
-                <Link to={"/CreateProduct"}>
-                  <button>Skapa produkt</button>
+                <Link to={"/UserProductList"}>
+                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5">
+                    Dina listor
+                  </button>
                 </Link>
-                <Link to={"/ProductOverview"}>
-                  <button>Produkter</button>
+                <Link to={"/Toplist"}>
+                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5">
+                    Topplista
+                  </button>
                 </Link>
               </div>
               <button className="rounded w-7 absolute top-2 left-3 bg-blue-500 hover:bg-blue-700 text-white font-bold">
