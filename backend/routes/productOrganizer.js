@@ -5,7 +5,7 @@ const CompanyModel = require("../Models/Company-model");
 const productModel = require("../Models/Product-model");
 const CategoryModel = require("../Models/Category-model");
 /* GET all products. */
-router.get("/", function (req, res, next) {
+router.get("/", async (req, res) => {
   console.log(req.body);
   productModel.find({}).then(function (products) {
     try {
@@ -17,7 +17,6 @@ router.get("/", function (req, res, next) {
     } catch (error) {
       res.send(500).json({ message: error });
     }
-    // res.send(products);
   });
 });
 
@@ -53,8 +52,6 @@ router.post("/:id", async (req, res) => {
   } else {
     res.status(500).json({ message: "Fel" });
   }
-  //   res.send(req.body);
-  //   res.render("index", { title: "Express" });
 });
 
 module.exports = router;
