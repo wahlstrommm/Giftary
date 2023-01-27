@@ -4,15 +4,16 @@ const mongoose = require("mongoose");
 const userModel = require("../Models/User-model");
 const productModel = require("../Models/Product-model");
 const CompanyModel = require("../Models/Company-model");
+var ObjectID = require("mongodb").ObjectID;
 
 /* GET users listing. */
-router.get("/", async (req, res) => {
-  UserModel.findOne(
+router.post("/", async (req, res) => {
+  userModel.findOne(
     { email: new RegExp("^" + req.body.email + "$", "i") },
     function (err, resp) {
       if (resp) {
         console.log(resp);
-        res.status(200).json({ products: resp.products });
+        res.status(200).json({ products: resp.productList });
       } else {
         res.status(400).json({ products: "Finns inga" });
       }
@@ -22,13 +23,25 @@ router.get("/", async (req, res) => {
 
 //For adde a product to thier list
 router.post("/:id", async (req, res) => {
+  console.log(req.body.email);
   //gets the product id from params
   let productId = req.params.id;
   console.log(req.params.id, "ID");
   //finds it
-  let find = await productModel.findOne({
-    _id: mongoose.Types.ObjectId(productId),
-  });
+  let find = await productModel.findOne(
+    {
+      _id: ObjectID(productId),
+    },
+    function (error, doc) {
+      if (error) {
+        // ! FIX
+        callback(error);
+      } else {
+        // ! FIX
+        callback(null, doc);
+      }
+    }
+  );
 
   console.log("FIND!!!!!", find.favorited);
   //Then i set it to true for future feature of hard and soft delete
@@ -43,10 +56,10 @@ router.post("/:id", async (req, res) => {
       console.log(doc.productsList);
       doc.productList.push(find);
       doc.save();
-      res.send(doc);
+      res.json({ result: doc });
     } else {
       console.log("Finns inget");
-      res.send("fel");
+      res.json({ error: "fel" });
     }
   });
 });
