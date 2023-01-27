@@ -3,37 +3,127 @@ import { Link } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 
 const Product = () => {
-  const [loggedInCompany, setLoggedInCompany] = useState(false);
+  // const [loggedInCompany, setLoggedInCompany] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
   let product: any = [];
   let LocalS: any;
   let typeOfUser: any;
+  let renderSucessLayout;
+  let render;
+  const handleModal = () => {
+    console.log("LOCAL", LocalS);
+    if (LocalS === "") {
+      setShowModal(!showModal);
+    } else if (LocalS.isAllowed === true) {
+      setShowModal(!showModal);
+      // timer();
+    }
+  };
   const checkLS = () => {
     let LS: any = localStorage.getItem("loggedinUser");
     let LSParsed = JSON.parse(LS);
     if (LSParsed) {
-      console.log("finns");
+      // console.log("finns");
       if (LSParsed.isAllowed && LSParsed.type === "company") {
-        console.log("finns och är allowed");
+        // console.log("finns och är allowed");
         LocalS = LSParsed;
         typeOfUser = LSParsed;
         renderLayout(typeOfUser);
         console.log(LSParsed);
-        console.log("TYPEOF", typeOfUser);
       } else {
         // console.log("den är nu:", "{}");
-        console.log("finns och är allowed");
+        // console.log("finns och är allowed");
         LocalS = LSParsed;
         typeOfUser = LSParsed;
         renderLayout(typeOfUser);
-        console.log(LSParsed);
+        // console.log(LSParsed);
         console.log("TYPEOF", typeOfUser);
+        // console.log("TYPEOF", LSParsed._id);
+        // userEmail.email = typeOfUser.email;
         // console.log(product[0], "PRODUCT");
       }
     } else {
       console.log("finns inget utan helt tom");
     }
   };
-  let render;
+  // let userEmail = {
+  //   email: "",
+  // };
+  const addProductHandler = async () => {
+    // console.warn("USERRMMRMMRMRM", userEmail);
+    // console.log(product[0]._id);
+    // console.warn("ID", productID, typeof productID);
+    // console.log(typeOfUser.email);
+    // console.log(JSON.stringify(userEmail));
+    // console.log(`http://localhost:3000/api/user/${productID}`);
+    // console.log(`http://localhost:3000/api/user/" + "${productID}"`);
+
+    try {
+      let productID = product[0]._id;
+      // let userEmail = { email: typeOfUser.email };
+      await fetch(`http://localhost:3000/api/user/${productID}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: typeOfUser.email }),
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          console.log(result);
+          if (result) {
+            console.log(result);
+            renderSucessBox(result);
+            setShowModal(true);
+          } else {
+            console.log("Något fel hände...");
+          }
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const renderSucessBox = (userID: any) => {
+    renderSucessLayout = (
+      <div
+        className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-around items-center"
+        style={showModal === true ? { display: "block" } : { display: "none" }}
+        onClick={handleModal}
+      >
+        <div className="flex justify-center justify-items-center align-middle text-center top-1/3 relative">
+          <div className="bg-white p-6 rounded  h-2/5 w-4/5 relative">
+            {/* <p>{reponsText}</p> */}
+            <div
+              className="flex justify-evenly "
+              style={
+                showModal === true ? { display: "block" } : { display: "none" }
+              }
+            >
+              <h1>Produkten har lagts till</h1>
+              <Link to={"/"}>
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5">
+                  Hem
+                </button>
+              </Link>
+              <Link to={"/UserProductList"}>
+                <button
+                  type="button"
+                  className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                >
+                  Se dina sparade produkter
+                </button>
+              </Link>
+            </div>
+            <button className="rounded w-7 absolute top-2 left-3 bg-blue-500 hover:bg-blue-700 text-white font-bold">
+              X
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  };
   const renderLayout = (user: any) => {
     if (user.type === "company") {
       render = (
@@ -53,6 +143,9 @@ const Product = () => {
       render = (
         <div>
           <button
+            onClick={() => {
+              addProductHandler();
+            }}
             type="submit"
             className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
           >
@@ -72,7 +165,7 @@ const Product = () => {
       if (LSParsedProduct._id) {
         // console.log("finns och är allowed");
         product.push(LSParsedProduct);
-        console.log(product);
+        // console.log(product);
       } else {
         console.log("den är nu:", "{}");
       }
@@ -96,7 +189,7 @@ const Product = () => {
               <li key={i._id}>
                 <div className="flex items-center">
                   <a
-                    href={i.category}
+                    href={"/Toplist"}
                     className="mr-2 text-sm font-medium text-gray-900"
                   >
                     {i.category}
@@ -113,7 +206,7 @@ const Product = () => {
                     <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
                   </svg>
                   <a
-                    href={i.name}
+                    href={"/Toplist"}
                     className="mr-2 text-sm font-medium text-gray-900"
                   >
                     {i.name}
@@ -177,6 +270,47 @@ const Product = () => {
             </div>
           </div>
           <div>{render}</div>
+          <div>{renderSucessLayout}</div>
+          <div
+            className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-around items-center"
+            style={
+              showModal === true ? { display: "block" } : { display: "none" }
+            }
+            onClick={handleModal}
+          >
+            <div className="flex justify-center align-middle text-center top-1/3 relative">
+              <div className="bg-white p-6 rounded  h-2/5 w-4/5 relative">
+                {/* <p>{reponsText}</p> */}
+                <h1>Produkten har lagts till</h1>
+                <div
+                  className="flex justify-around"
+                  style={
+                    showModal === true
+                      ? { display: "block" }
+                      : { display: "none" }
+                  }
+                >
+                  <div>
+                    <Link to={"/"}>
+                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5">
+                        Hem
+                      </button>
+                    </Link>
+                  </div>
+                  <div>
+                    <Link to={"/UserProductList/34234234"}>
+                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5">
+                        Se dina sparade produkter
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+                <button className="rounded w-7 absolute top-2 left-3 bg-blue-500 hover:bg-blue-700 text-white font-bold">
+                  X
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
