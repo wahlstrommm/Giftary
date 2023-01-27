@@ -20,7 +20,14 @@ const Product = () => {
         console.log(LSParsed);
         console.log("TYPEOF", typeOfUser);
       } else {
-        console.log("den är nu:", "{}");
+        // console.log("den är nu:", "{}");
+        console.log("finns och är allowed");
+        LocalS = LSParsed;
+        typeOfUser = LSParsed;
+        renderLayout(typeOfUser);
+        console.log(LSParsed);
+        console.log("TYPEOF", typeOfUser);
+        // console.log(product[0], "PRODUCT");
       }
     } else {
       console.log("finns inget utan helt tom");
@@ -65,7 +72,7 @@ const Product = () => {
       if (LSParsedProduct._id) {
         // console.log("finns och är allowed");
         product.push(LSParsedProduct);
-        // console.log(product);
+        console.log(product);
       } else {
         console.log("den är nu:", "{}");
       }
