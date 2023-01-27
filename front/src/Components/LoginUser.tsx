@@ -96,6 +96,7 @@ const LoginUser = () => {
               isAllowed: result.user.isAllowed,
               _id: result.user._id,
               type: "user",
+              email: result.user.email,
             };
             localStorage.setItem("loggedinUser", JSON.stringify(loggedUser));
           });
