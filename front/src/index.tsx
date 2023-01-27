@@ -12,6 +12,7 @@ import CreateProduct from "./Pages/CreateProduct";
 import ProductOverview from "./Pages/ProductOverview";
 import UserProductList from "./Pages/UserProductList;";
 import Product from "./Pages/Product";
+import SharedList from "./Pages/SharedList";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
@@ -27,6 +28,7 @@ root.render(
         <Route path="/ProductOverview" element={<ProductOverview />}></Route>
         <Route path="/Product/:id" element={<Product />}></Route>
         <Route path="/UserProductList" element={<UserProductList />}></Route>
+        <Route path="/api/:id" element={<SharedList />}></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </BrowserRouter>
