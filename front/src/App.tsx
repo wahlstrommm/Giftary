@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import "./App.css";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import { Link } from "react-router-dom";
 import Icon from "./Images/image-icon.svg";
-// import { underline } from "colors";
-//checks LocalStorage
+
 let LocalS: any;
 const checkLS = () => {
   let LS: any = localStorage.getItem("loggedinUser");
@@ -27,7 +26,7 @@ const checkLS = () => {
   }
 };
 function App() {
-  const [checkUser, setCheckUser] = useState(false);
+  // const [checkUser, setCheckUser] = useState(false);
 
   checkLS();
 
