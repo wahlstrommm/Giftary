@@ -3,27 +3,17 @@ const CompanyModel = require("../Models/Company-model");
 const router = express.Router();
 const mongoose = require("mongoose");
 const productModel = require("../Models/Product-model");
-const UserModel = require("../Models/User-model");
-const multer = require("multer");
-// const upload = multer({ dest: "public/upload/" });
-// const storage = multer.diskStorage;
-// let storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, "public/upload");
-//   },
-//   filename: function (req, res, cb) {
-//     cb(null, "test_");
-//   },
-// });
-// const upload = multer({ storage: storage });
+// const UserModel = require("../Models/User-model");
+// const multer = require("multer");
+
 router.get("/:company", async (req, res) => {
-  console.log("HEJ", req.params.company, req.body);
-  console.log("HEJ2", req.body);
+  // console.log("HEJ", req.params.company, req.body);
+  // console.log("HEJ2", req.body);
   CompanyModel.findOne(
     { name: new RegExp("^" + req.params.company + "$", "i") },
     function (err, resp) {
       if (resp) {
-        console.log(resp);
+        // console.log(resp);
         res.status(200).json({ products: resp.products });
       } else {
         res.status(400).json({ products: "Finns inga", test: resp });
@@ -35,16 +25,16 @@ router.get("/:company", async (req, res) => {
 router.post("/", async (req, res) => {
   // console.warn(req.body.image);
   // console.log("HEJ");
-  console.log(req.body);
+  // console.log(req.body);
   const product = await productModel.create(req.body);
   const companyName = req.body.companyName;
-  console.log("Innan", companyName);
+  // console.log("Innan", companyName);
   CompanyModel.findOne(
     { name: new RegExp("^" + companyName + "$", "i") },
     function (err, doc) {
       console.log("i den", doc);
       if (doc) {
-        console.log(doc.products);
+        // console.log(doc.products);
         doc.products.push(product);
         doc.save();
       } else {
@@ -71,8 +61,11 @@ router.post("/", async (req, res) => {
 //   }
 // });
 
-router.put("/", async (req, res) => {
-  res.send("Hello from PUT endpoint");
+router.get("/", async (req, res) => {
+  productModel.find({}).then(function (products) {
+    res.send(products);
+  });
+  // res.send("Hello from PUT endpoint");
 });
 
 router.post("/details/:id", async (req, res) => {
