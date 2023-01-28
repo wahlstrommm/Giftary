@@ -5,7 +5,7 @@ const userModel = require("../Models/User-model");
 var ObjectID = require("mongodb").ObjectID;
 
 router.get("/:id", async (req, res) => {
-  console.log(req.params.id);
+  //   console.log(req.params.id);
   let userID = req.params.id;
   try {
     let find = await userModel.find({ _id: userID });
