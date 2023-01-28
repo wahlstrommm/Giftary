@@ -7,8 +7,8 @@ const companyModel = require("../Models/Company-model");
 //Loggar in användare. Decryptar lösen etc.
 router.post("/", async (req, res) => {
   //checkar först om det är en "vanlig användaer" eller företag som loggar in.
-  let test = req.body;
-  console.log(test);
+  // let test = req.body;
+  // console.log(test);
   if (req.body.email) {
     console.log("hej");
     let testUser;
