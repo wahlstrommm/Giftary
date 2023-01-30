@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 const CreateProduct = () => {
   const [showModal, setShowModal] = useState(false);
   const [reponsText, setReponsText] = useState("");
-  const [buttonState, setButtonState] = useState(false);
 
   const {
     register,
@@ -120,13 +119,16 @@ const CreateProduct = () => {
                     >
                       Namn
                     </label>
-                    <div className="mt-1 flex rounded-md shadow-sm h-full">
+                    <div className="mt-1 flex rounded-md shadow-sm h-full flex-col">
                       <input
                         className="h-full focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
                         type="text"
                         placeholder="Namn"
                         {...register("name", { required: true })}
                       />
+                      {errors.name && (
+                        <p>Var snäll att fylll i namnet på din produkt</p>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -144,6 +146,12 @@ const CreateProduct = () => {
                       className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md p-1"
                       {...register("summary", { required: true })}
                     />
+                    {errors.summary && (
+                      <p>
+                        Var snäll att skriv en bra beskrivande text om din
+                        produkt
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className="col-span-3 sm:col-span-2">
@@ -153,13 +161,14 @@ const CreateProduct = () => {
                   >
                     Passar ålderna
                   </label>
-                  <div className="mt-1 flex rounded-md shadow-sm h-full">
+                  <div className="mt-1 flex rounded-md shadow-sm h-full flex-col">
                     <input
                       className="h-full focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
                       type="text"
                       placeholder="Passar åldern"
                       {...register("aimedFor", { required: true })}
                     />
+                    {errors.aimedFor && <p>Var snäll att fyll i fältet</p>}
                   </div>
                 </div>
                 <div>
@@ -179,6 +188,9 @@ const CreateProduct = () => {
                       pattern: /^[0-9]+$/,
                     })}
                   />
+                  {errors.age && (
+                    <p>Var snäll att fyll i vilken ålder de passar</p>
+                  )}
                 </div>
                 <div className="col-span-3 sm:col-span-2">
                   <label
@@ -187,13 +199,14 @@ const CreateProduct = () => {
                   >
                     Pris
                   </label>
-                  <div className="mt-1 flex rounded-md shadow-sm h-full">
+                  <div className="mt-1 flex rounded-md shadow-sm h-full flex-col">
                     <input
                       className="h-full focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
                       type="text"
                       placeholder="Pris"
                       {...register("price", { required: true })}
                     />
+                    {errors.price && <p>Var snäll att fyll i vad det kostar</p>}
                   </div>
                 </div>
                 <div>
@@ -209,6 +222,9 @@ const CreateProduct = () => {
                     <option value="ForUS">För oss</option>
                     <option value="Christmas">Julklappar</option>
                   </select>
+                  {errors.category && (
+                    <p>Var snäll att fyll i vilken kategori som din passar i</p>
+                  )}
                 </div>
               </div>
               <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
@@ -237,6 +253,12 @@ const CreateProduct = () => {
                       {...register("image1", {})}
                       className="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
+                    {errors.image1 && (
+                      <p>
+                        Var snäll bidra med en url till din bild. Fler desto
+                        bättre
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className="relative mb-6">
@@ -333,92 +355,7 @@ const CreateProduct = () => {
             >
               Username
             </label>
-            <div className="flex">
-              <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#ffffff"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <rect x="3" y="3" width="18" height="18" rx="2" />
-                  <circle cx="8.5" cy="8.5" r="1.5" />
-                  <path d="M20.4 14.5L16 10 4 20" />
-                </svg>
-              </span>
-              <input
-                type="text"
-                id="imageurl"
-                className="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Bild url"
-              />
-            </div>
           </form>
-          <div>
-            <form encType="multipart/form-data">
-              <label className="block text-sm font-medium text-gray-700">
-                Omslagsbild
-              </label>
-              <div>
-                <div>
-                  <label
-                    htmlFor="dropzone-file"
-                    className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-                  >
-                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                      <svg
-                        className="mx-auto h-12 w-12 text-gray-400"
-                        stroke="currentColor"
-                        fill="none"
-                        viewBox="0 0 48 48"
-                        aria-hidden="true"
-                      >
-                        <path
-                          d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                      <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                        <span className="font-semibold">
-                          Tryck för att ladda upp
-                        </span>{" "}
-                        eller dra och släpp
-                      </p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400">
-                        SVG, PNG, JPG or GIF (MAX. 800x400px)
-                      </p>
-                    </div>
-                    <input
-                      id="dropzone-file"
-                      name="image"
-                      type="file"
-                      className="hidden"
-                      // onChange={onInputChange}
-                    />
-                    <button
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5"
-                      style={
-                        buttonState === true
-                          ? { opacity: "30%" }
-                          : { opacity: "100" }
-                      }
-                      disabled={buttonState}
-                      onClick={() => setButtonState(true)}
-                    >
-                      Bekräfta bild
-                    </button>
-                  </label>
-                </div>
-              </div>
-            </form>
-          </div>
         </div>
       </div>
       <div
