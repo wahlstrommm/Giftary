@@ -126,6 +126,7 @@ const LoginUser = () => {
             placeholder="email"
             {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
           />
+          {errors.email && <p>Var snäll att fylll i din email</p>}
 
           <label
             htmlFor="lösenord"
@@ -139,6 +140,7 @@ const LoginUser = () => {
             placeholder="password"
             {...register("password", { required: true, maxLength: 80 })}
           />
+          {errors.password && <p>Var snäll att fylll i ditt lösenord</p>}
 
           <input
             type="submit"
