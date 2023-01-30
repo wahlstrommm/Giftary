@@ -123,6 +123,8 @@ const LoginCompany = () => {
             placeholder="org-Num"
             {...register("orgNumber", { required: true })}
           />
+          {errors.orgNumber && <p>Var snäll att fylll i organisationsnummer</p>}
+
           <label
             htmlFor="lösenord"
             className="block text-gray-700 text-sm font-bold mb-2"
@@ -135,6 +137,7 @@ const LoginCompany = () => {
             placeholder="password"
             {...register("password", { required: true, maxLength: 80 })}
           />
+          {errors.password && <p>Var snäll att fylll i Lösenord</p>}
 
           <input
             type="submit"
