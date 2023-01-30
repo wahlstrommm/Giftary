@@ -45,7 +45,7 @@ const Navbar = () => {
         ) : (
           <></>
         )}
-        <Link to={"/"}>Extra</Link>
+        <Link to={"/"}>Profil?</Link>
         {loggedIn === true ? (
           <button onClick={() => clearLS()}>Logga ut</button>
         ) : (
