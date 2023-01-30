@@ -1,6 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
 const Navbar = () => {
+  let typeOfUser: any;
+  let loggedIn: any;
+  const clearLS = () => {
+    window.localStorage.clear();
+    window.location.reload();
+  };
+  const checkLS = async () => {
+    let LS: any = localStorage.getItem("loggedinUser");
+    let LSParsed = JSON.parse(LS);
+    console.log(LSParsed);
+    if (LSParsed) {
+      console.log("finns");
+      if (LSParsed.isAllowed && LSParsed.type === "company") {
+        loggedIn = true;
+        typeOfUser = true;
+      } else if (LSParsed.isAllowed && LSParsed.type === "user") {
+        loggedIn = true;
+        typeOfUser = false;
+      }
+    } else {
+      console.log("finns inget utan helt tom");
+    }
+  };
+  checkLS();
   return (
     <nav className="container flex justify-between px-4 py-8 mx-auto bg-white">
       <div>
@@ -10,7 +34,17 @@ const Navbar = () => {
         <p>LOL</p>
         <Link to={"/"}>Home</Link>
         <Link to={"/Toplist"}>Toplist</Link>
-        {/* <Link to={"/"}>Extra</Link> */}
+        {typeOfUser === false ? (
+          <Link to={"/UserProductList"}>Sparade produkter</Link>
+        ) : (
+          <Link to={"/ProductOverview"}>Dina produkter</Link>
+        )}
+        <Link to={"/"}>Extra</Link>
+        {loggedIn === true ? (
+          <button onClick={() => clearLS()}>Logga ut</button>
+        ) : (
+          <Link to={"/login"}>Logga in </Link>
+        )}
       </div>
       <div className="flex lg:hidden">
         <div className="space-y-2">
