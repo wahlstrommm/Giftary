@@ -15,13 +15,14 @@ const Navbar = () => {
       console.log("finns");
       if (LSParsed.isAllowed && LSParsed.type === "company") {
         loggedIn = true;
-        typeOfUser = true;
+        typeOfUser = "company";
       } else if (LSParsed.isAllowed && LSParsed.type === "user") {
         loggedIn = true;
-        typeOfUser = false;
+        typeOfUser = "user";
       }
     } else {
       console.log("finns inget utan helt tom");
+      loggedIn = null;
     }
   };
   checkLS();
@@ -34,10 +35,15 @@ const Navbar = () => {
         <p>LOL</p>
         <Link to={"/"}>Home</Link>
         <Link to={"/Toplist"}>Toplist</Link>
-        {typeOfUser === false ? (
+        {typeOfUser === "user" ? (
           <Link to={"/UserProductList"}>Sparade produkter</Link>
         ) : (
+          <></>
+        )}
+        {typeOfUser === "company" ? (
           <Link to={"/ProductOverview"}>Dina produkter</Link>
+        ) : (
+          <></>
         )}
         <Link to={"/"}>Extra</Link>
         {loggedIn === true ? (
