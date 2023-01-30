@@ -56,7 +56,9 @@ const LoginCompany = () => {
       setShowModal(!showModal);
     } else if (LocalS.isAllowed === true) {
       setShowModal(!showModal);
-      timer();
+      if (window.location.href === "http://localhost:3002/Login") {
+        timer();
+      }
     }
   };
 
