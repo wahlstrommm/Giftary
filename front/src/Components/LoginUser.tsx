@@ -55,7 +55,9 @@ const LoginUser = () => {
       setShowModal(!showModal);
     } else if (LocalS.isAllowed === true) {
       setShowModal(!showModal);
-      timer();
+      if (window.location.href === "http://localhost:3002/Login") {
+        timer();
+      }
     }
   };
 
@@ -63,7 +65,7 @@ const LoginUser = () => {
   const timer = () => {
     setTimeout(() => {
       window.location.href = "http://localhost:3002/";
-    }, 6000);
+    }, 2000);
   };
 
   const handlePrivateUser = async (data: any) => {
