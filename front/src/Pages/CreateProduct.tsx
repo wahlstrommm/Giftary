@@ -26,6 +26,7 @@ const CreateProduct = () => {
       image2: "",
       image3: "",
       image4: "",
+      overAge: false,
       // exampleRequired: "",
     },
   });
@@ -43,6 +44,7 @@ const CreateProduct = () => {
         favorited: false,
         category: data.category,
         companyName: LocalS.name,
+        overAge: data.overAge,
       };
       console.log(product);
       CreateProductHandler(product);
@@ -176,6 +178,23 @@ const CreateProduct = () => {
                     htmlFor="age"
                     className="block text-sm font-medium text-gray-700"
                   >
+                    För vuxna
+                  </label>
+                  <input
+                    type="checkbox"
+                    placeholder="overAge"
+                    {...register("overAge", {})}
+                  />
+
+                  {errors.overAge && (
+                    <p>Var snäll att fyll i vilken ålder de passar</p>
+                  )}
+                </div>
+                <div>
+                  <label
+                    htmlFor="age"
+                    className="block text-sm font-medium text-gray-700"
+                  >
                     Främst för åldern
                   </label>
                   <input
@@ -216,11 +235,15 @@ const CreateProduct = () => {
                   >
                     Kategori
                   </label>
-                  <select {...register("category")}>
+                  <select {...(register("category"), { required: true })}>
                     <option value="ForHim">För han</option>
                     <option value="ForHer">För henne</option>
                     <option value="ForUS">För oss</option>
                     <option value="Christmas">Julklappar</option>
+                    <option value="ForLove">Kärlek</option>
+                    <option value="Alkohol">Alkohol</option>
+                    <option value="DadsDay">Morsdag</option>
+                    <option value="MomsDay">Farsdag</option>
                   </select>
                   {errors.category && (
                     <p>Var snäll att fyll i vilken kategori som din passar i</p>
@@ -250,9 +273,11 @@ const CreateProduct = () => {
                     <input
                       type="text"
                       placeholder="image1"
-                      {...register("image1", {})}
+                      {...register("image1", { required: true })}
                       className="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
+                  </div>
+                  <div className="text-left">
                     {errors.image1 && (
                       <p>
                         Var snäll bidra med en url till din bild. Fler desto
