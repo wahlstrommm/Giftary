@@ -82,6 +82,7 @@ const CreateCompanyform = () => {
             placeholder="Aktiekod "
             {...register("name", { required: true, max: -2, maxLength: 12 })}
           />
+          {errors.name && <p>Var snäll och skriv in namnet på företaget</p>}
         </div>
 
         <div className="mb-4">
@@ -97,6 +98,9 @@ const CreateCompanyform = () => {
             placeholder="Organisationsnummer"
             {...register("orgNumber", { required: true, maxLength: 80 })}
           />
+          {errors.orgNumber && (
+            <p>Var snäll och skriv in ert organisationsnummer aktiekode</p>
+          )}
         </div>
 
         <div className="mb-4">
@@ -112,6 +116,9 @@ const CreateCompanyform = () => {
             placeholder="Lösenord"
             {...register("password", { required: true, maxLength: 100 })}
           />
+          {errors.password && (
+            <p>Var snäll och skriv in ert önskade lösenord </p>
+          )}
         </div>
 
         <div className="mb-4">
@@ -127,6 +134,9 @@ const CreateCompanyform = () => {
             placeholder="Företagsnamn"
             {...register("companyName", { required: true, maxLength: 100 })}
           />
+          {errors.companyName && (
+            <p>Var snäll och skriv in namnet på ert företag</p>
+          )}
         </div>
 
         <div className="flex items-center justify-center">
