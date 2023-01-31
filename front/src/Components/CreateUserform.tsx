@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { INewUser } from "../Models/User/INewUser";
 import { useForm } from "react-hook-form";
-import { ErrorMessage } from "@hookform/error-message";
 import CreateCompanyform from "./CreateCompanyform";
 
 const CreateUserForm = () => {
@@ -86,7 +85,6 @@ const CreateUserForm = () => {
           });
       } catch (error) {
         console.log("fel", error);
-        console.log("ÄR I CATCH");
       }
     }
   };
@@ -153,12 +151,7 @@ const CreateUserForm = () => {
               placeholder="Förnamn"
               {...register("firstName", { required: true, maxLength: 80 })}
             />
-            <ErrorMessage errors={errors} name="singleErrorInput" />
-            <ErrorMessage
-              errors={errors}
-              name="singleErrorInput"
-              render={({ message }) => <p>{message}</p>}
-            />
+            {errors.firstName && <p>Var snäll och skriv in ditt förnamn</p>}
           </div>
 
           <div className="mb-4 ">
@@ -175,6 +168,7 @@ const CreateUserForm = () => {
               placeholder="Efternamn"
               {...register("lastName", { required: true, maxLength: 100 })}
             />
+            {errors.lastName && <p>Var snäll och skriv in ditt efternamn</p>}
           </div>
 
           <label
@@ -193,6 +187,7 @@ const CreateUserForm = () => {
               <option value="Kvinna">Kvinna</option>
               <option value="Annat">Annat</option>
             </select>
+            {errors.sex && <p>Var snäll och välj ditt kön</p>}
           </div>
 
           <div className="mb-6">
@@ -205,13 +200,14 @@ const CreateUserForm = () => {
             <input
               className="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-slate-900 focus:shadow-outline"
               type="email"
-              placeholder="mail"
+              placeholder="Email"
               {...register("email", {
                 required: true,
                 min: 1,
                 pattern: /^\S+@\S+$/i,
               })}
             />
+            {errors.email && <p>Var snäll och skriv in din email</p>}
           </div>
 
           <div className="mb-6">
@@ -227,6 +223,9 @@ const CreateUserForm = () => {
               placeholder="Lösenord"
               {...register("password", { required: true })}
             />
+            {errors.password && (
+              <p>Var snäll och skriv in ditt önskade lösenord</p>
+            )}
           </div>
 
           <div className="mb-6">
@@ -246,6 +245,7 @@ const CreateUserForm = () => {
                 pattern: /[0-9]/i,
               })}
             />
+            {errors.phone && <p>Var snäll och skriv in ditt telefonnummer</p>}
           </div>
 
           <div className="flex items-center justify-center">
