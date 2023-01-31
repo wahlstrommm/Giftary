@@ -143,9 +143,7 @@ const Product = () => {
     if (LSParsedProduct) {
       console.log("Product finns");
       if (LSParsedProduct._id) {
-        // console.log("finns och är allowed");
         product.push(LSParsedProduct);
-        // console.log(product);
       } else {
         console.log("den är nu:", "{}");
       }
