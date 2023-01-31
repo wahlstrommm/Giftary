@@ -23,9 +23,6 @@ router.get("/:company", async (req, res) => {
 });
 // ! IF OM DET INTE FINNS NÅGRA PRODUKTER
 router.post("/", async (req, res) => {
-  // console.warn(req.body.image);
-  // console.log("HEJ");
-  // console.log(req.body);
   const product = await productModel.create(req.body);
   const companyName = req.body.companyName;
   // console.log("Innan", companyName);
