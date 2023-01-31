@@ -24,44 +24,24 @@ const Product = () => {
     let LS: any = localStorage.getItem("loggedinUser");
     let LSParsed = JSON.parse(LS);
     if (LSParsed) {
-      // console.log("finns");
       if (LSParsed.isAllowed && LSParsed.type === "company") {
-        // console.log("finns och är allowed");
         LocalS = LSParsed;
         typeOfUser = LSParsed;
         renderLayout(typeOfUser);
         console.log(LSParsed);
       } else {
-        // console.log("den är nu:", "{}");
-        // console.log("finns och är allowed");
         LocalS = LSParsed;
         typeOfUser = LSParsed;
         renderLayout(typeOfUser);
-        // console.log(LSParsed);
-        console.log("TYPEOF", typeOfUser);
-        // console.log("TYPEOF", LSParsed._id);
-        // userEmail.email = typeOfUser.email;
-        // console.log(product[0], "PRODUCT");
       }
     } else {
       console.log("finns inget utan helt tom");
     }
   };
-  // let userEmail = {
-  //   email: "",
-  // };
-  const addProductHandler = async () => {
-    // console.warn("USERRMMRMMRMRM", userEmail);
-    // console.log(product[0]._id);
-    // console.warn("ID", productID, typeof productID);
-    // console.log(typeOfUser.email);
-    // console.log(JSON.stringify(userEmail));
-    // console.log(`http://localhost:3000/api/user/${productID}`);
-    // console.log(`http://localhost:3000/api/user/" + "${productID}"`);
 
+  const addProductHandler = async () => {
     try {
       let productID = product[0]._id;
-      // let userEmail = { email: typeOfUser.email };
       await fetch(`http://localhost:3000/api/user/${productID}`, {
         method: "POST",
         headers: {
@@ -298,7 +278,7 @@ const Product = () => {
                     </Link>
                   </div>
                   <div>
-                    <Link to={"/UserProductList/34234234"}>
+                    <Link to={`/UserProductList`}>
                       <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5">
                         Se dina sparade produkter
                       </button>
