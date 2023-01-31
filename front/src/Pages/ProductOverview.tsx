@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import Navbar from "../Components/Navbar";
 import React from "react";
+import { Link } from "react-router-dom";
 const ProductOverview = () => {
   const [productsArray, setProductArray] = useState([]);
+  const [layout, setLAyout] = useState(<></>);
   let LocalS: any;
 
   useEffect(() => {
@@ -16,6 +18,22 @@ const ProductOverview = () => {
       .then((result) => {
         console.log(result);
         setProductArray(result.products);
+        if (result.products.length === 0) {
+          console.log("tom");
+          setLAyout(
+            <div>
+              <h1>Det verkar som du inte har några produkter</h1>
+              <p>Du kan skapa produkter här</p>
+              <Link to={"/CreateProduct"}>
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5">
+                  Skapa produkt
+                </button>
+              </Link>
+            </div>
+          );
+        } else {
+          setLAyout(<></>);
+        }
       });
   }, []);
 
@@ -82,6 +100,7 @@ const ProductOverview = () => {
           Dina produkter
         </h2>
         <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+          {layout}
           {productsArray.map((product: any, id: any) => (
             <div key={id} className="group relative">
               <div className="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-600 group-hover:opacity-75 lg:aspect-none lg:h-80 ">
