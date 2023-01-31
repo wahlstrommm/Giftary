@@ -8,4 +8,5 @@ export interface IProduct {
   favorited: boolean;
   category: string;
   companyName: string;
+  overAge: boolean;
 }
