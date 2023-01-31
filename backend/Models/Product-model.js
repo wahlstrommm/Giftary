@@ -42,5 +42,8 @@ const productModel = mongoose.Schema({
     type: String,
     required: [true],
   },
+  overAge: {
+    type: Boolean,
+  },
 });
 module.exports = mongoose.model("Product", productModel);
