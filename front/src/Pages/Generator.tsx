@@ -123,6 +123,10 @@ const Generator = () => {
       answer2 = "18";
 
       if (userinput === "over18") {
+        let resultProducts = resultArray.filter(
+          (product) => product["overAge"] === true
+        );
+        console.log(resultProducts);
         let random =
           resultArray[Math.floor(Math.random() * resultArray.length)];
         let array: any = [];
@@ -283,14 +287,6 @@ const Generator = () => {
                         <h3 className="text-lg font-medium leading-6 text-gray-900">
                           Fråga:{questionText}
                         </h3>
-
-                        <div className="mt-2">
-                          {/* <p className="text-sm text-gray-500">
-                            {/* Are you sure you want to deactivate your account?
-                            All of your data will be permanently removed. This
-                            action cannot be undone. */}
-                          {/* </p> */}
-                        </div>
                       </div>
                     </div>
                   </div>
