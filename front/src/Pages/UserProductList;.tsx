@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 
 const UserProductList = () => {
   const [productArray, setProductArray] = useState([]);
   const [urlString, setUrlString] = useState("");
+  const [layout, setLAyout] = useState(<></>);
+  const [empty, setEmpty] = useState(false);
   let LocalLS: any;
   const checkLS = async () => {
     let LS: any = localStorage.getItem("loggedinUser");
@@ -48,6 +51,23 @@ const UserProductList = () => {
       .then((result) => {
         console.log(result);
         setProductArray(result.products);
+        if (result.products.length === 0) {
+          setLAyout(
+            <div>
+              <h1>Det verkar som du inte har sparat några produkter</h1>
+              <p>Du kan hitta produkter här</p>
+              <Link to={"/Toplist"}>
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5">
+                  Hitta produkter
+                </button>
+              </Link>
+            </div>
+          );
+          console.log("listan är tom...", result.products);
+        } else {
+          setEmpty(!empty);
+          setLAyout(<></>);
+        }
       });
   }, []);
   checkLS();
@@ -93,8 +113,11 @@ const UserProductList = () => {
         <h2 className="text-2xl font-bold tracking-tight text-gray-900">
           Dina sparade produkter:
         </h2>
-
-        <div className="flex justify-around m-2">
+        {layout}
+        <div
+          className="flex justify-around m-2"
+          style={empty === true ? { display: "block" } : { display: "none" }}
+        >
           <div className="flex justify-evenly gap-5">
             <p className="left-3">Dela: </p>{" "}
             <button
