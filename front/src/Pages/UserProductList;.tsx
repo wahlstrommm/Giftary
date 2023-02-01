@@ -155,37 +155,51 @@ const UserProductList = () => {
           className="flex justify-around m-2"
           style={empty === true ? { display: "block" } : { display: "none" }}
         >
-          <div className="flex justify-evenly gap-5">
-            <p className="left-3">Dela: </p>{" "}
+          <div className="flex justify-evenly">
+            {/* <p className="left-3">Dela: </p> */}
             <button
               onClick={() => {
                 shareListHandler(LocalLS._id);
               }}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5 shadow hover:shadow-lg  transition transform hover:-translate-y-0.5"
             >
               Länk
             </button>
             <div>{urlString}</div>
-          </div>
-          <div>
-            <button onClick={() => setDeleteBox(!deleteBox)}>radera</button>
-            <div
-              style={
-                deleteBox === true ? { display: "block" } : { display: "none" }
-              }
+            <button
+              onClick={() => setDeleteBox(!deleteBox)}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5 shadow hover:shadow-lg  transition transform hover:-translate-y-0.5"
             >
-              <p>Är du säker på att du vill radera den?</p>
+              Radera
+            </button>
+          </div>
+
+          <div
+            className=" justify-center flex text-center"
+            style={
+              deleteBox === true ? { display: "block" } : { display: "none" }
+            }
+          >
+            <p className="mb-2 pt-2">Är du säker på att du vill radera den?</p>
+            <div className="flex gap-4 justify-center">
               <button
                 onClick={() => {
                   deleteListHandler(LocalLS._id);
                 }}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5 shadow hover:shadow-lg  transition transform hover:-translate-y-0.5"
               >
                 Ja
               </button>
-              <button onClick={() => setDeleteBox(!deleteBox)}>Nej</button>
+              <button
+                onClick={() => setDeleteBox(!deleteBox)}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5 shadow hover:shadow-lg  transition transform hover:-translate-y-0.5"
+              >
+                Nej
+              </button>
             </div>
           </div>
-          {/* <div>03</div> */}
         </div>
+        <div></div>
         <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {productArray.map((product: any, id: any) => (
             <div key={id} className="group relative">
