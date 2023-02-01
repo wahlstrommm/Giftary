@@ -3,6 +3,7 @@ var router = express.Router();
 const mongoose = require("mongoose");
 const userModel = require("../Models/User-model");
 const productModel = require("../Models/Product-model");
+const CompanyModel = require("../Models/Company-model");
 var ObjectID = require("mongodb").ObjectID;
 
 /* GET users listing. */
@@ -44,6 +45,35 @@ router.post("/:id", async (req, res) => {
       res.json({ error: "fel" });
     }
   });
+});
+router.get("/company/:id", async (req, res) => {
+  console.log(req.params.id);
+  let name = req.params.id;
+  let company = await CompanyModel.find({ name: name }).catch((err) =>
+    console.log("Caught:", err.message)
+  );
+  if (company) {
+    console.log(company);
+    company[0].password = "*****";
+    await res.status(200).send({ result: company });
+  } else {
+    res.status(400).json({ result: error });
+  }
+});
+router.get("/users/:id", async (req, res) => {
+  console.log(req.params.id);
+
+  let ID = req.params.id;
+
+  let user = await userModel
+    .findById(ID)
+    .catch((err) => console.log("Caught:", err.message));
+  if (user) {
+    user.password = "*****";
+    await res.status(200).send({ result: user });
+  } else {
+    res.status(400).json({ result: error });
+  }
 });
 
 module.exports = router;
