@@ -15,7 +15,7 @@ router.get("/:id", async (req, res) => {
       res.status(400).json({ message: "Något gick fel.." });
     }
   } catch (error) {
-    res.send(500).json({ error: error });
+    res.status(500).json({ error: error });
   }
 });
 
