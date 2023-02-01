@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   let typeOfUser: any;
   let loggedIn: any;
+  let ID: any;
   const clearLS = () => {
     window.localStorage.clear();
     window.location.reload();
@@ -12,6 +13,7 @@ const Navbar = () => {
     let LSParsed = JSON.parse(LS);
     console.log(LSParsed);
     if (LSParsed) {
+      ID = LSParsed._id;
       console.log("finns");
       if (LSParsed.isAllowed && LSParsed.type === "company") {
         loggedIn = true;
@@ -45,7 +47,7 @@ const Navbar = () => {
         ) : (
           <></>
         )}
-        <Link to={"/"}>Profil?</Link>
+        {loggedIn === true ? <Link to={`/profile/${ID}`}>Profil</Link> : <></>}
         {loggedIn === true ? (
           <button onClick={() => clearLS()}>Logga ut</button>
         ) : (
