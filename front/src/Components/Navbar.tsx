@@ -34,9 +34,8 @@ const Navbar = () => {
         <h3 className="text-2xl font-medium text-blue-500">LOGO</h3>
       </div>
       <div className="hidden space-x-8 lg:flex">
-        <p>LOL</p>
-        <Link to={"/"}>Home</Link>
-        <Link to={"/Toplist"}>Toplist</Link>
+        <Link to={"/"}>Hem</Link>
+        <Link to={"/Toplist"}>Topplista</Link>
         {typeOfUser === "user" ? (
           <Link to={"/UserProductList"}>Sparade produkter</Link>
         ) : (

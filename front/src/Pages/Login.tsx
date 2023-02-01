@@ -4,7 +4,6 @@ import Navbar from "../Components/Navbar";
 const checkLS = async () => {
   let LS: any = localStorage.getItem("loggedinUser");
   let LSParsed = JSON.parse(LS);
-  console.log(LSParsed);
   if (LSParsed) {
     console.log("finns");
     if (LSParsed.isAllowed && LSParsed.type === "company") {
