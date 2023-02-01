@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../Components/Navbar";
+import { motion } from "framer-motion";
 
 const UserProductList = () => {
   const [productArray, setProductArray] = useState([]);
@@ -8,6 +9,8 @@ const UserProductList = () => {
   const [layout, setLAyout] = useState(<></>);
   const [empty, setEmpty] = useState(false);
   let LocalLS: any;
+  const [deleteBox, setDeleteBox] = useState(false);
+  const [savedItemText, setSavedItemText] = useState("");
   const checkLS = async () => {
     let LS: any = localStorage.getItem("loggedinUser");
     let LSParsed = JSON.parse(LS);
@@ -51,16 +54,29 @@ const UserProductList = () => {
       .then((result) => {
         console.log(result);
         setProductArray(result.products);
+        setSavedItemText("Dina sparade produkter:");
         if (result.products.length === 0) {
+          setSavedItemText("");
           setLAyout(
             <div>
-              <h1>Det verkar som du inte har sparat några produkter</h1>
-              <p>Du kan hitta produkter här</p>
-              <Link to={"/Toplist"}>
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5">
-                  Hitta produkter
-                </button>
-              </Link>
+              <div className="flex flex-col text-center">
+                <h1>Det verkar som du inte har sparat några produkter</h1>
+                <p>Du kan hitta produkter här</p>
+                <Link to={"/Toplist"}>
+                  <motion.button
+                    initial={{ scale: 0 }}
+                    animate={{ rotate: 360, scale: 1 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 260,
+                      damping: 20,
+                    }}
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5 "
+                  >
+                    Hitta produkter
+                  </motion.button>
+                </Link>
+              </div>
             </div>
           );
           console.log("listan är tom...", result.products);
@@ -101,6 +117,27 @@ const UserProductList = () => {
   };
   const deleteListHandler = async (userID: any) => {
     console.log(userID);
+    try {
+      await fetch("http://localhost:3000/api/" + userID, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          console.log(result);
+          if (result) {
+            console.log(result);
+            window.location.reload();
+            // window.location.href = result.url;
+          } else {
+            console.log("Något fel hände...");
+          }
+        });
+    } catch (error) {
+      console.error("Fel ", error);
+    }
   };
   const shareListHandler = async (userID: any) => {
     console.log("url", "http://localhost:3000/api/" + userID);
@@ -111,7 +148,7 @@ const UserProductList = () => {
       <Navbar />
       <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-          Dina sparade produkter:
+          {savedItemText}
         </h2>
         {layout}
         <div
@@ -130,13 +167,22 @@ const UserProductList = () => {
             <div>{urlString}</div>
           </div>
           <div>
-            <button
-              onClick={() => {
-                deleteListHandler(LocalLS._id);
-              }}
+            <button onClick={() => setDeleteBox(!deleteBox)}>radera</button>
+            <div
+              style={
+                deleteBox === true ? { display: "block" } : { display: "none" }
+              }
             >
-              radera
-            </button>
+              <p>Är du säker på att du vill radera den?</p>
+              <button
+                onClick={() => {
+                  deleteListHandler(LocalLS._id);
+                }}
+              >
+                Ja
+              </button>
+              <button onClick={() => setDeleteBox(!deleteBox)}>Nej</button>
+            </div>
           </div>
           {/* <div>03</div> */}
         </div>

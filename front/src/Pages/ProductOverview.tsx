@@ -40,13 +40,13 @@ const ProductOverview = () => {
   const checkLS = async () => {
     let LS: any = localStorage.getItem("loggedinUser");
     let LSParsed = JSON.parse(LS);
-    console.log(LSParsed);
+    // console.log(LSParsed);
     if (LSParsed) {
-      console.log("finns");
+      // console.log("finns");
       if (LSParsed.isAllowed && LSParsed.type === "company") {
-        console.log("finns och är allowed");
+        // console.log("finns och är allowed");
         LocalS = LSParsed;
-        console.log(LSParsed);
+        // console.log(LSParsed);
         LocalS = LSParsed.name;
         console.log("LOCal", LocalS);
       } else {
@@ -64,7 +64,7 @@ const ProductOverview = () => {
   checkLS();
 
   const produktHandler = async (produktID: any, product: any) => {
-    console.log(produktID, product);
+    // console.log(produktID, product);
     try {
       await fetch("http://localhost:3000/api/products/details/" + produktID, {
         method: "POST",
@@ -77,7 +77,7 @@ const ProductOverview = () => {
         .then((result) => {
           console.log(result);
           if (result) {
-            console.log(result);
+            // console.log(result);
             localStorage.setItem(
               "product",
               JSON.stringify(result.Foundproduct)
