@@ -98,7 +98,7 @@ const CreateUserForm = () => {
           onClick={() => setUserChoice("Privatperson")}
         >
           {" "}
-          Privatperson
+          Privat
         </button>
 
         <button
