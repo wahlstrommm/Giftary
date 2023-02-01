@@ -20,8 +20,7 @@ const Login = () => {
   return (
     <div>
       <Navbar />
-      <h1>HEJ från login</h1>
-      <div>
+      <div className=" grid h-screen place-items-center">
         <LoginForm />
       </div>
     </div>
