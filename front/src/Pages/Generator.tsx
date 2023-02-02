@@ -39,45 +39,46 @@ const Generator = () => {
         productArray[Math.floor(Math.random() * productArray.length)];
       console.log("Random:", randomItem);
       let randomItem2: any = [];
-      randomItem2.push(productArray[58]);
+      // randomItem2.push(productArray[58]);
+      randomItem2.push(randomItem);
 
       if (randomItem) {
         setRandomItemLayout(
-          <div className="flex justify-center text-center flex-col h-2">
-            <h2 className="sr-only">Products</h2>
+          <div className="flex justify-center text-center flex-col h-1">
+            {/* <h2 className="sr-only">Products</h2> */}
 
-            <div className="flex justify-center mb-1 flex-col">
+            <div className="flex justify-center flex-col">
               {randomItem2.map((i: any) => (
                 <div key={i._id}>
                   <a
                     href={"http://localhost:3002/product/" + i._id}
                     className="group"
                   >
-                    <div className="flex justify-center  mt-1">
+                    <div className="flex justify-center  mt-1 ">
                       <img
                         src={i.image[0]}
                         alt={i.image[0]}
-                        className="h-fit w-fit object-cover object-center group-hover:opacity-75 rounded-2xl"
+                        className="h-1/3 w-1/3 object-cover object-center group-hover:opacity-75 rounded-2xl sm:h-2/3 sm:w-2/3"
                       />
                     </div>
-                    <h3 className="mt-4 text-sm text-gray-700">{i.name}</h3>
+                    <h3 className="mt-1 text-sm text-gray-700">{i.name}</h3>
                     <p className="mt-1 text-lg font-medium text-gray-900">
                       {i.price}
                     </p>
                   </a>
                   <a href={"http://localhost:3002/product/" + i._id}>
-                    <button>Till produkten</button>
+                    <button>Till3 12produkten</button>
                   </a>
                 </div>
               ))}
             </div>
-            <button
+            {/* <button
               onClick={() => {
                 getRandomItemHandler();
               }}
             >
               Slumpa ny
-            </button>
+            </button> */}
           </div>
         );
       }
@@ -139,14 +140,14 @@ const Generator = () => {
           <div className="flex justify-center text-center">
             <h2 className="sr-only">Products</h2>
 
-            <div className="flex justify-center mb-2 ">
+            <div className="flex justify-center">
               {array.map((i: any) => (
                 <div key={i._id}>
                   <a
                     href={"http://localhost:3002/product/" + i._id}
                     className="group"
                   >
-                    <div className="flex justify-center mt-2">
+                    <div className="flex justify-center">
                       <img
                         src={i.image[0]}
                         alt={i.image[0]}
@@ -159,14 +160,13 @@ const Generator = () => {
                     </p>
                   </a>
                   <a href={"http://localhost:3002/product/" + i._id}>
-                    <button>Till produkten</button>
+                    <button className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                      Till produkten
+                    </button>
                   </a>
                 </div>
               ))}
             </div>
-            {/* <button onClick={() => setShowResult(!showResult)}>
-              ta fram en ny produkt
-            </button> */}
           </div>
         );
       } else {
@@ -202,7 +202,9 @@ const Generator = () => {
                     </p>
                   </a>
                   <a href={"http://localhost:3002/product/" + i._id}>
-                    <button>Till produkten</button>
+                    <button className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                      Till produkten
+                    </button>
                   </a>
                 </div>
               ))}
@@ -228,23 +230,24 @@ const Generator = () => {
       <div className="h-screen bg-white">
         <div className="flex justify-center items-center h-5/6 flex-col w-12/12">
           <h1>Generator</h1>
-          <div className="bg-slate-600 w-11/12 h-4/5 rounded-md flex justify-center items-center flex-col">
+          <div className="bg-slate-600 w-11/12 h-5/6 rounded-md flex justify-center items-center flex-col">
             {showResult ? (
               <div className="bg-red-400 h-5/6 w-11/12 flex justify-center align-middle items-center flex-col gap-3">
-                <div className="bg-white w-full">{randomItemLayout}</div>
-                <div className="">
-                  <button
-                    className="bg-white"
-                    onClick={() => {
-                      setShowResult(!showResult);
-                    }}
-                  >
-                    Generator
-                  </button>
+                <div className="bg-white w-3/4 h-5/6 flex justify-center align-middle items-center">
+                  {randomItemLayout}
                 </div>
 
                 <button
-                  className="top-3 relative bg-red-100"
+                  className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                  onClick={() => {
+                    setShowResult(!showResult);
+                  }}
+                >
+                  Generator
+                </button>
+
+                <button
+                  className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                   onClick={() => {
                     getRandomItemHandler();
                   }}
@@ -253,9 +256,9 @@ const Generator = () => {
                 </button>
               </div>
             ) : (
-              <div className="bg-red-400 h-5/6 w-11/12 flex justify-center align-middle items-center flex-col gap-3">
+              <div className="bg-red-400 h-full w-full flex justify-center align-middle items-center flex-col gap-3">
                 <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                  <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                  <div className="bg-white px-4 pt-5 pb-4 sm:p-5 sm:pb-4 justify-center flex text-center">
                     <div
                       style={
                         showGeneratedItemLayout === true
@@ -263,8 +266,13 @@ const Generator = () => {
                           : { display: "none" }
                       }
                     >
-                      <p>hej</p>
                       {showGenerateItem}
+                      <button
+                        onClick={() => window.location.reload()}
+                        className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                      >
+                        Börja om
+                      </button>
                     </div>
                     <div
                       className="sm:flex sm:items-start"
