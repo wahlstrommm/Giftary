@@ -4,7 +4,7 @@ import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import { Link } from "react-router-dom";
 import Icon from "./Images/image-icon.svg";
-
+import gift from "./Images/gift2.svg";
 let LocalS: any;
 const checkLS = () => {
   let LS: any = localStorage.getItem("loggedinUser");
@@ -36,7 +36,7 @@ function App() {
       <div className="bg-red-600 w-full h-4/6 flex justify-center items-center">
         <div className="h-4/5 bg-amber-900 w-10/12 flex justify-center items-center">
           <div className="bg-amber-500 h-5/6 w-9/12 relative top-1 flex flex-col justify-evenly text-center">
-            <img src={Icon} className="h-24" alt="icon" />
+            <img src={gift} className="h-24" alt="icon" />
             <p>HEJ</p>
             <div className="flex justify-center gap-9 relative bottom-2 items-center">
               <Link to={"/Generator"}>
