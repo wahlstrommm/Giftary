@@ -17,7 +17,7 @@ const SharedList = () => {
       .then((result) => {
         console.log(result.find[0]);
         setProductArray(result.find[0].productList);
-        console.log(productArray);
+        // console.log(productArray);
         // setProductArray(result.products);
       });
   }, []);
@@ -49,13 +49,13 @@ const SharedList = () => {
       console.error("Fel ", error);
     }
   };
-  console.log(window.location.href);
-  console.log(id);
+  // console.log(window.location.href);
+  // console.log(id);
   return (
     <div>
       <Navbar />
-      <h1>Någon har delat sin lista! </h1>
-      <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+      <h1 className="ml-6">Någon har delat sin lista! </h1>
+      <div className="mt-6 ml-3 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 ">
         {productArray.map((product: any, id: any) => (
           <div key={id} className="group relative">
             <div className="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-600 group-hover:opacity-75 lg:aspect-none lg:h-80 ">
