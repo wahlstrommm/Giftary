@@ -11,7 +11,7 @@ const Generator = () => {
   const [counter, setCounter] = useState(1);
   const [showResult, setShowResult] = useState(true);
   const [questionText, setQuestionText] = useState(
-    "Är det en kille eller tjej?"
+    " Är det en kille eller tjej?"
   );
   const [showGeneratedItemLayout, setshowGeneratedItemLayout] = useState(false);
   useEffect(() => {
@@ -67,7 +67,7 @@ const Generator = () => {
                     </p>
                   </a>
                   <a href={"http://localhost:3002/product/" + i._id}>
-                    <button>Till3 12produkten</button>
+                    <button>Till produkten</button>
                   </a>
                 </div>
               ))}
@@ -93,7 +93,7 @@ const Generator = () => {
       ],
     },
     {
-      questionText: "Är det personen över eller under 18 år?",
+      questionText: " Är det personen över eller under 18 år?",
       answerOptions: [
         { answerText: "Under 18", isCorrect: "under18" },
         { answerText: "Över 18", isCorrect: "over18" },
