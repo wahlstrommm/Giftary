@@ -40,7 +40,7 @@ function App() {
             <p>HEJ</p>
             <div className="flex justify-center gap-9 relative bottom-2 items-center">
               <Link to={"/Generator"}>
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5">
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5 focus:shadow-outline  shadow hover:shadow-lg  transition transform hover:-translate-y-0.5">
                   Generator
                 </button>
               </Link>
@@ -52,7 +52,7 @@ function App() {
                 }
               >
                 <Link to={"/Login"}>
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5">
+                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline focus:shadow-outline m-5 shadow hover:shadow-lg  transition transform hover:-translate-y-0.5">
                     Logga in
                   </button>
                 </Link>
@@ -65,7 +65,7 @@ function App() {
                 }
               >
                 <Link to={"/UserProductList"}>
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5">
+                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5 focus:shadow-outline shadow hover:shadow-lg  transition transform hover:-translate-y-0.5 focus:shadow-outline">
                     Dina listor
                   </button>
                 </Link>
