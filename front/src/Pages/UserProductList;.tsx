@@ -4,6 +4,8 @@ import Navbar from "../Components/Navbar";
 import { motion } from "framer-motion";
 
 const UserProductList = () => {
+  const [showModal, setShowModal] = useState(false);
+
   const [productArray, setProductArray] = useState([]);
   const [urlString, setUrlString] = useState("");
   const [layout, setLAyout] = useState(<></>);
@@ -41,6 +43,7 @@ const UserProductList = () => {
     }
   };
   useEffect(() => {
+    console.log("hejhejeheejejejejj");
     if (productArray.length > 0) return;
     console.log("useEffect,");
     fetch("http://localhost:3000/api/user", {
@@ -128,9 +131,11 @@ const UserProductList = () => {
         .then((result) => {
           console.log(result);
           if (result) {
-            console.log(result);
             window.location.reload();
+            console.log(result);
+            // setShowModal(!showModal);
             // window.location.href = result.url;
+            // setProductArray([]);
           } else {
             console.log("Något fel hände...");
           }
@@ -199,7 +204,7 @@ const UserProductList = () => {
             </div>
           </div>
         </div>
-        <div></div>
+        {/* <div></div> */}
         <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {productArray.map((product: any, id: any) => (
             <div key={id} className="group relative">
@@ -214,12 +219,12 @@ const UserProductList = () => {
               <div className="mt-4 flex justify-between">
                 <div>
                   <h3 className="text-sm text-gray-700">
-                    namn:
+                    Namn:
                     <button
                       onClick={() => produktHandler(product._id, product)}
                     >
                       <span aria-hidden="true" className="absolute inset-0" />
-                      {product.name} +1
+                      {product.name}
                     </button>
                   </h3>
                   <p className="mt-1 text-sm text-gray-500">
