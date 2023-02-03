@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 
 const Product = () => {
-  // const [loggedInCompany, setLoggedInCompany] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   let product: any = [];
@@ -17,7 +16,6 @@ const Product = () => {
       setShowModal(!showModal);
     } else if (LocalS.isAllowed === true) {
       setShowModal(!showModal);
-      // timer();
     }
   };
   const checkLS = () => {
@@ -28,7 +26,7 @@ const Product = () => {
         LocalS = LSParsed;
         typeOfUser = LSParsed;
         renderLayout(typeOfUser);
-        console.log(LSParsed);
+        // console.log(LSParsed);
       } else {
         LocalS = LSParsed;
         typeOfUser = LSParsed;
@@ -51,9 +49,9 @@ const Product = () => {
       })
         .then((response) => response.json())
         .then((result) => {
-          console.log(result);
+          // console.log(result);
           if (result) {
-            console.log(result);
+            // console.log(result);
             renderSucessBox(result);
             setShowModal(true);
           } else {
@@ -127,7 +125,7 @@ const Product = () => {
               addProductHandler();
             }}
             type="submit"
-            className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:shadow-outline m-5 shadow hover:shadow-lg  transition transform hover:-translate-y-0.5"
           >
             Lägg till i listan
           </button>
@@ -270,20 +268,20 @@ const Product = () => {
                 >
                   <div>
                     <Link to={"/"}>
-                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5">
+                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline focus:shadow-outline m-5 shadow hover:shadow-lg  transition transform hover:-translate-y-0.5">
                         Hem
                       </button>
                     </Link>
                   </div>
                   <div>
                     <Link to={`/UserProductList`}>
-                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5">
+                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline focus:shadow-outline m-5 shadow hover:shadow-lg  transition transform hover:-translate-y-0.5">
                         Se dina sparade produkter
                       </button>
                     </Link>
                   </div>
                 </div>
-                <button className="rounded w-7 absolute top-2 left-3 bg-blue-500 hover:bg-blue-700 text-white font-bold">
+                <button className="rounded w-7 absolute top-2 left-3 bg-blue-500 hover:bg-blue-700 text-white font-bold focus:outline-none focus:shadow-outline shadow hover:shadow-lg  transition transform hover:-translate-y-0.5">
                   X
                 </button>
               </div>
