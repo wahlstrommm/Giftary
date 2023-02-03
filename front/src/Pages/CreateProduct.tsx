@@ -123,7 +123,7 @@ const CreateProduct = () => {
                     </label>
                     <div className="mt-1 flex rounded-md shadow-sm h-full flex-col">
                       <input
-                        className="h-full focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
+                        className="rounded-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-1  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         type="text"
                         placeholder="Namn"
                         {...register("name", { required: true })}
@@ -145,7 +145,7 @@ const CreateProduct = () => {
                   <div className="mt-1">
                     <textarea
                       placeholder="Beskrivning om produkten"
-                      className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md p-1"
+                      className="rounded-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       {...register("summary", { required: true })}
                     />
                     {errors.summary && (
@@ -165,7 +165,7 @@ const CreateProduct = () => {
                   </label>
                   <div className="mt-1 flex rounded-md shadow-sm h-full flex-col">
                     <input
-                      className="h-full focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
+                      className="rounded-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       type="text"
                       placeholder="Passar åldern"
                       {...register("aimedFor", { required: true })}
@@ -181,6 +181,7 @@ const CreateProduct = () => {
                     För vuxna
                   </label>
                   <input
+                    className="h-6 w-6"
                     type="checkbox"
                     placeholder="overAge"
                     {...register("overAge", {})}
@@ -198,7 +199,7 @@ const CreateProduct = () => {
                     Främst för åldern
                   </label>
                   <input
-                    className="h-10 pl-3 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
+                    className="rounded-lg bg-gray-50 border text-white focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-white dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     type="number"
                     placeholder="Ålder"
                     {...register("age", {
@@ -220,7 +221,7 @@ const CreateProduct = () => {
                   </label>
                   <div className="mt-1 flex rounded-md shadow-sm h-full flex-col">
                     <input
-                      className="h-full focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
+                      className="rounded-lg bg-gray-50 border text-white focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-white dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       type="text"
                       placeholder="Pris"
                       {...register("price", { required: true })}
@@ -230,12 +231,15 @@ const CreateProduct = () => {
                 </div>
                 <div>
                   <label
-                    htmlFor="age"
+                    htmlFor="category"
                     className="block text-sm font-medium text-gray-700 pb-1"
                   >
                     Kategori
                   </label>
-                  <select {...(register("category"), { required: true })}>
+                  <select
+                    className="rounded-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    {...(register("category"), { required: true })}
+                  >
                     <option value="ForHim">För han</option>
                     <option value="ForHer">För henne</option>
                     <option value="ForUS">För oss</option>
@@ -261,9 +265,9 @@ const CreateProduct = () => {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="#ffffff"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       >
                         <rect x="3" y="3" width="18" height="18" rx="2" />
                         <circle cx="8.5" cy="8.5" r="1.5" />
@@ -280,7 +284,7 @@ const CreateProduct = () => {
                   <div className="text-left">
                     {errors.image1 && (
                       <p>
-                        Var snäll bidra med en url till din bild. Fler desto
+                        Var snäll att bidra med en url till din bild. Fler desto
                         bättre
                       </p>
                     )}
@@ -296,9 +300,9 @@ const CreateProduct = () => {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="#ffffff"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       >
                         <rect x="3" y="3" width="18" height="18" rx="2" />
                         <circle cx="8.5" cy="8.5" r="1.5" />
@@ -324,9 +328,9 @@ const CreateProduct = () => {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="#ffffff"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       >
                         <rect x="3" y="3" width="18" height="18" rx="2" />
                         <circle cx="8.5" cy="8.5" r="1.5" />
@@ -350,9 +354,9 @@ const CreateProduct = () => {
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="#ffffff"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     >
                       <rect x="3" y="3" width="18" height="18" rx="2" />
                       <circle cx="8.5" cy="8.5" r="1.5" />
@@ -373,13 +377,6 @@ const CreateProduct = () => {
                 />
               </div>
             </div>
-
-            <label
-              htmlFor="image-Url"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Username
-            </label>
           </form>
         </div>
       </div>
