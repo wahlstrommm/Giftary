@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import logo from "../Images/logogift.svg";
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
 
@@ -36,7 +37,11 @@ const Navbar = () => {
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
             <Link to="/">
-              <h2 className="text-2xl font-bold">LOGO</h2>
+              <img
+                src={logo}
+                className="h-7"
+                alt="icon for the company giftary"
+              />
             </Link>
             <div className="md:hidden">
               <button
@@ -83,27 +88,39 @@ const Navbar = () => {
             }`}
           >
             <div className=" space-x-8 lg:flex">
-              <Link to={"/"}>Hem</Link>
-              <Link to={"/Toplist"}>Topplista</Link>
+              <Link to={"/"} className="hover:underline">
+                Hem
+              </Link>
+              <Link to={"/Toplist"} className="hover:underline">
+                Topplista
+              </Link>
               {typeOfUser === "user" ? (
                 <Link to={"/UserProductList"}>Sparade produkter</Link>
               ) : (
                 <></>
               )}
               {typeOfUser === "company" ? (
-                <Link to={"/ProductOverview"}>Dina produkter</Link>
+                <Link to={"/ProductOverview"} className="hover:underline">
+                  Dina produkter
+                </Link>
               ) : (
                 <></>
               )}
               {loggedIn === true ? (
-                <Link to={`/profile/${ID}`}>Profil</Link>
+                <Link to={`/profile/${ID}`} className="hover:underline">
+                  Profil
+                </Link>
               ) : (
                 <></>
               )}
               {loggedIn === true ? (
-                <button onClick={() => clearLS()}>Logga ut</button>
+                <button onClick={() => clearLS()} className="hover:underline">
+                  Logga ut
+                </button>
               ) : (
-                <Link to={"/login"}>Logga in </Link>
+                <Link to={"/login"} className="hover:underline">
+                  Logga in{" "}
+                </Link>
               )}
             </div>
           </div>
