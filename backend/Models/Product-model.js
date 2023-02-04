@@ -12,7 +12,7 @@ const productModel = mongoose.Schema({
     type: String,
     required: [true, "Lägg till ett namn"],
     trim: true,
-    maxlength: [70, "Beskrivningen kan inte var längre än 70 bokstäver"],
+    maxlength: [100, "Beskrivningen kan inte var längre än 100 bokstäver"],
   },
   age: {
     type: String,
