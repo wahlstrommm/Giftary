@@ -105,7 +105,7 @@ const ProductOverview = () => {
             <div key={id} className="group relative">
               <div className="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-600 group-hover:opacity-75 lg:aspect-none lg:h-80 ">
                 <img
-                  src={product.image}
+                  src={product.image[0]}
                   alt={product.name}
                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                 />
@@ -114,7 +114,7 @@ const ProductOverview = () => {
               <div className="mt-4 flex justify-between">
                 <div>
                   <h3 className="text-sm text-gray-700">
-                    namn:
+                    Namn:
                     <button
                       onClick={() => produktHandler(product._id, product)}
                     >
@@ -122,7 +122,7 @@ const ProductOverview = () => {
                       {product.name}
                     </button>
                   </h3>
-                  <p className="mt-1 text-sm text-gray-500">
+                  <p className="mt-1 mr-2 text-sm text-gray-500">
                     Beskrivning: {product.summary}
                   </p>
                 </div>
