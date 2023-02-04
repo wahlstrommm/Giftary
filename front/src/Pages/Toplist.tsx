@@ -5,12 +5,12 @@ const Toplist = () => {
   const [productsArray, setProductsArray] = useState([]);
   const [resultText, SetResultText] = useState("");
   const category = [
-    "forHim",
+    "ForHim",
     "ForHer",
-    "all",
+    "ForUS",
     "Christmas",
     "ForLove",
-    "Alcohol",
+    "Alkohol",
     "DadsDay",
     "MomsDay",
   ];
@@ -109,14 +109,14 @@ const Toplist = () => {
               </button>
             ))}
           </div>
-          <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+          <div className="grid grid-cols-1 gap-y-20 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
             {productsArray.map((product: any) => (
               <a key={product._id} href={product.href} className="group">
-                <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
+                <div className="aspect-w-1 mt-3 h-2/3 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
                   <img
                     src={product.image[0]}
                     alt={product.imageAlt}
-                    className="h-full w-full object-cover object-center group-hover:opacity-75"
+                    className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                   />
                 </div>
                 <h3 className="mt-4 text-sm text-gray-700">
@@ -135,7 +135,7 @@ const Toplist = () => {
                   onClick={() => {
                     getProductHandler(product._id);
                   }}
-                  className="text-white mt-2 py-1 px-2 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+                  className="mb-3  text-white mt-2 py-1 px-2 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
                 >
                   Läs mer
                 </button>
