@@ -108,7 +108,7 @@ const CreateProduct = () => {
   return (
     <div>
       <Navbar />
-      <div className="w-3/3 flex justify-center">
+      <div className="w-3/3 flex justify-center mt-5 mb-2">
         <div className="mt-5 md:mt-0 w-3/4">
           <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
             <div className="shadow sm:rounded-md sm:overflow-hidden">
@@ -238,7 +238,7 @@ const CreateProduct = () => {
                   </label>
                   <select
                     className="rounded-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    {...(register("category"), { required: true })}
+                    {...register("category", { required: true })}
                   >
                     <option value="ForHim">För han</option>
                     <option value="ForHer">För henne</option>
@@ -276,7 +276,7 @@ const CreateProduct = () => {
                     </span>
                     <input
                       type="text"
-                      placeholder="image1"
+                      placeholder="Bild URL 1"
                       {...register("image1", { required: true })}
                       className="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
@@ -311,7 +311,7 @@ const CreateProduct = () => {
                     </span>
                     <input
                       type="text"
-                      placeholder="image2"
+                      placeholder="Bild URL 2"
                       {...register("image2", {})}
                       className="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
@@ -339,7 +339,7 @@ const CreateProduct = () => {
                     </span>
                     <input
                       type="text"
-                      placeholder="image3"
+                      placeholder="Bild URL 3"
                       {...register("image3", {})}
                       className="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
@@ -366,14 +366,14 @@ const CreateProduct = () => {
                   <input
                     type="text"
                     defaultValue={""}
-                    placeholder="image4"
+                    placeholder="Bild URL 4"
                     {...register("image4", {})}
                     className="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
                 </div>
                 <input
                   type="submit"
-                  className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-pointer"
                 />
               </div>
             </div>
