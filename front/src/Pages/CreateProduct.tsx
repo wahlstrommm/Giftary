@@ -121,7 +121,7 @@ const CreateProduct = () => {
                     >
                       Namn
                     </label>
-                    <div className="mt-1 flex rounded-md shadow-sm h-full flex-col">
+                    <div className="mt-1 flex w-full h-full flex-col">
                       <input
                         className="rounded-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-1  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         type="text"
@@ -199,7 +199,7 @@ const CreateProduct = () => {
                     Främst för åldern
                   </label>
                   <input
-                    className="rounded-lg bg-gray-50 border text-white focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-white dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="rounded-lg bg-gray-50 border text-white focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     type="number"
                     placeholder="Ålder"
                     {...register("age", {
@@ -221,7 +221,7 @@ const CreateProduct = () => {
                   </label>
                   <div className="mt-1 flex rounded-md shadow-sm h-full flex-col">
                     <input
-                      className="rounded-lg bg-gray-50 border text-white focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-white dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="rounded-lg bg-gray-50 border text-white focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       type="text"
                       placeholder="Pris"
                       {...register("price", { required: true })}
