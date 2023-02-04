@@ -3,10 +3,29 @@ import Navbar from "../Components/Navbar";
 
 const Toplist = () => {
   const [productsArray, setProductsArray] = useState([]);
-
-  const category = ["forHim", "ForHer", "all"];
-  const categoryFineText = ["För han", "För henne", "Alla"];
+  const [resultText, SetResultText] = useState("");
+  const category = [
+    "forHim",
+    "ForHer",
+    "all",
+    "Christmas",
+    "ForLove",
+    "Alcohol",
+    "DadsDay",
+    "MomsDay",
+  ];
+  const categoryFineText = [
+    "För han",
+    "För henne",
+    "Alla",
+    "Julklappar",
+    "Kärlek",
+    "Alkohol",
+    "Farsdag",
+    "Morsdag",
+  ];
   useEffect(() => {
+    if (productsArray.length > 0) return;
     fetch("http://localhost:3000/api/overview", {
       method: "GET",
       headers: {
@@ -34,6 +53,7 @@ const Toplist = () => {
           if (result) {
             setProductsArray(result);
           } else {
+            SetResultText("Finns inga produkter i denna kategori");
             console.log("Något fel hände...");
           }
         });
@@ -73,6 +93,7 @@ const Toplist = () => {
 
       <div className="bg-white">
         <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+          {resultText}
           {/* <h2 className="sr-only">Products</h2> */}
           <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
             {category.map((i: any, index: any) => (
