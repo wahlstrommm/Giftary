@@ -6,7 +6,6 @@ const companyModel = mongoose.Schema({
     type: String,
     required: [true, "Lägg till ett namn"],
     trim: true,
-    // unique: true,
     maxlength: [50, "Namn kan inte var större än 50 bokstäver"],
   },
   orgNumber: {
@@ -24,7 +23,6 @@ const companyModel = mongoose.Schema({
   },
   companyName: {
     type: String,
-    // unique: true,
   },
 });
 module.exports = mongoose.model("Company", companyModel);
