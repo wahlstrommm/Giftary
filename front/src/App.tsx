@@ -1,9 +1,9 @@
 // import React, { useState } from "react";
 import "./App.css";
 import Navbar from "./Components/Navbar";
-import Footer from "./Components/Footer";
+// import Footer from "./Components/Footer";
 import { Link } from "react-router-dom";
-import Icon from "./Images/image-icon.svg";
+// import Icon from "./Images/image-icon.svg";
 import gift from "./Images/logganCrop.svg";
 import { motion } from "framer-motion";
 
@@ -123,7 +123,7 @@ function App() {
         </div>
       </div>
       <div className="border-none flex    text-black relative bottom-4   justify-evenly dark:text-black ">
-        <a href="#" className="flex items-center lg:justify-center">
+        <Link to="/" className="flex items-center lg:justify-center">
           <svg
             className="h-3 md:h-7 sm:h-5  hover:text-gray-900 dark:hover:text-white"
             viewBox="0 0 125 35"
@@ -137,8 +137,8 @@ function App() {
               fill="currentColor"
             />
           </svg>
-        </a>
-        <a href="#" className="flex items-center lg:justify-center">
+        </Link>
+        <Link to="/" className="flex items-center lg:justify-center">
           <svg
             className="h-3 md:h-7 sm:h-5 hover:text-gray-900 dark:hover:text-white"
             viewBox="0 0 86 29"
@@ -152,8 +152,8 @@ function App() {
               fill="currentColor"
             />
           </svg>
-        </a>
-        <a href="#" className="flex items-center lg:justify-center">
+        </Link>
+        <Link to="/" className="flex items-center lg:justify-center">
           <svg
             className="h-3 md:h-7 sm:h-5 hover:text-gray-900 dark:hover:text-white"
             viewBox="0 0 151 34"
@@ -177,9 +177,9 @@ function App() {
               </clipPath>
             </defs>
           </svg>
-        </a>
+        </Link>
 
-        <a href="#" className="flex items-center lg:justify-center">
+        <Link to="/" className="flex items-center lg:justify-center">
           <svg
             className="h-3 md:h-7 sm:h-5 hover:text-gray-900 dark:hover:text-white"
             viewBox="0 0 124 38"
@@ -191,8 +191,8 @@ function App() {
               fill="currentColor"
             />
           </svg>
-        </a>
-        <a href="#" className="flex items-center lg:justify-center">
+        </Link>
+        <Link to="/" className="flex items-center lg:justify-center">
           <svg
             className="h-3 md:h-7 sm:h-5 hover:text-gray-900 dark:hover:text-white"
             viewBox="0 0 137 37"
@@ -272,7 +272,7 @@ function App() {
               fill="currentColor"
             />
           </svg>
-        </a>
+        </Link>
       </div>
       {/* <footer className=" bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500">
         <></>
