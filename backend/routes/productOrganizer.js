@@ -1,12 +1,9 @@
 var express = require("express");
 var router = express.Router();
 const mongoose = require("mongoose");
-// const CompanyModel = require("../Models/Company-model");
 const productModel = require("../Models/Product-model");
-// const CategoryModel = require("../Models/Category-model");
 /* GET all products. */
 router.get("/", async (req, res) => {
-  console.log(req.body);
   productModel.find({}).then(function (products) {
     try {
       if (products) {
@@ -21,7 +18,6 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/sort/:category", async (req, res) => {
-  //   console.log(req.params.category);
   let category = req.params.category;
   let find = await productModel.find({
     category: category,
@@ -35,12 +31,10 @@ router.get("/sort/:category", async (req, res) => {
 });
 
 router.post("/:id", async (req, res) => {
-  //   console.log(req.body);
   let productId = req.params.id;
   let find = await productModel.find({
     _id: mongoose.Types.ObjectId(productId),
   });
-  //   console.log("FIND", find);
   if (find) {
     //had to change it to a string else i get the object
     let productID = find[0]._id.toString();
