@@ -32,7 +32,7 @@ const Navbar = () => {
   };
   checkLS();
   return (
-    <nav className="w-full bg-white shadow">
+    <nav className="w-full bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] from-gray-200 via-gray-400 to-gray-600 border-b-1">
       <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
