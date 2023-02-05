@@ -2,11 +2,31 @@ import { useEffect, useState } from "react";
 import Navbar from "../Components/Navbar";
 import React from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+
 const ProductOverview = () => {
   const [productsArray, setProductArray] = useState([]);
   const [layout, setLAyout] = useState(<></>);
   let LocalS: any;
+  const container = {
+    hidden: { opacity: 1, scale: 0 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delayChildren: 0.8,
+        staggerChildren: 0.9,
+      },
+    },
+  };
 
+  const item = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 2,
+      opacity: 1,
+    },
+  };
   useEffect(() => {
     fetch("http://localhost:3000/api/products/" + LocalS, {
       method: "GET",
@@ -77,7 +97,6 @@ const ProductOverview = () => {
         .then((result) => {
           console.log(result);
           if (result) {
-            // console.log(result);
             localStorage.setItem(
               "product",
               JSON.stringify(result.Foundproduct)
@@ -93,27 +112,36 @@ const ProductOverview = () => {
   };
 
   return (
-    <div className="bg-white">
+    <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black">
       <Navbar />
       <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-        <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+        <h2 className="text-2xl font-bold tracking-tight text-slate-200">
           Dina produkter
         </h2>
-        <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+        <motion.div
+          className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 max-sm:grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 bg "
+          variants={container}
+          initial="hidden"
+          animate="visible"
+        >
           {layout}
           {productsArray.map((product: any, id: any) => (
-            <div key={id} className="group relative">
+            <motion.div
+              key={id}
+              className="group relative bg-gradient-to-b from-gray-200 via-gray-400 to-gray-600 rounded-md bg-clip-padding backdrop-filter backdrop-blur-3xl bg-opacity-100"
+              variants={item}
+            >
               <div className="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-600 group-hover:opacity-75 lg:aspect-none lg:h-80 ">
                 <img
                   src={product.image[0]}
                   alt={product.name}
                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                 />
-                <p>IMG</p>
+                {/* <p>IMG</p> */}
               </div>
-              <div className="mt-4 flex justify-between">
+              <div className="mt-4 p-2 flex justify-between ">
                 <div>
-                  <h3 className="text-sm text-gray-700">
+                  <h3 className="text-sm text-black">
                     Namn:
                     <button
                       onClick={() => produktHandler(product._id, product)}
@@ -122,17 +150,17 @@ const ProductOverview = () => {
                       {product.name}
                     </button>
                   </h3>
-                  <p className="mt-1 mr-2 text-sm text-gray-500">
+                  <p className="mt-1 mr-2 text-sm text-black">
                     Beskrivning: {product.summary}
                   </p>
                 </div>
-                <p className="text-sm font-medium text-gray-900">
+                <p className="text-sm font-normal  mr-3 text-black">
                   Pris: {product.price} kr
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );
