@@ -28,9 +28,7 @@ const Generator = () => {
         setProductArray(result);
       });
   }, []);
-  // useEffect(() => {
-  //   getRandomItemHandler();
-  // }, []);
+
   const getRandomItemHandler = () => {
     if (productArray.length === 0) {
       console.log("Något gick fel....");
@@ -44,41 +42,39 @@ const Generator = () => {
 
       if (randomItem) {
         setRandomItemLayout(
-          <div className="flex justify-center text-center flex-col h-1">
+          <div className=" w-full flex justify-center bg-rose-100 h-full">
             {/* <h2 className="sr-only">Products</h2> */}
 
-            <div className="flex justify-center flex-col">
-              {randomItem2.map((i: any) => (
-                <div key={i._id}>
-                  <a
-                    href={"http://localhost:3002/product/" + i._id}
-                    className="group"
-                  >
-                    <div className="flex justify-center  mt-1 ">
-                      <img
-                        src={i.image[0]}
-                        alt={i.image[0]}
-                        className="h-1/3 w-1/3 object-cover object-center group-hover:opacity-75 rounded-2xl sm:h-2/3 sm:w-2/3"
-                      />
-                    </div>
-                    <h3 className="mt-1 text-sm text-gray-700">{i.name}</h3>
-                    <p className="mt-1 text-lg font-medium text-gray-900">
-                      {i.price}
-                    </p>
-                  </a>
-                  <a href={"http://localhost:3002/product/" + i._id}>
-                    <button>Till produkten</button>
-                  </a>
-                </div>
-              ))}
-            </div>
-            {/* <button
-              onClick={() => {
-                getRandomItemHandler();
-              }}
-            >
-              Slumpa ny
-            </button> */}
+            {/* <div className="">
+              </div> */}
+            {randomItem2.map((i: any) => (
+              <div
+                className="bg-lime-800 w-2/6 h-full flex flex-col justify-center align-middle items-center top-2 max-sm:w-4/6"
+                key={i._id}
+              >
+                <a
+                  href={"http://localhost:3002/product/" + i._id}
+                  className="group"
+                >
+                  {/* <div className=" ">
+                      </div> */}
+                  <img
+                    src={i.image[0]}
+                    alt={i.image[0]}
+                    className=" object-cover object-center group-hover:opacity-75 rounded-2xl w-4/6 h-4/6"
+                  />
+                  <h3 className=" text-sm text-gray-700">{i.name}</h3>
+                  <p className=" text-lg font-medium text-gray-900">
+                    {i.price}
+                  </p>
+                </a>
+                <a href={"http://localhost:3002/product/" + i._id}>
+                  <button className="bottom-3 max-sm:bottom-3 max-md:bottom-4 mb-3 relative rounded-md bg-slate-50">
+                    Till produkten
+                  </button>
+                </a>
+              </div>
+            ))}
           </div>
         );
       }
@@ -138,7 +134,7 @@ const Generator = () => {
 
         setShowGenerateItem(
           <div className="flex justify-center text-center">
-            <h2 className="sr-only">Products</h2>
+            <h2 className="sr-only">Produkter</h2>
 
             <div className="flex justify-center">
               {array.map((i: any) => (
@@ -151,7 +147,7 @@ const Generator = () => {
                       <img
                         src={i.image[0]}
                         alt={i.image[0]}
-                        className="h-full w-full object-cover object-center group-hover:opacity-75 rounded-2xl"
+                        className="h-1/4 w-1/4 object-cover object-center group-hover:opacity-75 rounded-2xl"
                       />
                     </div>
                     <h3 className="mt-4 text-sm text-gray-700">{i.name}</h3>
@@ -160,7 +156,7 @@ const Generator = () => {
                     </p>
                   </a>
                   <a href={"http://localhost:3002/product/" + i._id}>
-                    <button className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                    <button className="mb-3 mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
                       Till produkten
                     </button>
                   </a>
@@ -180,7 +176,7 @@ const Generator = () => {
         setshowGeneratedItemLayout(!showGeneratedItemLayout);
         setShowGenerateItem(
           <div className="flex justify-center text-center">
-            <h2 className="sr-only">Products</h2>
+            <h2 className="sr-only">Produkter</h2>
 
             <div className="flex justify-center mb-2 ">
               {array.map((i: any) => (
@@ -209,9 +205,6 @@ const Generator = () => {
                 </div>
               ))}
             </div>
-            {/* <button onClick={() => setShowResult(!showResult)}>
-              ta fram en ny produkt
-            </button> */}
           </div>
         );
       }
@@ -227,15 +220,16 @@ const Generator = () => {
   return (
     <div className="h-full bg-white">
       <Navbar />
-      <div className="h-screen bg-white">
+      <div className="h-screen bg-gradient-to-t from-gray-700 via-gray-900 to-black">
         <div className="flex justify-center items-center h-5/6 flex-col w-12/12">
-          <h1>Generator</h1>
+          {/* <h1>Generator</h1> */}
           <div className="bg-slate-600 w-11/12 h-5/6 rounded-md flex justify-center items-center flex-col">
             {showResult ? (
-              <div className="bg-red-400 h-5/6 w-11/12 flex justify-center align-middle items-center flex-col gap-3">
-                <div className="bg-white w-3/4 h-5/6 flex justify-center align-middle items-center">
-                  {randomItemLayout}
-                </div>
+              <div className="bg-red-400 h-5/6 w-11/12 flex justify-center align-middle items-center flex-col gap-2">
+                {/* <div className="bg-lime-800 w-full h-4/6 flex justify-center">
+                </div> */}
+                {/* <div></div> */}
+                {randomItemLayout}
 
                 <button
                   className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
