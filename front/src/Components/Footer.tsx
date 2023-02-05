@@ -3,17 +3,17 @@ import logo from "../Images/logogift.svg";
 
 const Footer = () => {
   return (
-    <footer className="p-3 bg-white sm:p-3 dark:bg-gray-900">
-      <div className="md:flex md:justify-between">
-        <div className="mb-2 md:mb-0 pt-3">
+    <footer className=" bg-white sm:p-3 dark:bg-gray-900 w-full">
+      <div className="">
+        <div className="pt-3">
           <Link to="/" className="flex items-center">
             <img src={logo} className="h-8 mr-3" alt="Giftary Logo" />
           </Link>
         </div>
       </div>
-      <hr className="my-3 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-6" />
+      <hr className=" border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-4" />
       <div className="sm:flex sm:items-end sm:justify-end">
-        <div className="flex mt-4  space-x-6 sm:justify-center sm:mt-0">
+        <div className="flex mt-4  space-y-6 sm:justify-center sm:mt-0 right-7 relative">
           <a
             href={"//www.github.com/wahlstrommm"}
             className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
