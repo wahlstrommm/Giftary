@@ -7,7 +7,6 @@ const companyModel = require("../Models/Company-model");
 //Loggar in användare. Decryptar lösen etc.
 router.post("/", async (req, res) => {
   //checkar först om det är en "vanlig användaer" eller företag som loggar in.
-  // let test = req.body;
   // console.log(test);
   if (req.body.email) {
     console.log("hej");
@@ -41,7 +40,6 @@ router.post("/", async (req, res) => {
                   status: res.status,
                   user: confirmLoggin,
                 });
-                // res.json(confirmLoggin);
               } else {
                 res.json({
                   success: false,
