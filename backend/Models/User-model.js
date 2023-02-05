@@ -4,23 +4,19 @@ const { Schema, model, models } = require("mongoose");
 const userModel = mongoose.Schema({
   firstName: {
     type: String,
-    // required: [true, "Lägg till ett namn"],
     trim: true,
     maxlength: [50, "Namn kan inte var större än 50 bokstäver"],
   },
   lastName: {
     type: String,
-    // required: [true, "Lägg till ett namn"],
     trim: true,
     maxlength: [50, "Namn kan inte var större än 50 bokstäver"],
   },
   sex: {
     type: String,
-    // required: [true],
   },
   phone: {
     type: String,
-    // required: [true],
   },
   email: {
     type: String,
@@ -32,8 +28,6 @@ const userModel = mongoose.Schema({
   },
   password: {
     type: String,
-    // required: [true, "Lägg till ett lösenord"],
-    // trim: true,
   },
   productList: {
     type: Array,
