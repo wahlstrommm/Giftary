@@ -77,7 +77,6 @@ const Profile = () => {
   const checkLS = async () => {
     let LS: any = localStorage.getItem("loggedinUser");
     let LSParsed = JSON.parse(LS);
-    // console.log(LSParsed);
     if (LSParsed) {
       ID = LSParsed._id;
 
@@ -101,17 +100,17 @@ const Profile = () => {
   return (
     <div>
       <Navbar />
-      <div className="p-16">
-        <div className="p-8 bg-white  mt-24">
+      <div className="p-16 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black">
+        <div className="p-8  mt-24">
           <div className="grid grid-cols-1 md:grid-cols-3">
             <div className="grid grid-cols-2 text-center order-last md:order-first mt-20 md:mt-0">
               <div>
-                <p className="font-bold text-gray-700 text-xl">{numOfList}</p>
-                <p className="text-gray-400">Lista</p>
+                <p className="font-bold text-slate-400 text-xl">{numOfList}</p>
+                <p className="text-white">Lista</p>
               </div>
               <div>
-                <p className="font-bold text-gray-700 text-xl">{numOfItems}</p>
-                <p className="text-gray-400">{products}</p>
+                <p className="font-bold text-slate-400 text-xl">{numOfItems}</p>
+                <p className="text-white">{products}</p>
               </div>
             </div>
             <div className="relative">
@@ -155,11 +154,11 @@ const Profile = () => {
           </div>
 
           <div className="mt-20 text-center pb-12">
-            <h1 className="text-4xl font-medium text-gray-700">
+            <h1 className="text-4xl font-medium text-slate-400">
               {fname} {lname},{" "}
-              <span className="font-light text-gray-500">{age}</span>
+              <span className="font-light text-gray-400">{age}</span>
             </h1>
-            <p className="font-light text-gray-600 mt-3">{phone}</p>
+            <p className="font-light text-gray-200 mt-3">{phone}</p>
 
             <p className="mt-8 text-gray-500">
               {email} {companyName}
