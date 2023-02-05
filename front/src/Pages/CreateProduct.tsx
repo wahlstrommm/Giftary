@@ -246,8 +246,8 @@ const CreateProduct = () => {
                     <option value="Christmas">Julklappar</option>
                     <option value="ForLove">Kärlek</option>
                     <option value="Alkohol">Alkohol</option>
-                    <option value="DadsDay">Morsdag</option>
-                    <option value="MomsDay">Farsdag</option>
+                    <option value="MomsDay">Morsdag</option>
+                    <option value="DadsDay">Farsdag</option>
                   </select>
                   {errors.category && (
                     <p>Var snäll att fyll i vilken kategori som din passar i</p>
