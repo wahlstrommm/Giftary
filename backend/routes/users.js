@@ -47,13 +47,11 @@ router.post("/:id", async (req, res) => {
   });
 });
 router.get("/company/:id", async (req, res) => {
-  console.log(req.params.id);
   let name = req.params.id;
   let company = await CompanyModel.find({ name: name }).catch((err) =>
     console.log("Caught:", err.message)
   );
   if (company) {
-    console.log(company);
     company[0].password = "*****";
     await res.status(200).send({ result: company });
   } else {
