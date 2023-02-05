@@ -28,8 +28,6 @@ const productModel = mongoose.Schema({
   },
   image: {
     type: [String],
-    // data: Buffer,
-    // contentType: String,
   },
   favorited: {
     type: Boolean,
