@@ -29,6 +29,14 @@ const Generator = () => {
       });
   }, []);
 
+  const setLocalStorageForProduct = (product: object) => {
+    localStorage.removeItem("product");
+
+    console.log(JSON.stringify(product));
+    localStorage.setItem("product", JSON.stringify(product));
+    console.log(localStorage);
+  };
+
   const getRandomItemHandler = () => {
     if (productArray.length === 0) {
       console.log("Något gick fel....");
@@ -41,35 +49,32 @@ const Generator = () => {
       randomItem2.push(randomItem);
 
       if (randomItem) {
-        setRandomItemLayout(
-          <div className=" w-full flex justify-center bg-rose-100 h-full">
-            {/* <h2 className="sr-only">Products</h2> */}
+        console.log(randomItem);
+        localStorage.setItem("product", JSON.stringify(randomItem));
 
-            {/* <div className="">
-              </div> */}
+        setRandomItemLayout(
+          <div className=" w-full flex justify-center h-full">
             {randomItem2.map((i: any) => (
               <div
-                className="bg-lime-800 w-2/6 h-full flex flex-col justify-center align-middle items-center top-2 max-sm:w-4/6"
+                className="text-center w-2/6 h-full flex flex-col justify-center align-middle items-center top-2 max-sm:w-4/6"
                 key={i._id}
               >
-                <a
-                  href={"http://localhost:3002/product/" + i._id}
-                  className="group"
-                >
-                  {/* <div className=" ">
-                      </div> */}
+                <div className="group flex flex-col justify-center">
                   <img
                     src={i.image[0]}
                     alt={i.image[0]}
-                    className=" object-cover object-center group-hover:opacity-75 rounded-2xl w-4/6 h-4/6"
+                    className="object-cover object-center group-hover:opacity-75 rounded-2xl w-5/6 h-3/6"
                   />
                   <h3 className=" text-sm text-gray-700">{i.name}</h3>
                   <p className=" text-lg font-medium text-gray-900">
-                    {i.price}
+                    {i.price} kr
                   </p>
-                </a>
+                </div>
                 <a href={"http://localhost:3002/product/" + i._id}>
-                  <button className="bottom-3 max-sm:bottom-3 max-md:bottom-4 mb-3 relative rounded-md bg-slate-50">
+                  <button
+                    onClick={() => setLocalStorageForProduct(i)}
+                    className="bottom-3 max-sm:bottom-3 max-md:bottom-4 mb-3 relative  mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                  >
                     Till produkten
                   </button>
                 </a>
@@ -130,6 +135,8 @@ const Generator = () => {
         array.push(random);
 
         console.log("IS SISSTA ", random);
+        localStorage.setItem("product", JSON.stringify(random));
+
         setshowGeneratedItemLayout(!showGeneratedItemLayout);
 
         setShowGenerateItem(
@@ -156,7 +163,10 @@ const Generator = () => {
                     </p>
                   </a>
                   <a href={"http://localhost:3002/product/" + i._id}>
-                    <button className="mb-3 mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                    <button
+                      onClick={() => setLocalStorageForProduct(i)}
+                      className="mb-3 mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                    >
                       Till produkten
                     </button>
                   </a>
@@ -166,13 +176,12 @@ const Generator = () => {
           </div>
         );
       } else {
-        // answer2 = userinput;
         let random =
           resultArray[Math.floor(Math.random() * resultArray.length)];
         setResultArray([]);
         let array: any = [];
         array.push(random);
-
+        console.log("RANDOM", random);
         setshowGeneratedItemLayout(!showGeneratedItemLayout);
         setShowGenerateItem(
           <div className="flex justify-center text-center">
@@ -189,7 +198,7 @@ const Generator = () => {
                       <img
                         src={i.image[0]}
                         alt={i.image[0]}
-                        className="h-full w-full object-cover object-center group-hover:opacity-75 rounded-2xl"
+                        className="h-1/4 w-1/4 object-cover object-center group-hover:opacity-75 rounded-2xl"
                       />
                     </div>
                     <h3 className="mt-4 text-sm text-gray-700">{i.name}</h3>
@@ -198,7 +207,10 @@ const Generator = () => {
                     </p>
                   </a>
                   <a href={"http://localhost:3002/product/" + i._id}>
-                    <button className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                    <button
+                      onClick={() => setLocalStorageForProduct(i)}
+                      className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                    >
                       Till produkten
                     </button>
                   </a>
@@ -222,13 +234,9 @@ const Generator = () => {
       <Navbar />
       <div className="h-screen bg-gradient-to-t from-gray-700 via-gray-900 to-black">
         <div className="flex justify-center items-center h-5/6 flex-col w-12/12">
-          {/* <h1>Generator</h1> */}
           <div className="bg-slate-600 w-11/12 h-5/6 rounded-md flex justify-center items-center flex-col">
             {showResult ? (
               <div className="bg-red-400 h-5/6 w-11/12 flex justify-center align-middle items-center flex-col gap-2">
-                {/* <div className="bg-lime-800 w-full h-4/6 flex justify-center">
-                </div> */}
-                {/* <div></div> */}
                 {randomItemLayout}
 
                 <button
@@ -250,9 +258,9 @@ const Generator = () => {
                 </button>
               </div>
             ) : (
-              <div className="bg-red-400 h-full w-full flex justify-center align-middle items-center flex-col gap-3">
+              <div className=" h-full w-full flex justify-center align-middle items-center flex-col gap-3">
                 <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                  <div className="bg-white px-4 pt-5 pb-4 sm:p-5 sm:pb-4 justify-center flex text-center">
+                  <div className=" px-4 pt-5 pb-4 sm:p-5 sm:pb-4 justify-center flex text-center">
                     <div
                       style={
                         showGeneratedItemLayout === true
