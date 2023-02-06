@@ -3,6 +3,7 @@ import Navbar from "../Components/Navbar";
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import Footer from "../Components/Footer";
 
 const ProductOverview = () => {
   const [productsArray, setProductArray] = useState([]);
@@ -41,9 +42,11 @@ const ProductOverview = () => {
         if (result.products.length === 0) {
           console.log("tom");
           setLAyout(
-            <div>
-              <h1>Det verkar som du inte har några produkter</h1>
-              <p>Du kan skapa produkter här</p>
+            <div className="h-screen flex flex-col ">
+              <h1 className="text-white">
+                Det verkar som du inte har några produkter
+              </h1>
+              <p className="text-white">Du kan skapa produkter här</p>
               <Link to={"/CreateProduct"}>
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5">
                   Skapa produkt
@@ -68,7 +71,7 @@ const ProductOverview = () => {
         LocalS = LSParsed;
         // console.log(LSParsed);
         LocalS = LSParsed.name;
-        console.log("LOCal", LocalS);
+        // console.log("LOCal", LocalS);
       } else {
         console.log("den är nu:", "{}");
         window.location.href = "http://localhost:3002/";
@@ -112,7 +115,7 @@ const ProductOverview = () => {
   };
 
   return (
-    <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black">
+    <div className="h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black">
       <Navbar />
       <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 className="text-2xl font-bold tracking-tight text-slate-200">
@@ -137,7 +140,6 @@ const ProductOverview = () => {
                   alt={product.name}
                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                 />
-                {/* <p>IMG</p> */}
               </div>
               <div className="mt-4 p-2 flex justify-between ">
                 <div>
@@ -162,6 +164,7 @@ const ProductOverview = () => {
           ))}
         </motion.div>
       </div>
+      <Footer />
     </div>
   );
 };
