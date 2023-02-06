@@ -110,8 +110,8 @@ const LoginUser = () => {
     }
   };
   return (
-    <div className="flex justify-center w-full">
-      <div className=" bg-slate-50 flex justify-center items-center align-middle text-center shadow-md rounded px-1 pt-6 pb-8">
+    <div className="flex justify-center h-full w-full">
+      <div className=" bg-slate-50 flex justify-center items-center align-middle text-center shadow-md rounded px-1 pt-2 pb-2">
         <form onSubmit={handleSubmit(onSubmit)} className="p-11">
           <h1>Logga in</h1>
           <label

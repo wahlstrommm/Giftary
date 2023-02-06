@@ -18,7 +18,7 @@ const checkLS = async () => {
 const Login = () => {
   checkLS();
   return (
-    <div>
+    <div className="bg-gradient-to-t from-gray-700 via-gray-900 to-black w-full h-full">
       <Navbar />
       <div className=" grid h-screen place-items-center">
         <LoginForm />

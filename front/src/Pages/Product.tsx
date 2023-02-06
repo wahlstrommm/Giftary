@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
 
 const Product = () => {
@@ -26,7 +27,6 @@ const Product = () => {
         LocalS = LSParsed;
         typeOfUser = LSParsed;
         renderLayout(typeOfUser);
-        // console.log(LSParsed);
       } else {
         LocalS = LSParsed;
         typeOfUser = LSParsed;
@@ -49,9 +49,7 @@ const Product = () => {
       })
         .then((response) => response.json())
         .then((result) => {
-          // console.log(result);
           if (result) {
-            // console.log(result);
             renderSucessBox(result);
             setShowModal(true);
           } else {
@@ -153,20 +151,17 @@ const Product = () => {
   checkLS();
   getFromLS();
   return (
-    <div className="bg-white">
-      <Navbar />;
-      <div className="">
-        <nav aria-label="Breadcrumb">
-          <ol
-            role="list"
-            className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8"
-          >
+    <div className="bg-gradient-to-t from-gray-700 via-gray-900 to-black">
+      <Navbar />
+      <div className="mt-4">
+        <nav>
+          <ol className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
             {product.map((i: any) => (
               <li key={i._id}>
                 <div className="flex items-center">
                   <a
                     href={"/Toplist"}
-                    className="mr-2 text-sm font-medium text-gray-900"
+                    className="mr-2 text-sm font-medium text-white"
                   >
                     {i.category}
                   </a>
@@ -183,7 +178,7 @@ const Product = () => {
                   </svg>
                   <a
                     href={"/Toplist"}
-                    className="mr-2 text-sm font-medium text-gray-900"
+                    className="mr-2 text-sm font-medium text-white"
                   >
                     {i.name}
                   </a>
@@ -193,7 +188,7 @@ const Product = () => {
           </ol>
         </nav>
       </div>
-      {/* Image gallery */}
+
       <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
         <div className="aspect-w-3 aspect-h-4 hidden overflow-hidden rounded-lg lg:block">
           <img
@@ -218,31 +213,24 @@ const Product = () => {
             />
           </div>
         </div>
-        <div className="aspect-w-4 aspect-h-5 sm:overflow-hidden sm:rounded-lg lg:aspect-w-3 lg:aspect-h-4">
+        <div className="aspect-w-4 aspect-h-5 sm:overflow-hidden sm:rounded-lg lg:aspect-w-3 lg:aspect-h-4 max-sm:flex justify-center">
           <img
             src={product[0].image[3]}
             alt={product[0].image[3]}
-            className="h-full w-full object-cover object-center"
+            className="h-full w-full object-cover object-center max-sm:h-11/12 max-sm:w-11/12 max-sm:rounded-md"
           />
         </div>
       </div>
-      <div className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-        {/* Description and details */}
-        <div>
-          <h3 className="sr-only">Description</h3>
-          <h1 className="text-xl">{product[0].name}</h1>
-          <div className="space-y-6">
-            <p className="text-base text-gray-900">{product[0].summary}</p>
-          </div>
-        </div>
-      </div>
+
       <div className="aspect-w-4 aspect-h-5 sm:overflow-hidden sm:rounded-lg lg:aspect-w-3 lg:aspect-h-4 flex justify-center">
-        <div className="w-1/3 m-10">
+        <div className="w-1/3 m-10 max-sm:w-2/3">
           <div>
-            <h3 className="sr-only">Description</h3>
-            <h1 className="text-xl">{product[0].name}</h1>
-            <div className="space-y-6">
-              <p className="text-base text-gray-900">{product[0].summary}</p>
+            <h3 className="sr-only">Beskrivning</h3>
+            <h1 className="text-xl text-slate-400 max-sm:text-2xl">
+              {product[0].name}
+            </h1>
+            <div className="space-y-6 max-sm:">
+              <p className="text-base text-white">{product[0].summary}</p>
             </div>
           </div>
           <div>{render}</div>
@@ -289,6 +277,7 @@ const Product = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

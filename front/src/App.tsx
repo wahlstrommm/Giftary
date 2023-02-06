@@ -28,8 +28,6 @@ const checkLS = () => {
   }
 };
 function App() {
-  // const [checkUser, setCheckUser] = useState(false);
-
   checkLS();
 
   return (
