@@ -17,12 +17,10 @@ const SharedList = () => {
       .then((result) => {
         console.log(result.find[0]);
         setProductArray(result.find[0].productList);
-        // console.log(productArray);
-        // setProductArray(result.products);
       });
   }, []);
+
   const produktHandler = async (produktID: any, product: any) => {
-    console.log(produktID, product);
     try {
       await fetch("http://localhost:3000/api/products/details/" + produktID, {
         method: "POST",
@@ -49,8 +47,7 @@ const SharedList = () => {
       console.error("Fel ", error);
     }
   };
-  // console.log(window.location.href);
-  // console.log(id);
+
   return (
     <div>
       <Navbar />
@@ -64,12 +61,11 @@ const SharedList = () => {
                 alt={product.name}
                 className="h-full w-full object-cover object-center lg:h-full lg:w-full"
               />
-              <p>IMG</p>
             </div>
             <div className="mt-4 flex justify-between">
               <div>
                 <h3 className="text-sm text-gray-700">
-                  namn:
+                  Namn:
                   <button onClick={() => produktHandler(product._id, product)}>
                     <span aria-hidden="true" className="absolute inset-0" />
                     {product.name}
