@@ -4,15 +4,16 @@ import { useForm } from "react-hook-form";
 import CreateCompanyform from "./CreateCompanyform";
 
 const CreateUserForm = () => {
+  const [userChoice, setUserChoice] = useState("");
+  const [reponsText, setReponsText] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  //React form
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
-  const [userChoice, setUserChoice] = useState("");
-  const [reponsText, setReponsText] = useState("");
-  const [showModal, setShowModal] = useState(false);
 
   const onSubmit = (data: any) => {
     if (data) {
@@ -94,6 +95,7 @@ const CreateUserForm = () => {
       <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex justify-evenly relative">
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          aria-label="button for the choice for type private user"
           type="button"
           onClick={() => setUserChoice("Privatperson")}
         >
@@ -104,6 +106,7 @@ const CreateUserForm = () => {
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           type="button"
+          aria-label="button for the choice for type company user"
           onClick={() => setUserChoice("Företag")}
         >
           {" "}
@@ -149,6 +152,7 @@ const CreateUserForm = () => {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-fslate-900 focus:shadow-outline"
               type="text"
               placeholder="Förnamn"
+              aria-label="First name input"
               {...register("firstName", { required: true, maxLength: 80 })}
             />
             {errors.firstName && <p>Var snäll och skriv in ditt förnamn</p>}
@@ -165,6 +169,7 @@ const CreateUserForm = () => {
             <input
               type="text"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-slate-900 focus:shadow-outline"
+              aria-label="Last name inpute"
               placeholder="Efternamn"
               {...register("lastName", { required: true, maxLength: 100 })}
             />
@@ -181,11 +186,18 @@ const CreateUserForm = () => {
           <div className="mb-4 max-w-full rounded bg-slate-200 border-slate-800 border-2 flex items-center align-middle">
             <select
               className="w-full text-center"
+              aria-label="select form for what type of sex"
               {...register("sex", { required: true })}
             >
-              <option value="Man">Man</option>
-              <option value="Kvinna">Kvinna</option>
-              <option value="Annat">Annat</option>
+              <option value="Man" aria-label="type man">
+                Man
+              </option>
+              <option value="Kvinna" aria-label="type woman">
+                Kvinna
+              </option>
+              <option value="Annat" aria-label="type diffrent nonbinary">
+                Annat
+              </option>
             </select>
             {errors.sex && <p>Var snäll och välj ditt kön</p>}
           </div>
@@ -199,6 +211,7 @@ const CreateUserForm = () => {
             </label>
             <input
               className="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-slate-900 focus:shadow-outline"
+              aria-label="type email"
               type="email"
               placeholder="Email"
               {...register("email", {
@@ -220,6 +233,7 @@ const CreateUserForm = () => {
             <input
               className="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-slate-900 focus:shadow-outline"
               type="text"
+              aria-label="password input"
               placeholder="Lösenord"
               {...register("password", { required: true })}
             />
@@ -238,6 +252,7 @@ const CreateUserForm = () => {
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-slate-900 focus:shadow-outline"
               type="text"
+              aria-label="input phone"
               placeholder="Telefonnummer"
               {...register("phone", {
                 required: true,
