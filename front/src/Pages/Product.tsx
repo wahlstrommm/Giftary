@@ -70,7 +70,6 @@ const Product = () => {
       >
         <div className="flex justify-center justify-items-center align-middle text-center top-1/3 relative">
           <div className="bg-white p-6 rounded  h-2/5 w-4/5 relative">
-            {/* <p>{reponsText}</p> */}
             <div
               className="flex justify-evenly "
               style={
@@ -79,7 +78,10 @@ const Product = () => {
             >
               <h1>Produkten har lagts till</h1>
               <Link to={"/"}>
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5">
+                <button
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5"
+                  aria-label="Button takes the user to the homepage"
+                >
                   Hem
                 </button>
               </Link>
@@ -87,6 +89,7 @@ const Product = () => {
                 <button
                   type="button"
                   className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  aria-label="Button that takes the user to thier saved products"
                 >
                   Se dina sparade produkter
                 </button>
@@ -107,6 +110,7 @@ const Product = () => {
           <Link to={"/ProductOverview"}>
             <button
               type="submit"
+              aria-label="take the user the product overview"
               className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
               Tillbaka till mina produkter
@@ -244,7 +248,6 @@ const Product = () => {
           >
             <div className="flex justify-center align-middle text-center top-1/3 relative">
               <div className="bg-white p-6 rounded  h-2/5 w-4/5 relative">
-                {/* <p>{reponsText}</p> */}
                 <h1>Produkten har lagts till</h1>
                 <div
                   className="flex justify-around"
@@ -256,20 +259,29 @@ const Product = () => {
                 >
                   <div>
                     <Link to={"/"}>
-                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline focus:shadow-outline m-5 shadow hover:shadow-lg  transition transform hover:-translate-y-0.5">
+                      <button
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline focus:shadow-outline m-5 shadow hover:shadow-lg  transition transform hover:-translate-y-0.5"
+                        aria-label="takes the homepage"
+                      >
                         Hem
                       </button>
                     </Link>
                   </div>
                   <div>
                     <Link to={`/UserProductList`}>
-                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline focus:shadow-outline m-5 shadow hover:shadow-lg  transition transform hover:-translate-y-0.5">
+                      <button
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline focus:shadow-outline m-5 shadow hover:shadow-lg  transition transform hover:-translate-y-0.5"
+                        aria-label="Takes the user to thier list"
+                      >
                         Se dina sparade produkter
                       </button>
                     </Link>
                   </div>
                 </div>
-                <button className="rounded w-7 absolute top-2 left-3 bg-blue-500 hover:bg-blue-700 text-white font-bold focus:outline-none focus:shadow-outline shadow hover:shadow-lg  transition transform hover:-translate-y-0.5">
+                <button
+                  className="rounded w-7 absolute top-2 left-3 bg-blue-500 hover:bg-blue-700 text-white font-bold focus:outline-none focus:shadow-outline shadow hover:shadow-lg  transition transform hover:-translate-y-0.5"
+                  aria-label="closed the modal"
+                >
                   X
                 </button>
               </div>
