@@ -8,6 +8,7 @@ const CreateProduct = () => {
   const [showModal, setShowModal] = useState(false);
   const [reponsText, setReponsText] = useState("");
 
+  //react form
   const {
     register,
     handleSubmit,
@@ -30,9 +31,8 @@ const CreateProduct = () => {
       // exampleRequired: "",
     },
   });
-
+  //created product submit
   const onSubmit = (data: any) => {
-    console.warn(data);
     if (data) {
       let product: IProduct = {
         name: data.name,
@@ -46,15 +46,13 @@ const CreateProduct = () => {
         companyName: LocalS.name,
         overAge: data.overAge,
       };
-      console.log(product);
       CreateProductHandler(product);
     }
     console.log(errors);
     console.log(data);
   };
-
+  //post the created product
   const CreateProductHandler = async (product: IProduct) => {
-    console.log("PRODUCT", product);
     try {
       await fetch("http://localhost:3000/api/products", {
         method: "POST",
@@ -71,9 +69,9 @@ const CreateProduct = () => {
             setReponsText(result.message);
             setShowModal(true);
           } else {
-            // reset({ email: "", password: "" });
-            // setReponsText(result.message);
-            // setShowModal(true);
+            reset();
+            setReponsText(result.message);
+            setShowModal(true);
           }
         });
     } catch (error) {
@@ -81,12 +79,11 @@ const CreateProduct = () => {
     }
   };
   let LocalS: any;
+  //check the loaclstorage and makes sure that the right user is logged in
   const checkLS = () => {
     let LS: any = localStorage.getItem("loggedinUser");
     let LSParsed = JSON.parse(LS);
-    console.log(LSParsed);
     if (LSParsed) {
-      console.log("finns");
       if (LSParsed.isAllowed && LSParsed.type === "company") {
         console.log("finns och är allowed");
         LocalS = LSParsed;
@@ -110,7 +107,11 @@ const CreateProduct = () => {
       <Navbar />
       <div className="w-3/3 flex justify-center mt-5 mb-2">
         <div className="mt-5 md:mt-0 w-3/4">
-          <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            encType="multipart/form-data"
+            aria-label="form for create product"
+          >
             <div className="shadow sm:rounded-md sm:overflow-hidden">
               <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
                 <div className="grid grid-cols-3 gap-6">
@@ -125,6 +126,7 @@ const CreateProduct = () => {
                       <input
                         className="rounded-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-1  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         type="text"
+                        aria-label="name input"
                         placeholder="Namn"
                         {...register("name", { required: true })}
                       />
@@ -146,6 +148,7 @@ const CreateProduct = () => {
                     <textarea
                       placeholder="Beskrivning om produkten"
                       className="rounded-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      aria-label="summary input"
                       {...register("summary", { required: true })}
                     />
                     {errors.summary && (
@@ -166,6 +169,7 @@ const CreateProduct = () => {
                   <div className="mt-1 flex rounded-md shadow-sm h-full flex-col">
                     <input
                       className="rounded-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      aria-label="aimed for input"
                       type="text"
                       placeholder="Passar åldern"
                       {...register("aimedFor", { required: true })}
@@ -183,6 +187,7 @@ const CreateProduct = () => {
                   <input
                     className="h-6 w-6"
                     type="checkbox"
+                    aria-label="checkbox for if the product is for adults"
                     placeholder="overAge"
                     {...register("overAge", {})}
                   />
@@ -200,6 +205,7 @@ const CreateProduct = () => {
                   </label>
                   <input
                     className="rounded-lg bg-gray-50 border text-white focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    aria-label="Input age input"
                     type="number"
                     placeholder="Ålder"
                     {...register("age", {
@@ -224,6 +230,7 @@ const CreateProduct = () => {
                       className="rounded-lg bg-gray-50 border text-white focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       type="text"
                       placeholder="Pris"
+                      aria-label="input for price"
                       {...register("price", { required: true })}
                     />
                     {errors.price && <p>Var snäll att fyll i vad det kostar</p>}
@@ -239,15 +246,32 @@ const CreateProduct = () => {
                   <select
                     className="rounded-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     {...register("category", { required: true })}
+                    aria-label="input for diffrent category"
                   >
-                    <option value="ForHim">För han</option>
-                    <option value="ForHer">För henne</option>
-                    <option value="ForUS">För oss</option>
-                    <option value="Christmas">Julklappar</option>
-                    <option value="ForLove">Kärlek</option>
-                    <option value="Alkohol">Alkohol</option>
-                    <option value="MomsDay">Morsdag</option>
-                    <option value="DadsDay">Farsdag</option>
+                    <option value="ForHim" aria-label="option for him">
+                      För han
+                    </option>
+                    <option value="ForHer" aria-label="option for her">
+                      För henne
+                    </option>
+                    <option value="ForUS" aria-label="option for us">
+                      För oss
+                    </option>
+                    <option value="Christmas" aria-label="option christmas">
+                      Julklappar
+                    </option>
+                    <option value="ForLove" aria-label="for love">
+                      Kärlek
+                    </option>
+                    <option value="Alkohol" aria-label="for option alcohol">
+                      Alkohol
+                    </option>
+                    <option value="MomsDay" aria-label="for mothers day">
+                      Morsdag
+                    </option>
+                    <option value="DadsDay" aria-label="for fathers day">
+                      Farsdag
+                    </option>
                   </select>
                   {errors.category && (
                     <p>Var snäll att fyll i vilken kategori som din passar i</p>
@@ -268,6 +292,7 @@ const CreateProduct = () => {
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
+                        aria-label="img of image icon"
                       >
                         <rect x="3" y="3" width="18" height="18" rx="2" />
                         <circle cx="8.5" cy="8.5" r="1.5" />
@@ -277,6 +302,7 @@ const CreateProduct = () => {
                     <input
                       type="text"
                       placeholder="Bild URL 1"
+                      aria-label="for image url 1"
                       {...register("image1", { required: true })}
                       className="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
@@ -303,6 +329,7 @@ const CreateProduct = () => {
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
+                        aria-label="img of image icon"
                       >
                         <rect x="3" y="3" width="18" height="18" rx="2" />
                         <circle cx="8.5" cy="8.5" r="1.5" />
@@ -312,6 +339,7 @@ const CreateProduct = () => {
                     <input
                       type="text"
                       placeholder="Bild URL 2"
+                      aria-label="icon for image url input "
                       {...register("image2", {})}
                       className="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
@@ -331,6 +359,7 @@ const CreateProduct = () => {
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
+                        aria-label="img of image icon"
                       >
                         <rect x="3" y="3" width="18" height="18" rx="2" />
                         <circle cx="8.5" cy="8.5" r="1.5" />
@@ -340,6 +369,7 @@ const CreateProduct = () => {
                     <input
                       type="text"
                       placeholder="Bild URL 3"
+                      aria-label="icon of image"
                       {...register("image3", {})}
                       className="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
@@ -357,6 +387,7 @@ const CreateProduct = () => {
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
+                      aria-label="img of image icon"
                     >
                       <rect x="3" y="3" width="18" height="18" rx="2" />
                       <circle cx="8.5" cy="8.5" r="1.5" />
@@ -367,6 +398,7 @@ const CreateProduct = () => {
                     type="text"
                     defaultValue={""}
                     placeholder="Bild URL 4"
+                    aria-label="input for image url"
                     {...register("image4", {})}
                     className="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
@@ -390,12 +422,16 @@ const CreateProduct = () => {
             <p>{reponsText}</p>
             <div className="flex justify-around">
               <Link to={"/"}>
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-4">
+                <button
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-4"
+                  aria-label="button that leads to home"
+                >
                   Hem
                 </button>
               </Link>
               <button
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-4"
+                aria-label="button that gives the user to create a new product"
                 onClick={() => {
                   setShowModal(!showModal);
                 }}
@@ -403,13 +439,19 @@ const CreateProduct = () => {
                 Skapa en ny produkt
               </button>
               <Link to={"/ProductOverview"}>
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-4">
+                <button
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-4"
+                  aria-label="that leads a overview of all products"
+                >
                   Översikt över alla produkter
                 </button>
               </Link>
             </div>
             <Link to={"/"}>
-              <button className="rounded w-7 absolute top-2 left-3 bg-blue-500 hover:bg-blue-700 text-white font-bold">
+              <button
+                className="rounded w-7 absolute top-2 left-3 bg-blue-500 hover:bg-blue-700 text-white font-bold"
+                aria-label="that close the popup modal"
+              >
                 X
               </button>
             </Link>
