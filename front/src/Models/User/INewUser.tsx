@@ -5,6 +5,5 @@ export interface INewUser {
   phone: any;
   email: any;
   password: any;
-  // _id: any,
   productList: any[];
 }
