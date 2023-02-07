@@ -18,9 +18,15 @@ const checkLS = async () => {
 const Login = () => {
   checkLS();
   return (
-    <div className="bg-gradient-to-t from-gray-700 via-gray-900 to-black w-full h-full">
+    <div
+      className="bg-gradient-to-t from-gray-700 via-gray-900 to-black w-full h-full"
+      aria-label="Container that contains my navbar component"
+    >
       <Navbar />
-      <div className=" grid h-screen place-items-center">
+      <div
+        className=" grid h-screen place-items-center"
+        aria-label="Container that contains my Login Form component"
+      >
         <LoginForm />
         {/* <div className="grid grid-cols-2 gap-8 text-gray-500 sm:gap-12 sm:grid-cols-3 lg:grid-cols-6 dark:text-gray-400">
           <a href="#" className="flex items-center lg:justify-center">
