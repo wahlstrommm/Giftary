@@ -6,7 +6,7 @@ import Footer from "../Components/Footer";
 const Toplist = () => {
   const [productsArray, setProductsArray] = useState([]);
   const [resultText, SetResultText] = useState("");
-
+  //for motion framer
   const container = {
     hidden: { opacity: 1, scale: 0 },
     visible: {
@@ -18,7 +18,7 @@ const Toplist = () => {
       },
     },
   };
-
+  //for motion framer
   const item = {
     hidden: { y: 20, opacity: 0 },
     visible: {
@@ -26,7 +26,7 @@ const Toplist = () => {
       opacity: 1,
     },
   };
-
+  //diffrent category
   const category = [
     "ForHim",
     "ForHer",
@@ -37,6 +37,7 @@ const Toplist = () => {
     "DadsDay",
     "MomsDay",
   ];
+  //category with display name
   const categoryFineText = [
     "För han",
     "För henne",
@@ -47,6 +48,7 @@ const Toplist = () => {
     "Farsdag",
     "Morsdag",
   ];
+
   useEffect(() => {
     if (productsArray.length > 0) return;
     fetch("http://localhost:3000/api/overview", {
@@ -61,7 +63,7 @@ const Toplist = () => {
         setProductsArray(result);
       });
   }, []);
-
+  //sort category
   const handleCategory = async (categoryType: any) => {
     try {
       await fetch("http://localhost:3000/api/overview/sort/" + categoryType, {
@@ -84,6 +86,7 @@ const Toplist = () => {
       console.error("Fel ", error);
     }
   };
+  //link and goes product
   const getProductHandler = async (id: any) => {
     try {
       await fetch("http://localhost:3000/api/overview/" + id, {
@@ -117,13 +120,13 @@ const Toplist = () => {
       <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black">
         <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
           {resultText}
-          {/* <h2 className="sr-only">Products</h2> */}
           <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 max-sm:gap-y-1 max-md:gap-y-1">
             {category.map((i: any, index: any) => (
               <button
                 key={index}
                 id={i}
                 className="text-white m-2 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+                aria-label="diffrent categories"
                 onClick={(e) => {
                   handleCategory(e.currentTarget.id);
                 }}
@@ -169,6 +172,7 @@ const Toplist = () => {
                     getProductHandler(product._id);
                   }}
                   className=" mb-3 ml-2 text-white mt-2 py-1 px-2 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+                  aria-label="button that leads to specfity product"
                 >
                   Läs mer
                 </button>
