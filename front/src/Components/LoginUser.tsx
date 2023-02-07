@@ -23,6 +23,7 @@ const LoginUser = () => {
   };
 
   checkLS();
+  //for react hooks form
   const {
     register,
     handleSubmit,
@@ -34,6 +35,7 @@ const LoginUser = () => {
   const [reponsText, setReponsText] = useState("");
   const [loginContainer, setLoginContainer] = useState(false);
 
+  //react forms
   const onSubmit = (data: any) => {
     console.log(data);
     let user: INewUser = {
@@ -49,6 +51,7 @@ const LoginUser = () => {
     handlePrivateUser(user);
   };
 
+  //if sucessful login and they exits the popup box that displays diffrent alternatives depending on what type of user the timer will start
   const handleModal = () => {
     console.log("LOCAL", LocalS);
     if (LocalS === "") {
@@ -68,6 +71,7 @@ const LoginUser = () => {
     }, 2000);
   };
 
+  //for the private user
   const handlePrivateUser = async (data: any) => {
     if (!LocalS) {
       try {
@@ -112,7 +116,11 @@ const LoginUser = () => {
   return (
     <div className="flex justify-center h-full w-full">
       <div className=" bg-slate-50 flex justify-center items-center align-middle text-center shadow-md rounded px-1 pt-2 pb-2">
-        <form onSubmit={handleSubmit(onSubmit)} className="p-11">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="p-11"
+          aria-label="form the private user"
+        >
           <h1>Logga in</h1>
           <label
             htmlFor="email"
@@ -166,22 +174,34 @@ const LoginUser = () => {
                 }
               >
                 <Link to={"/"}>
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5">
+                  <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5"
+                    aria-label="Button that will link back home for the user"
+                  >
                     Hem
                   </button>
                 </Link>
                 <Link to={"/UserProductList"}>
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5">
+                  <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5"
+                    aria-label="Button that will link the user to their lists"
+                  >
                     Dina listor
                   </button>
                 </Link>
                 <Link to={"/Toplist"}>
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5">
+                  <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5"
+                    aria-label="Button that will link the user to the Toplist"
+                  >
                     Topplista
                   </button>
                 </Link>
               </div>
-              <button className="rounded w-7 absolute top-2 left-3 bg-blue-500 hover:bg-blue-700 text-white font-bold">
+              <button
+                className="rounded w-7 absolute top-2 left-3 bg-blue-500 hover:bg-blue-700 text-white font-bold"
+                aria-label="Button that will close the popup modal"
+              >
                 X
               </button>
             </div>
