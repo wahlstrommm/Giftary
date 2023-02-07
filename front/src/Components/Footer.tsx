@@ -6,7 +6,11 @@ const Footer = () => {
     <footer className=" bg-white sm:p-3 dark:bg-gray-900 w-full">
       <div className="">
         <div className="pt-3">
-          <Link to="/" className="flex items-center">
+          <Link
+            to="/"
+            className="flex items-center"
+            aria-label="Links to the homepage"
+          >
             <img src={logo} className="h-8 mr-3" alt="Giftary Logo" />
           </Link>
         </div>
@@ -17,12 +21,14 @@ const Footer = () => {
           <a
             href={"//www.github.com/wahlstrommm"}
             className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+            aria-label="Links to my github profile"
           >
             <svg
               className="w-7 h-7"
               fill="currentColor"
               viewBox="0 0 24 24"
               aria-hidden="true"
+              aria-label="github Logo"
             >
               <path
                 fillRule="evenodd"
