@@ -7,6 +7,7 @@ const LoginCompany = () => {
   const [showModal, setShowModal] = useState(false);
   const [reponsText, setReponsText] = useState("");
   const [loginContainer, setLoginContainer] = useState(false);
+  //react form
   const {
     register,
     handleSubmit,
@@ -50,7 +51,7 @@ const LoginCompany = () => {
       window.location.href = "http://localhost:3002/";
     }, 6000);
   };
-
+  //if the user close the popup modal if logged in
   const handleModal = () => {
     if (LocalS === "") {
       setShowModal(!showModal);
@@ -89,7 +90,7 @@ const LoginCompany = () => {
               setShowModal(true);
               setLoginContainer(false);
             }
-
+            //create a "user" so i can set i in localstorage
             let loggedUser = {
               isAllowed: result.company.isAllowed,
               _id: result.company._id,
@@ -109,7 +110,11 @@ const LoginCompany = () => {
   return (
     <div className="flex justify-center w-full">
       <div className=" bg-slate-50 flex justify-center items-center align-middle text-center shadow-md rounded px-1 pt-6 pb-8">
-        <form onSubmit={handleSubmit(onSubmit)} className="p-11">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="p-11"
+          aria-label="Form for the company login"
+        >
           <h1>Logga in</h1>
           <label
             htmlFor="org-nummer"
@@ -120,6 +125,7 @@ const LoginCompany = () => {
           <input
             type="text"
             className="m-2 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-fslate-900 focus:shadow-outline"
+            aria-label="org number for the company login"
             placeholder="org-Num"
             {...register("orgNumber", { required: true })}
           />
@@ -134,6 +140,7 @@ const LoginCompany = () => {
           <input
             type="password"
             className="m-2 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-fslate-900 focus:shadow-outline"
+            aria-label="password input for the company login"
             placeholder="password"
             {...register("password", { required: true, maxLength: 80 })}
           />
@@ -146,6 +153,7 @@ const LoginCompany = () => {
         </form>
         <div
           className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-around items-center"
+          aria-label="popmodal for response for the login attempt "
           style={
             showModal === true ? { display: "block" } : { display: "none" }
           }
