@@ -6,10 +6,8 @@ const companyModel = require("../Models/Company-model");
 
 //Loggar in användare. Decryptar lösen etc.
 router.post("/", async (req, res) => {
-  //checkar först om det är en "vanlig användaer" eller företag som loggar in.
-  // console.log(test);
+  //checks if its a reagular user or company that is trying to loggin.
   if (req.body.email) {
-    console.log("hej");
     let testUser;
     userModel.findOne({ email: req.body.email }, function (err, data) {
       testUser = data;
@@ -43,7 +41,6 @@ router.post("/", async (req, res) => {
               } else {
                 res.json({
                   success: false,
-                  // company: confirmLoggin,
                   message: "Fel lösenord eller email",
                 });
               }
