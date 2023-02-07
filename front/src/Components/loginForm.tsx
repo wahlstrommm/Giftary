@@ -22,9 +22,6 @@ const LoginForm = () => {
       setLoginContainerUser(false);
       setLoginContainerCompany(false);
     }
-    // setLoginContainerCompany(false);
-    // setLoginContainerUser(false);
-    // setShowContainer(!showContainer);
   };
 
   return (
@@ -34,6 +31,7 @@ const LoginForm = () => {
           <div className="flex justify-evenly gap-6">
             <button
               type="button"
+              aria-label="Button that will show the private user login form"
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               name="privat"
               value="privat"
@@ -43,6 +41,7 @@ const LoginForm = () => {
             </button>
             <button
               type="button"
+              aria-label="Button that will show the company login form"
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               name="company"
               value="company"
@@ -59,6 +58,7 @@ const LoginForm = () => {
               : { display: "none" }
           }
           className="m-2"
+          aria-label="Container that will show the private user login form"
         >
           {/*Privat*/}
           <LoginUser />
@@ -70,6 +70,7 @@ const LoginForm = () => {
               : { display: "none" }
           }
           className="m-2"
+          aria-label="Container that will show the company login form"
         >
           {/* Företag */}
           <LoginCompany />
@@ -78,6 +79,7 @@ const LoginForm = () => {
         <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 text-center">
           <button
             className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+            aria-label="button that will show the diffrent types of accounts that you can create"
             onClick={() => handleClick("account")}
           >
             {" "}
@@ -86,6 +88,7 @@ const LoginForm = () => {
         </div>
         <div
           className="m-2"
+          aria-label="Container that will my create userForm"
           style={showContainer ? { display: "block" } : { display: "none" }}
         >
           <CreateUserform />
