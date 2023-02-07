@@ -4,15 +4,16 @@ import Navbar from "../Components/Navbar";
 import { motion } from "framer-motion";
 
 const UserProductList = () => {
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
 
   const [productArray, setProductArray] = useState([]);
   const [urlString, setUrlString] = useState("");
   const [layout, setLAyout] = useState(<></>);
   const [empty, setEmpty] = useState(false);
-  let LocalLS: any;
   const [deleteBox, setDeleteBox] = useState(false);
   const [savedItemText, setSavedItemText] = useState("");
+  let LocalLS: any;
+  //checks the localstorage
   const checkLS = async () => {
     let LS: any = localStorage.getItem("loggedinUser");
     let LSParsed = JSON.parse(LS);
@@ -43,7 +44,7 @@ const UserProductList = () => {
     }
   };
   useEffect(() => {
-    console.log("hejhejeheejejejejj");
+    // console.log("hejhejeheejejejejj");
     if (productArray.length > 0) return;
     console.log("useEffect,");
     fetch("http://localhost:3000/api/user", {
@@ -75,6 +76,7 @@ const UserProductList = () => {
                       damping: 20,
                     }}
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5 "
+                    aria-label="leads to the toplist that the user can see diffrent products"
                   >
                     Hitta produkter
                   </motion.button>
@@ -89,9 +91,11 @@ const UserProductList = () => {
         }
       });
   }, []);
+
   checkLS();
+
   const produktHandler = async (produktID: any, product: any) => {
-    console.log(produktID, product);
+    // console.log(produktID, product);
     try {
       await fetch("http://localhost:3000/api/products/details/" + produktID, {
         method: "POST",
@@ -118,8 +122,9 @@ const UserProductList = () => {
       console.error("Fel ", error);
     }
   };
+
   const deleteListHandler = async (userID: any) => {
-    console.log(userID);
+    // console.log(userID);
     try {
       await fetch("http://localhost:3000/api/" + userID, {
         method: "POST",
@@ -167,6 +172,7 @@ const UserProductList = () => {
                 shareListHandler(LocalLS._id);
               }}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5 shadow hover:shadow-lg  transition transform hover:-translate-y-0.5"
+              aria-label="give the user to share thier list of save products"
             >
               Länk
             </button>
@@ -174,6 +180,7 @@ const UserProductList = () => {
             <button
               onClick={() => setDeleteBox(!deleteBox)}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5 shadow hover:shadow-lg  transition transform hover:-translate-y-0.5"
+              aria-label="deletes your list"
             >
               Radera
             </button>
@@ -192,12 +199,14 @@ const UserProductList = () => {
                   deleteListHandler(LocalLS._id);
                 }}
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5 shadow hover:shadow-lg  transition transform hover:-translate-y-0.5"
+                aria-label="confirmes delete the list"
               >
                 Ja
               </button>
               <button
                 onClick={() => setDeleteBox(!deleteBox)}
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5 shadow hover:shadow-lg  transition transform hover:-translate-y-0.5"
+                aria-label="denied deleting the list"
               >
                 Nej
               </button>
@@ -214,7 +223,7 @@ const UserProductList = () => {
                   alt={product.name}
                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                 />
-                <p>IMG</p>
+                {/* <p>IMG</p> */}
               </div>
               <div className="mt-4 flex justify-between">
                 <div>
