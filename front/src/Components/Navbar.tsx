@@ -7,10 +7,12 @@ const Navbar = () => {
   let typeOfUser: any;
   let loggedIn: any;
   let ID: any;
+  //clear Localstorage
   const clearLS = () => {
     window.localStorage.clear();
     window.location.reload();
   };
+  //checks Localstorage
   const checkLS = async () => {
     let LS: any = localStorage.getItem("loggedinUser");
     let LSParsed = JSON.parse(LS);
@@ -36,7 +38,7 @@ const Navbar = () => {
       <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
-            <Link to="/">
+            <Link to="/" aria-label="links to the homepage">
               <img
                 src={logo}
                 className="h-7"
@@ -54,6 +56,7 @@ const Navbar = () => {
                     className="w-6 h-6"
                     viewBox="0 0 20 20"
                     fill="currentColor"
+                    aria-label="hamburgermeny"
                   >
                     <path
                       fillRule="evenodd"
@@ -88,37 +91,66 @@ const Navbar = () => {
             }`}
           >
             <div className=" space-x-8 lg:flex">
-              <Link to={"/"} className="hover:underline">
+              <Link
+                to={"/"}
+                className="hover:underline"
+                aria-label="links back home"
+              >
                 Hem
               </Link>
-              <Link to={"/Toplist"} className="hover:underline">
+              <Link
+                to={"/Toplist"}
+                className="hover:underline"
+                aria-label="links to the toplist"
+              >
                 Topplista
               </Link>
               {typeOfUser === "user" ? (
-                <Link to={"/UserProductList"}>Sparade produkter</Link>
+                <Link
+                  to={"/UserProductList"}
+                  aria-label="links to the user saved products"
+                >
+                  Sparade produkter
+                </Link>
               ) : (
                 <></>
               )}
               {typeOfUser === "company" ? (
-                <Link to={"/ProductOverview"} className="hover:underline">
+                <Link
+                  to={"/ProductOverview"}
+                  className="hover:underline"
+                  aria-label="links to the companies created products"
+                >
                   Dina produkter
                 </Link>
               ) : (
                 <></>
               )}
               {loggedIn === true ? (
-                <Link to={`/profile/${ID}`} className="hover:underline">
+                <Link
+                  to={`/profile/${ID}`}
+                  className="hover:underline"
+                  aria-label="Links to thier profile"
+                >
                   Profil
                 </Link>
               ) : (
                 <></>
               )}
               {loggedIn === true ? (
-                <button onClick={() => clearLS()} className="hover:underline">
+                <button
+                  onClick={() => clearLS()}
+                  className="hover:underline"
+                  aria-label="singed out user"
+                >
                   Logga ut
                 </button>
               ) : (
-                <Link to={"/login"} className="hover:underline">
+                <Link
+                  to={"/login"}
+                  className="hover:underline"
+                  aria-label="links to login to user to singed in"
+                >
                   Logga in{" "}
                 </Link>
               )}
