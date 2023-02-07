@@ -9,10 +9,11 @@ router.get("/:company", async (req, res) => {
     { name: new RegExp("^" + req.params.company + "$", "i") },
     function (err, resp) {
       if (resp) {
-        // console.log(resp);
         res.status(200).json({ products: resp.products });
       } else {
-        res.status(400).json({ products: "Finns inga", test: resp });
+        res
+          .status(400)
+          .json({ products: "Finns inga", test: resp, error: err });
       }
     }
   );
@@ -29,7 +30,7 @@ router.post("/", async (req, res) => {
         doc.products.push(product);
         doc.save();
       } else {
-        console.log("Finns inget");
+        console.log("Finns inget", err);
       }
     }
   );
