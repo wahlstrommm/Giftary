@@ -9,6 +9,7 @@ const ProductOverview = () => {
   const [productsArray, setProductArray] = useState([]);
   const [layout, setLAyout] = useState(<></>);
   let LocalS: any;
+  //motion framer
   const container = {
     hidden: { opacity: 1, scale: 0 },
     visible: {
@@ -20,7 +21,7 @@ const ProductOverview = () => {
       },
     },
   };
-
+  //motion framer
   const item = {
     hidden: { y: 20, opacity: 0 },
     visible: {
@@ -28,6 +29,7 @@ const ProductOverview = () => {
       opacity: 1,
     },
   };
+
   useEffect(() => {
     fetch("http://localhost:3000/api/products/" + LocalS, {
       method: "GET",
@@ -48,7 +50,10 @@ const ProductOverview = () => {
               </h1>
               <p className="text-white">Du kan skapa produkter här</p>
               <Link to={"/CreateProduct"}>
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5">
+                <button
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5"
+                  aria-label="Button that takes you to create product"
+                >
                   Skapa produkt
                 </button>
               </Link>
@@ -63,15 +68,10 @@ const ProductOverview = () => {
   const checkLS = async () => {
     let LS: any = localStorage.getItem("loggedinUser");
     let LSParsed = JSON.parse(LS);
-    // console.log(LSParsed);
     if (LSParsed) {
-      // console.log("finns");
       if (LSParsed.isAllowed && LSParsed.type === "company") {
-        // console.log("finns och är allowed");
         LocalS = LSParsed;
-        // console.log(LSParsed);
         LocalS = LSParsed.name;
-        // console.log("LOCal", LocalS);
       } else {
         console.log("den är nu:", "{}");
         window.location.href = "http://localhost:3002/";
@@ -87,7 +87,6 @@ const ProductOverview = () => {
   checkLS();
 
   const produktHandler = async (produktID: any, product: any) => {
-    // console.log(produktID, product);
     try {
       await fetch("http://localhost:3000/api/products/details/" + produktID, {
         method: "POST",
