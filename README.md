@@ -415,7 +415,7 @@ And why they are just going to use my product is that it's easier to use compare
 
 ![Lighthouse](https://img.shields.io/badge/Google%20Chrome-4285F4?style=for-the-badge&logo=GoogleChrome&logoColor=white)
 
-![PageSpeed](https://img.shields.io/badge/PageSpeed%20Insights-4285F4.svg?style=for-the-badge&logo=PageSpeed-Insights&logoColor=white)
+
 
 ## Environment Variables
 
