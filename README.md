@@ -1,5 +1,5 @@
 
-# Project Title
+# Giftary
 
 My project is a gift generator that's going to eliminate that last minute shopping for people and help them to give a more meaningful and thoughtful gift. And also give insight with a list of what's popular . And let them save products in the list for future buys. Also for companies to display their product and give the public a better view on Amazon and their product (referring to their launch in Sweden).
 
