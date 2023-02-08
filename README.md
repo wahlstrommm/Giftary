@@ -1,4 +1,5 @@
-# Giftary
+
+# Project Title
 
 My project is a gift generator that's going to eliminate that last minute shopping for people and help them to give a more meaningful and thoughtful gift. And also give insight with a list of what's popular . And let them save products in the list for future buys. Also for companies to display their product and give the public a better view on Amazon and their product (referring to their launch in Sweden).
 
@@ -247,26 +248,26 @@ This project is used by the following users:
 
 - Private user
 - Company
+- Anonymous (Not signed in)
 
 
 Depending on the type of visitor (a single person or company) that enter the site is faced with three different options:
+
 
 #### User:
 The user just wanna browse, try the generator without signing in or save anything to their list of saved items. 
 The user has an account already and logs in and browses, uses the generator, saves or removes items from their list. 
 The user wants to create an account. 
 
-#### Company:
-They just wanna browse, try the generator without signing in or save anything to their list of saved items. 
+#### Company: 
 The company has an account already and logs in and browses, uses the generator, either to create a new listing of their product or removes already a published product from their list products. 
 The company wants to create an account. 
 
-From the start you have the option to browse around and try the generator. And you will have a login button and as well create an account button. 
+#### Anonymous (Not signed in)
+They just wanna browse, try the generator without signing in or save anything to their list of saved items.
 
-Login: 
-User details (inputs field) = Email, password (Type strings)
-Company? (checkbox) = Yes/No (Boolean)
-Forgot login details?  = link when pressed that will send the user to a page where the contact info for contacting the support. 
+
+
 ### Login:
  ```bash
   User = Email: String
@@ -289,6 +290,7 @@ Aimed for: String (required)
 options: Man,Female,Unisex
 Price: String (required)
 Image: String (required) (URL)
+Favorited: boolean (optional)
 Category: Category (required)
 ```
 
