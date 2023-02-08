@@ -552,3 +552,12 @@ I will test the login functionality both for creating, login/login out user or c
 More things I will do under the project are things like icaniuseit and contrast picker. And then after every done “page” i will check in pageSpeed and Lighthouse.
 
 And hopefully I have time to do one final test with a fully working prototype.
+
+## 🔗 Links
+
+
+[![Github](https://skillicons.dev/icons?i=github)](https://github.com/wahlstrommm) 
+
+[![linkedin](https://skillicons.dev/icons?i=linkedin)](https://www.linkedin.com/in/magnus-vahlstrom/)
+
+
