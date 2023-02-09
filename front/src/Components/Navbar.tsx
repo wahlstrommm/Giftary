@@ -41,13 +41,16 @@ const Navbar = () => {
             <Link to="/" aria-label="links to the homepage">
               <img
                 src={logo}
-                className="h-7"
+                height={"28px"}
+                width={"100"}
+                // className="h-7"
                 alt="icon for the company giftary"
               />
             </Link>
             <div className="md:hidden">
               <button
                 className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
+                aria-label="Button navbar"
                 onClick={() => setNavbar(!navbar)}
               >
                 {navbar ? (
@@ -90,7 +93,7 @@ const Navbar = () => {
               navbar ? "block" : "hidden"
             }`}
           >
-            <div className=" space-x-8 lg:flex">
+            <div className=" space-x-10 lg:flex">
               <Link
                 to={"/"}
                 className="hover:underline"
