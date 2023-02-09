@@ -126,7 +126,7 @@ const LoginCompany = () => {
             type="text"
             className="m-2 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-fslate-900 focus:shadow-outline"
             aria-label="org number for the company login"
-            placeholder="org-Num"
+            placeholder="Org-Num"
             {...register("orgNumber", { required: true })}
           />
           {errors.orgNumber && <p>Var snäll att fylll i organisationsnummer</p>}
@@ -141,7 +141,7 @@ const LoginCompany = () => {
             type="password"
             className="m-2 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-fslate-900 focus:shadow-outline"
             aria-label="password input for the company login"
-            placeholder="password"
+            placeholder="Lösenord"
             {...register("password", { required: true, maxLength: 80 })}
           />
           {errors.password && <p>Var snäll att fylll i Lösenord</p>}
