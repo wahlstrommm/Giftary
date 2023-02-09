@@ -39,7 +39,6 @@ const ProductOverview = () => {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         setProductArray(result.products);
         if (result.products.length === 0) {
           console.log("tom");
@@ -97,7 +96,6 @@ const ProductOverview = () => {
       })
         .then((response) => response.json())
         .then((result) => {
-          console.log(result);
           if (result) {
             localStorage.setItem(
               "product",
