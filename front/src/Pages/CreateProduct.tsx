@@ -103,9 +103,9 @@ const CreateProduct = () => {
   checkLS();
 
   return (
-    <div>
+    <div className="bg-gradient-to-t from-gray-700 via-gray-900 to-black">
       <Navbar />
-      <div className="w-3/3 flex justify-center mt-5 mb-2">
+      <div className="w-3/3 flex justify-center mt-5 pb-4">
         <div className="mt-5 md:mt-0 w-3/4">
           <form
             onSubmit={handleSubmit(onSubmit)}
@@ -120,7 +120,7 @@ const CreateProduct = () => {
                       htmlFor="namn"
                       className="block text-sm font-medium text-gray-700"
                     >
-                      Namn
+                      Namn:
                     </label>
                     <div className="mt-1 flex w-full h-full flex-col">
                       <input
@@ -142,7 +142,7 @@ const CreateProduct = () => {
                     htmlFor="about"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    About
+                    Om produkten:
                   </label>
                   <div className="mt-1">
                     <textarea
@@ -164,7 +164,7 @@ const CreateProduct = () => {
                     htmlFor="namn"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Passar ålderna
+                    Passar ålderna:
                   </label>
                   <div className="mt-1 flex rounded-md shadow-sm h-full flex-col">
                     <input
@@ -182,7 +182,7 @@ const CreateProduct = () => {
                     htmlFor="age"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    För vuxna
+                    För vuxna:
                   </label>
                   <input
                     className="h-6 w-6"
@@ -201,7 +201,7 @@ const CreateProduct = () => {
                     htmlFor="age"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Främst för åldern
+                    Främst för åldern:
                   </label>
                   <input
                     className="rounded-lg bg-gray-50 border text-white focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -223,7 +223,7 @@ const CreateProduct = () => {
                     htmlFor="price"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Pris
+                    Pris:
                   </label>
                   <div className="mt-1 flex rounded-md shadow-sm h-full flex-col">
                     <input
@@ -241,7 +241,7 @@ const CreateProduct = () => {
                     htmlFor="category"
                     className="block text-sm font-medium text-gray-700 pb-1"
                   >
-                    Kategori
+                    Kategori:
                   </label>
                   <select
                     className="rounded-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

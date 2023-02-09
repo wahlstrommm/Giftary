@@ -108,6 +108,7 @@ const LoginUser = () => {
           });
       } catch (error) {
         console.error("Fel ", error);
+        setShowModal(true);
       }
     } else {
       console.log("redan inloggad men försöker logga in på nytt");
@@ -131,7 +132,7 @@ const LoginUser = () => {
           <input
             type="text"
             className="m-2 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-fslate-900 focus:shadow-outline"
-            placeholder="email"
+            placeholder="Email"
             {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
           />
           {errors.email && <p>Var snäll att fylll i din email</p>}
@@ -145,7 +146,7 @@ const LoginUser = () => {
           <input
             type="password"
             className="m-2 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-fslate-900 focus:shadow-outline"
-            placeholder="password"
+            placeholder="Lösenord"
             {...register("password", { required: true, maxLength: 80 })}
           />
           {errors.password && <p>Var snäll att fylll i ditt lösenord</p>}
