@@ -151,7 +151,7 @@ const Toplist = () => {
                 <div className=" aspect-w-1  h-3/5 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 xl:aspect-w-7 xl:aspect-h-8 flex justify-evenly">
                   <img
                     src={product.image[0]}
-                    alt={product.imageAlt}
+                    alt={product.image[0]}
                     className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                   />
                 </div>
