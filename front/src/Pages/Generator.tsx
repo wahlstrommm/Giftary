@@ -65,15 +65,15 @@ const Generator = () => {
                     alt={i.image[0]}
                     className="object-cover object-center group-hover:opacity-75 rounded-2xl w-5/6 h-3/6"
                   />
-                  <h3 className=" text-sm text-gray-700">{i.name}</h3>
-                  <p className=" text-lg font-medium text-gray-900">
+                  <h3 className=" text-sm text-white pt-1">{i.name}</h3>
+                  <p className=" text-lg font-medium text-white">
                     {i.price} kr
                   </p>
                 </div>
                 <a href={"http://localhost:3002/product/" + i._id}>
                   <button
                     onClick={() => setLocalStorageForProduct(i)}
-                    className="bottom-3 max-sm:bottom-3 max-md:bottom-4 mb-3 relative  mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                    className="bottom-3 max-sm:bottom-3 max-md:bottom-4 mb-5 max-md:mb-3 relative inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                   >
                     Till produkten
                   </button>
@@ -159,7 +159,7 @@ const Generator = () => {
                     </div>
                     <h3 className="mt-4 text-sm text-gray-700">{i.name}</h3>
                     <p className="mt-1 text-lg font-medium text-gray-900">
-                      {i.price}
+                      {i.price} kr
                     </p>
                   </a>
                   <a href={"http://localhost:3002/product/" + i._id}>
@@ -234,9 +234,9 @@ const Generator = () => {
       <Navbar />
       <div className="h-screen bg-gradient-to-t from-gray-700 via-gray-900 to-black">
         <div className="flex justify-center items-center h-5/6 flex-col w-12/12">
-          <div className="bg-slate-600 w-11/12 h-5/6 rounded-md flex justify-center items-center flex-col">
+          <div className=" w-11/12 h-5/6 rounded-md flex justify-center items-center flex-col">
             {showResult ? (
-              <div className="bg-red-400 h-5/6 w-11/12 flex justify-center align-middle items-center flex-col gap-2">
+              <div className=" h-full w-11/12 flex justify-center align-middle items-center flex-col gap-2">
                 {randomItemLayout}
 
                 <button
