@@ -4,8 +4,6 @@ import Navbar from "../Components/Navbar";
 import { motion } from "framer-motion";
 
 const UserProductList = () => {
-  // const [showModal, setShowModal] = useState(false);
-
   const [productArray, setProductArray] = useState([]);
   const [urlString, setUrlString] = useState("");
   const [layout, setLAyout] = useState(<></>);
@@ -64,8 +62,10 @@ const UserProductList = () => {
           setLAyout(
             <div>
               <div className="flex flex-col text-center">
-                <h1>Det verkar som du inte har sparat några produkter</h1>
-                <p>Du kan hitta produkter här</p>
+                <h1 className="text-white">
+                  Det verkar som du inte har sparat några produkter
+                </h1>
+                <p className="text-white">Du kan hitta produkter här</p>
                 <Link to={"/Toplist"}>
                   <motion.button
                     initial={{ scale: 0 }}
@@ -95,7 +95,6 @@ const UserProductList = () => {
   checkLS();
 
   const produktHandler = async (produktID: any, product: any) => {
-    // console.log(produktID, product);
     try {
       await fetch("http://localhost:3000/api/products/details/" + produktID, {
         method: "POST",
@@ -124,7 +123,6 @@ const UserProductList = () => {
   };
 
   const deleteListHandler = async (userID: any) => {
-    // console.log(userID);
     try {
       await fetch("http://localhost:3000/api/" + userID, {
         method: "POST",
@@ -138,9 +136,6 @@ const UserProductList = () => {
           if (result) {
             window.location.reload();
             console.log(result);
-            // setShowModal(!showModal);
-            // window.location.href = result.url;
-            // setProductArray([]);
           } else {
             console.log("Något fel hände...");
           }
@@ -154,10 +149,10 @@ const UserProductList = () => {
     setUrlString("http://localhost:3002/api/" + userID);
   };
   return (
-    <div className="bg-white">
+    <div className="bg-gradient-to-t from-gray-700 via-gray-900 to-black h-screen">
       <Navbar />
-      <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-        <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+      <div className="bg-gradient-to-t from-gray-700 via-gray-900 to-black mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8 ">
+        <h2 className="text-2xl font-bold tracking-tight text-white">
           {savedItemText}
         </h2>
         {layout}
@@ -166,7 +161,6 @@ const UserProductList = () => {
           style={empty === true ? { display: "block" } : { display: "none" }}
         >
           <div className="flex justify-evenly">
-            {/* <p className="left-3">Dela: </p> */}
             <button
               onClick={() => {
                 shareListHandler(LocalLS._id);
@@ -176,7 +170,14 @@ const UserProductList = () => {
             >
               Länk
             </button>
-            <div>{urlString}</div>
+            <div>
+              <p
+                className="text-white text-
+            "
+              >
+                {urlString}
+              </p>
+            </div>
             <button
               onClick={() => setDeleteBox(!deleteBox)}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-5 shadow hover:shadow-lg  transition transform hover:-translate-y-0.5"
@@ -192,7 +193,9 @@ const UserProductList = () => {
               deleteBox === true ? { display: "block" } : { display: "none" }
             }
           >
-            <p className="mb-2 pt-2">Är du säker på att du vill radera den?</p>
+            <p className="mb-2 pt-2 text-white">
+              Är du säker på att du vill radera den?
+            </p>
             <div className="flex gap-4 justify-center">
               <button
                 onClick={() => {
@@ -213,21 +216,22 @@ const UserProductList = () => {
             </div>
           </div>
         </div>
-        {/* <div></div> */}
         <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {productArray.map((product: any, id: any) => (
-            <div key={id} className="group relative">
+            <div
+              key={id}
+              className="group relative bg-white pb-2 max-md:h-screen group h-full w-full bg-gradient-to-b from-gray-200 via-gray-400 to-gray-600 rounded-md bg-clip-padding backdrop-filter backdrop-blur-3xl bg-opacity-100"
+            >
               <div className="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-600 group-hover:opacity-75 lg:aspect-none lg:h-80 ">
                 <img
-                  src={product.image}
+                  src={product.image[0]}
                   alt={product.name}
                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                 />
-                {/* <p>IMG</p> */}
               </div>
               <div className="mt-4 flex justify-between">
                 <div>
-                  <h3 className="text-sm text-gray-700">
+                  <h3 className="text-sm text-white ml-2">
                     Namn:
                     <button
                       onClick={() => produktHandler(product._id, product)}
@@ -236,11 +240,11 @@ const UserProductList = () => {
                       {product.name}
                     </button>
                   </h3>
-                  <p className="mt-1 text-sm text-gray-500">
+                  <p className="mt-1 text-sm text-white ml-2">
                     Beskrivning: {product.summary}
                   </p>
                 </div>
-                <p className="text-sm font-medium text-gray-900">
+                <p className="text-sm font-medium text-white ml-2">
                   Pris: {product.price} kr
                 </p>
               </div>
