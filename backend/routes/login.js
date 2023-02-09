@@ -12,7 +12,10 @@ router.post("/", async (req, res) => {
     userModel.findOne({ email: req.body.email }, function (err, data) {
       testUser = data;
       if (testUser === null) {
-        return res.send("finns ingen användare");
+        return res.json({
+          message: "Fel inloggningsuppgifter!",
+          status: res.status,
+        });
       } else {
         try {
           bcrypt.compare(
