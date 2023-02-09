@@ -1,6 +1,6 @@
 export interface INewUser {
-  firstName: any;
-  lastName: any;
+  firstName: string;
+  lastName: string;
   sex: any;
   phone: any;
   email: any;
