@@ -58,7 +58,6 @@ const Profile = () => {
           resultFromFetch = data.result;
 
           array = resultFromFetch[0].products;
-          console.log(array);
           setNumOfItems(array.length);
           setProducts("Skapade");
           setBtnText("Skapa ny");
