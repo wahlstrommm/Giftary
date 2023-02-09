@@ -12,7 +12,6 @@ const Product = () => {
   let renderSucessLayout;
   let render;
   const handleModal = () => {
-    console.log("LOCAL", LocalS);
     if (LocalS === "") {
       setShowModal(!showModal);
     } else if (LocalS.isAllowed === true) {
