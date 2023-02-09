@@ -1,7 +1,7 @@
 import "./App.css";
 import Navbar from "./Components/Navbar";
 import { Link } from "react-router-dom";
-import gift from "./Images/logganCrop.svg";
+import gift from "./Images/gift-box.gif";
 import { motion } from "framer-motion";
 
 let LocalS: any;
@@ -32,22 +32,30 @@ function App() {
       <Navbar />
       <div className=" w-full h-5/6 flex justify-center items-center ">
         <div className="h-5/6 w-11/12 flex justify-center items-center">
-          <div className=" bg-slate-500  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 h-5/6 w-11/12 relative top-1 bottom-1 flex flex-col justify-evenly text-center rounded-lg">
-            <motion.img
-              src={gift}
-              className="h-1/3 relative top-5"
-              alt="icon"
-              initial={{ opacity: 0, x: "-100vh" }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 2 }}
-            />
+          <div className="    h-5/6 w-11/12 relative top-1 bottom-1 flex flex-col justify-evenly text-center rounded-lg">
+            <div className=" flex justify-center">
+              <motion.img
+                src={gift}
+                height={"100px"}
+                width={"250px"}
+                className="relative top-4"
+                alt="icon"
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{
+                  duration: 0.8,
+                  delay: 0.5,
+                  ease: [0, 0.71, 0.2, 1.01],
+                }}
+              />
+            </div>
             <motion.div
-              initial={{ scale: 0 }}
-              animate={{ rotate: 355, scale: 1 }}
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{
-                type: "spring",
-                stiffness: 260,
-                damping: 20,
+                duration: 0.8,
+                delay: 0.5,
+                ease: [0, 0.71, 0.2, 1.01],
               }}
             >
               <h1 className="text-9xl text-white font-bold h-2/4 max-sm:text-4xl">
