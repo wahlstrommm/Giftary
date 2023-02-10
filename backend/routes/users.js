@@ -12,7 +12,6 @@ router.post("/", async (req, res) => {
     { email: new RegExp("^" + req.body.email + "$", "i") },
     function (err, resp) {
       if (resp) {
-        console.log(resp);
         res.status(200).json({ products: resp.productList });
       } else {
         res.status(400).json({ products: "Finns inga" });
@@ -21,7 +20,7 @@ router.post("/", async (req, res) => {
   );
 });
 
-//For adde a product to thier list
+//For added a product to theirs list
 router.post("/:id", async (req, res) => {
   //gets the product id from params
   let productId = req.params.id;
@@ -32,7 +31,6 @@ router.post("/:id", async (req, res) => {
 
   //Then i set it to true for future feature of hard and soft delete
   find.favorited = true;
-  // console.log("FIND!!!!!", find.favorited);
 
   //Gets the user so i can add the item to thier list
   userModel.findOne({ email: req.body.email }, function (err, doc) {
@@ -59,8 +57,6 @@ router.get("/company/:id", async (req, res) => {
   }
 });
 router.get("/users/:id", async (req, res) => {
-  console.log(req.params.id);
-
   let ID = req.params.id;
 
   let user = await userModel
