@@ -25,7 +25,6 @@ router.post("/", async (req, res) => {
   CompanyModel.findOne(
     { name: new RegExp("^" + companyName + "$", "i") },
     function (err, doc) {
-      console.log("i den", doc);
       if (doc) {
         doc.products.push(product);
         doc.save();
@@ -52,7 +51,6 @@ router.post("/details/:id", async (req, res) => {
   let find = await productModel.find({
     _id: mongoose.Types.ObjectId(productId),
   });
-  console.log("FIND", find);
   if (find) {
     //had to change it to a string else i get the object
     let productID = find[0]._id.toString();
