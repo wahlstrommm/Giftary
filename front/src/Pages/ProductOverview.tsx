@@ -41,7 +41,6 @@ const ProductOverview = () => {
       .then((result) => {
         setProductArray(result.products);
         if (result.products.length === 0) {
-          console.log("tom");
           setLAyout(
             <div className="h-screen flex flex-col ">
               <h1 className="text-white">
