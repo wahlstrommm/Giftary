@@ -15,36 +15,23 @@ const UserProductList = () => {
   const checkLS = async () => {
     let LS: any = localStorage.getItem("loggedinUser");
     let LSParsed = JSON.parse(LS);
-    console.log(LSParsed);
     if (LSParsed) {
       console.log("finns");
       if (LSParsed.isAllowed && LSParsed.type === "company") {
         console.log("finns och är allowed");
         window.location.href = "http://localhost:3002/";
-
-        // window.location.re
-        // console.log(LSParsed);
-        // LocalS = LSParsed.name;
-        // console.log("LOCal", LocalS);
       } else if (LSParsed.isAllowed && LSParsed.type === "user") {
         LocalLS = LSParsed;
 
-        console.log("HEJHEJEJEEJEJEJ", LSParsed);
         console.log("den är nu:", "{}");
-        // window.location.href = "http://localhost:3002/";
       }
     } else {
       console.log("finns inget utan helt tom");
       window.location.href = "http://localhost:3002/";
-      // LocalS = {
-      //   isAllowed: false,
-      // };
     }
   };
   useEffect(() => {
-    // console.log("hejhejeheejejejejj");
     if (productArray.length > 0) return;
-    console.log("useEffect,");
     fetch("http://localhost:3000/api/user", {
       method: "POST",
       headers: {
@@ -54,7 +41,6 @@ const UserProductList = () => {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         setProductArray(result.products);
         setSavedItemText("Dina sparade produkter:");
         if (result.products.length === 0) {
@@ -105,7 +91,6 @@ const UserProductList = () => {
       })
         .then((response) => response.json())
         .then((result) => {
-          console.log(result);
           if (result) {
             console.log(result);
             localStorage.setItem(
@@ -132,7 +117,6 @@ const UserProductList = () => {
       })
         .then((response) => response.json())
         .then((result) => {
-          console.log(result);
           if (result) {
             window.location.reload();
             console.log(result);
@@ -145,7 +129,6 @@ const UserProductList = () => {
     }
   };
   const shareListHandler = async (userID: any) => {
-    console.log("url", "http://localhost:3000/api/" + userID);
     setUrlString("http://localhost:3002/api/" + userID);
   };
   return (
