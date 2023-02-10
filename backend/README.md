@@ -560,4 +560,8 @@ And hopefully I have time to do one final test with a fully working prototype.
 
 [![linkedin](https://skillicons.dev/icons?i=linkedin)](https://www.linkedin.com/in/magnus-vahlstrom/)
 
+[Repo](https://github.com/wahlstrommm/Giftary)
 
+[Front repo](https://github.com/wahlstrommm/Giftary/tree/main/front)
+
+[Back repo](https://github.com/wahlstrommm/Giftary/tree/main/backend)
