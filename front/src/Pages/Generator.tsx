@@ -34,7 +34,6 @@ const Generator = () => {
 
     console.log(JSON.stringify(product));
     localStorage.setItem("product", JSON.stringify(product));
-    console.log(localStorage);
   };
 
   const getRandomItemHandler = () => {
@@ -45,11 +44,9 @@ const Generator = () => {
         productArray[Math.floor(Math.random() * productArray.length)];
       console.log("Random:", randomItem);
       let randomItem2: any = [];
-      // randomItem2.push(productArray[58]);
       randomItem2.push(randomItem);
 
       if (randomItem) {
-        console.log(randomItem);
         localStorage.setItem("product", JSON.stringify(randomItem));
 
         setRandomItemLayout(
@@ -89,7 +86,7 @@ const Generator = () => {
     {
       questionText: "Är det en kille eller tjej?",
       answerOptions: [
-        { answerText: "Kille", isCorrect: "forHim" },
+        { answerText: "Kille", isCorrect: "ForHim" },
         { answerText: "Tjej", isCorrect: "ForHer" },
       ],
     },
@@ -107,19 +104,18 @@ const Generator = () => {
   const handleAnswerOptionClick = (userinput: any) => {
     setQuestionText("Är det personen över eller under 18 år?");
 
-    console.log(userinput);
     if (counter === 1) {
       setCounter(counter + 1);
-      console.log("counter", counter, userinput);
 
-      // if (userinput === "forHim" || "ForHer") {
-      answer1 = userinput;
-      let resultProducts = productArray.filter(
-        (product) => product["category"] === answer1
-      );
-      setResultArray(resultProducts);
-      console.warn(resultProducts);
-      console.log(productArray);
+      if (userinput === "ForHim" || "ForHer") {
+        answer1 = userinput;
+        let resultProducts = productArray.filter(
+          (product) => product["category"] === answer1
+        );
+        setResultArray(resultProducts);
+        console.warn(resultProducts);
+        console.log(productArray);
+      }
     }
     if (counter >= 2) {
       answer2 = "18";
@@ -128,13 +124,11 @@ const Generator = () => {
         let resultProducts = resultArray.filter(
           (product) => product["overAge"] === true
         );
-        console.log(resultProducts);
         let random =
-          resultArray[Math.floor(Math.random() * resultArray.length)];
+          resultProducts[Math.floor(Math.random() * resultProducts.length)];
         let array: any = [];
         array.push(random);
 
-        console.log("IS SISSTA ", random);
         localStorage.setItem("product", JSON.stringify(random));
 
         setshowGeneratedItemLayout(!showGeneratedItemLayout);
@@ -176,12 +170,14 @@ const Generator = () => {
           </div>
         );
       } else {
+        let resultProducts = resultArray.filter(
+          (product) => product["overAge"] === false
+        );
         let random =
-          resultArray[Math.floor(Math.random() * resultArray.length)];
+          resultProducts[Math.floor(Math.random() * resultProducts.length)];
         setResultArray([]);
         let array: any = [];
         array.push(random);
-        console.log("RANDOM", random);
         setshowGeneratedItemLayout(!showGeneratedItemLayout);
         setShowGenerateItem(
           <div className="flex justify-center text-center">
