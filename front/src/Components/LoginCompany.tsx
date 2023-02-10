@@ -21,7 +21,6 @@ const LoginCompany = () => {
     let LS: any = localStorage.getItem("loggedinUser");
     let LSParsed = JSON.parse(LS);
     if (LSParsed) {
-      console.log("finns");
       if (LSParsed.isAllowed) {
         console.log("finns och är allowed");
         LocalS = LSParsed;
@@ -66,7 +65,6 @@ const LoginCompany = () => {
   const handleCompanyUser = async (data: any) => {
     //for stopping user to login again if they are ready logged in.
     if (!LocalS) {
-      console.log("I if", LocalS);
       try {
         await fetch("http://localhost:3000/api/login", {
           method: "POST",
@@ -101,7 +99,6 @@ const LoginCompany = () => {
           });
       } catch (error) {
         console.error("Fel ", error);
-        // setReponsText(error.message);
       }
     } else {
       console.log("redan inloggad men försöker logga in på nytt");
