@@ -49,7 +49,7 @@ const LoginCompany = () => {
   const timer = () => {
     setTimeout(() => {
       window.location.href = "http://localhost:3002/";
-    }, 6000);
+    }, 2000);
   };
   //if the user close the popup modal if logged in
   const handleModal = () => {
