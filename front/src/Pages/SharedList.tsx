@@ -15,7 +15,6 @@ const SharedList = () => {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result.find[0]);
         setProductArray(result.find[0].productList);
       });
   }, []);
@@ -31,9 +30,7 @@ const SharedList = () => {
       })
         .then((response) => response.json())
         .then((result) => {
-          console.log(result);
           if (result) {
-            console.log(result);
             localStorage.setItem(
               "product",
               JSON.stringify(result.Foundproduct)
