@@ -48,8 +48,6 @@ const CreateProduct = () => {
       };
       CreateProductHandler(product);
     }
-    console.log(errors);
-    console.log(data);
   };
   //post the created product
   const CreateProductHandler = async (product: IProduct) => {
@@ -63,7 +61,6 @@ const CreateProduct = () => {
       })
         .then((response) => response.json())
         .then((result) => {
-          console.log(result);
           if (result) {
             reset();
             setReponsText(result.message);
@@ -87,7 +84,6 @@ const CreateProduct = () => {
       if (LSParsed.isAllowed && LSParsed.type === "company") {
         console.log("finns och är allowed");
         LocalS = LSParsed;
-        console.log(LSParsed);
       } else {
         console.log("den är nu:", "{}");
         window.location.href = "http://localhost:3002/";
