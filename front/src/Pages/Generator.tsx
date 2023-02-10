@@ -24,7 +24,6 @@ const Generator = () => {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         setProductArray(result);
       });
   }, []);
@@ -32,7 +31,6 @@ const Generator = () => {
   const setLocalStorageForProduct = (product: object) => {
     localStorage.removeItem("product");
 
-    console.log(JSON.stringify(product));
     localStorage.setItem("product", JSON.stringify(product));
   };
 
@@ -42,7 +40,6 @@ const Generator = () => {
     } else {
       let randomItem =
         productArray[Math.floor(Math.random() * productArray.length)];
-      console.log("Random:", randomItem);
       let randomItem2: any = [];
       randomItem2.push(randomItem);
 
@@ -113,8 +110,6 @@ const Generator = () => {
           (product) => product["category"] === answer1
         );
         setResultArray(resultProducts);
-        console.warn(resultProducts);
-        console.log(productArray);
       }
     }
     if (counter >= 2) {
