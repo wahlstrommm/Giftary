@@ -10,7 +10,6 @@ const LoginUser = () => {
     let LS: any = localStorage.getItem("loggedinUser");
     let LSParsed = JSON.parse(LS);
     if (LSParsed) {
-      console.log("finns");
       if (LSParsed.isAllowed) {
         console.log("finns och är allowed");
         LocalS = LSParsed;
@@ -37,7 +36,6 @@ const LoginUser = () => {
 
   //react forms
   const onSubmit = (data: any) => {
-    console.log(data);
     let user: INewUser = {
       firstName: "",
       lastName: "",
@@ -53,7 +51,6 @@ const LoginUser = () => {
 
   //if sucessful login and they exits the popup box that displays diffrent alternatives depending on what type of user the timer will start
   const handleModal = () => {
-    console.log("LOCAL", LocalS);
     if (LocalS === "") {
       setShowModal(!showModal);
     } else if (LocalS.isAllowed === true) {
@@ -84,7 +81,6 @@ const LoginUser = () => {
         })
           .then((response) => response.json())
           .then((result) => {
-            console.log(result);
             if (result) {
               reset({ email: "", password: "" });
               setReponsText(result.message);
